@@ -28,10 +28,22 @@ import ProfessorCalendarPage from './pages/professor/ProfessorCalendarPage';
 import ProfessorQCMPage from './pages/professor/ProfessorQCMPage';
 import ProfessorNotificationsPage from './pages/professor/ProfessorNotificationsPage';
 import ProfessorAIPage from './pages/professor/ProfessorAIPage';
+import ProfessorAssignmentDetailPage from './pages/professor/ProfessorAssignmentDetailPage';
 import ProfessorGuard from './components/guards/ProfessorGuard';
 import NotFoundPage from './pages/NotFoundPage';
 import axios from 'axios';
 import { useAuthStore } from './store/authStore';
+import StudentGuard from './components/guards/StudentGuard';
+import StudentLayout from './pages/student/StudentLayout';
+import StudentDashboardPage from './pages/student/StudentDashboardPage';
+import StudentTimetablePage from './pages/student/StudentTimetablePage';
+import StudentCoursesPage from './pages/student/StudentCoursesPage';
+import StudentCourseDetailPage from './pages/student/StudentCourseDetailPage';
+import StudentAssignmentsPage from './pages/student/StudentAssignmentsPage';
+import StudentGradesPage from './pages/student/StudentGradesPage';
+import StudentAbsencesPage from './pages/student/StudentAbsencesPage';
+import StudentAIHubPage from './pages/student/StudentAIHubPage';
+import StudentIncidentsPage from './pages/student/StudentIncidentsPage';
 
 // Intercepteur global pour gérer l'expiration de session (401 Unauthorized)
 axios.interceptors.response.use(
@@ -97,7 +109,26 @@ function App() {
           <Route path="calendar" element={<ProfessorCalendarPage />} />
           <Route path="qcm" element={<ProfessorQCMPage />} />
           <Route path="notifications" element={<ProfessorNotificationsPage />} />
+          <Route path="assignments/:assignmentId" element={<ProfessorAssignmentDetailPage />} />
           <Route path="ai" element={<ProfessorAIPage />} />
+        </Route>
+
+        {/* Student Routes — Protected by StudentGuard */}
+        <Route path="/student" element={
+          <StudentGuard>
+            <StudentLayout />
+          </StudentGuard>
+        }>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<StudentDashboardPage />} />
+          <Route path="timetable" element={<StudentTimetablePage />} />
+          <Route path="courses" element={<StudentCoursesPage />} />
+          <Route path="courses/:courseId" element={<StudentCourseDetailPage />} />
+          <Route path="assignments" element={<StudentAssignmentsPage />} />
+          <Route path="grades" element={<StudentGradesPage />} />
+          <Route path="absences" element={<StudentAbsencesPage />} />
+          <Route path="hub" element={<StudentAIHubPage />} />
+          <Route path="incidents" element={<StudentIncidentsPage />} />
         </Route>
 
         {/* Catch-all Route for 404 */}

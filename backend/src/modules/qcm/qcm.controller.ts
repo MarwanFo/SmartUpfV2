@@ -21,7 +21,7 @@ export class QcmController {
   ) {
     return await this.qcmService.generateFromPdf(file, {
       difficulty,
-      count: parseInt(count),
+      count: isNaN(parseInt(count)) || parseInt(count) < 1 ? 5 : parseInt(count),
       language
     });
   }

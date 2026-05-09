@@ -36,8 +36,10 @@ const LoginPage: React.FC = () => {
         navigate('/prof/dashboard');
       } else if (currentUser?.role === 'SUPER_ADMIN') {
         navigate('/admin/dashboard');
+      } else if (currentUser?.role === 'ETUDIANT') {
+        navigate('/student/dashboard');
       } else {
-        navigate('/prof/dashboard'); 
+        navigate('/login'); 
       }
     } catch (err: any) {
       const msg = err.message || 'Identifiants incorrects.';

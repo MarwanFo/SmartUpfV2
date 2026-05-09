@@ -541,8 +541,35 @@ export class ProfessorService {
           { classId: null }
         ]
       },
+      include: {
+        submissions: {
+          include: {
+            student: { select: { firstName: true, lastName: true, email: true } }
+          }
+        }
+      },
       orderBy: { dueDate: 'asc' }
     });
+  }
+
+  async getAssignmentById(id: string, professorId: string) {
+    const assignment = await this.prisma.assignment.findUnique({
+      where: { id },
+      include: {
+        course: true,
+        submissions: {
+          include: {
+            student: { select: { id: true, firstName: true, lastName: true, email: true, studentProfile: { include: { class: true } } } }
+          },
+          orderBy: { submittedAt: 'desc' }
+        }
+      }
+    });
+
+    if (!assignment) throw new NotFoundException('Devoir introuvable');
+    if (assignment.course.professorId !== professorId) throw new ForbiddenException('Accès refusé');
+
+    return assignment;
   }
 
   async createAssignment(courseId: string, data: { title: string, description: string, dueDate: string, maxGrade?: number, classId?: string }) {
@@ -557,6 +584,18 @@ export class ProfessorService {
 
   async deleteAssignment(id: string) {
     return this.prisma.assignment.delete({ where: { id } });
+  }
+
+  async gradeSubmission(submissionId: string, grade: number, feedback: string) {
+    return this.prisma.submission.update({
+      where: { id: submissionId },
+      data: {
+        grade,
+        feedback,
+        status: 'GRADED',
+        gradedAt: new Date()
+      }
+    });
   }
 
   // ─── Grading ───────────────────────────────────────────

@@ -27,6 +27,7 @@ import { ClassesModule } from './modules/classes/classes.module';
 import { UploadModule } from './modules/upload/upload.module';
 import { ProfessorScheduleModule } from './modules/professor-schedule/professor-schedule.module';
 import { QcmModule } from './modules/qcm/qcm.module';
+import { StudentModule } from './modules/student/student.module';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
@@ -82,6 +83,7 @@ import geminiConfig from './config/gemini.config';
     UploadModule,
     ProfessorScheduleModule,
     QcmModule,
+    StudentModule,
   ],
 })
 export class AppModule {}

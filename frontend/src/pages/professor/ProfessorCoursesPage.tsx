@@ -43,12 +43,24 @@ interface Announcement {
   createdAt: string;
 }
 
+interface Submission {
+  id: string;
+  status: string;
+  grade?: number;
+  feedback?: string;
+  fileUrl?: string;
+  note?: string;
+  student: { firstName: string; lastName: string; email: string };
+  submittedAt: string;
+}
+
 interface Assignment {
   id: string;
   title: string;
   description: string;
   dueDate: string;
   maxGrade: number;
+  submissions?: Submission[];
 }
 
 interface Course {
@@ -427,7 +439,7 @@ const ProfessorCoursesPage: React.FC = () => {
                         {assignments.length === 0 ? (
                           <EmptyState label="Zéro devoir" description="Planifiez un travail à rendre pour vos classes." />
                         ) : assignments.map((item, idx) => (
-                          <AssignmentCard key={item.id} item={item} idx={idx} />
+                          <AssignmentCard key={item.id} item={item} idx={idx} onViewSubmissions={() => window.location.href = `/professor/assignments/${item.id}`} />
                         ))}
                       </div>
                     )}
@@ -469,7 +481,7 @@ const ProfessorCoursesPage: React.FC = () => {
               <div className="space-y-6">
                 {activeTab === 'materials' && (
                   <>
-                    <Input label="Titre" placeholder="Ex: Chapitre 1..." value={newMaterial.title} onChange={v => setNewMaterial(p => ({ ...p, title: v }))} />
+                    <Input label="Titre" placeholder="Ex: Chapitre 1..." value={newMaterial.title} onChange={(v: any) => setNewMaterial(p => ({ ...p, title: v }))} />
                     <div className="grid grid-cols-2 gap-4">
                       <TypeBtn active={newMaterial.type === 'FILE'} onClick={() => setNewMaterial(p => ({ ...p, type: 'FILE' }))} label="Fichier" icon={DocumentIcon} />
                       <TypeBtn active={newMaterial.type === 'LINK'} onClick={() => setNewMaterial(p => ({ ...p, type: 'LINK' }))} label="Lien Web" icon={GlobeAltIcon} />
@@ -497,14 +509,14 @@ const ProfessorCoursesPage: React.FC = () => {
                         )}
                       </div>
                     ) : (
-                      <Input label="URL / Lien" placeholder="https://..." value={newMaterial.url} onChange={v => setNewMaterial(p => ({ ...p, url: v }))} icon={LinkIcon} />
+                      <Input label="URL / Lien" placeholder="https://..." value={newMaterial.url} onChange={(v: any) => setNewMaterial(p => ({ ...p, url: v }))} icon={LinkIcon} />
                     )}
                   </>
                 )}
 
                 {activeTab === 'announcements' && (
                   <>
-                    <Input label="Titre" placeholder="Avis important..." value={newAnnouncement.title} onChange={v => setNewAnnouncement(p => ({ ...p, title: v }))} />
+                    <Input label="Titre" placeholder="Avis important..." value={newAnnouncement.title} onChange={(v: any) => setNewAnnouncement(p => ({ ...p, title: v }))} />
                     <div>
                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Contenu du message</label>
                       <textarea rows={4} className="w-full px-6 py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500" value={newAnnouncement.content} onChange={e => setNewAnnouncement(p => ({ ...p, content: e.target.value }))} />
@@ -517,10 +529,10 @@ const ProfessorCoursesPage: React.FC = () => {
 
                 {activeTab === 'assignments' && (
                   <>
-                    <Input label="Titre du devoir" placeholder="Ex: Mini-Projet React..." value={newAssignment.title} onChange={v => setNewAssignment(p => ({ ...p, title: v }))} />
+                    <Input label="Titre du devoir" placeholder="Ex: Mini-Projet React..." value={newAssignment.title} onChange={(v: any) => setNewAssignment(p => ({ ...p, title: v }))} />
                     <div className="grid grid-cols-2 gap-4">
-                      <Input label="Date Limite" type="date" value={newAssignment.dueDate} onChange={v => setNewAssignment(p => ({ ...p, dueDate: v }))} icon={CalendarIcon} />
-                      <Input label="Note Max" type="number" value={newAssignment.maxGrade} onChange={v => setNewAssignment(p => ({ ...p, maxGrade: Number(v) }))} />
+                      <Input label="Date Limite" type="date" value={newAssignment.dueDate} onChange={(v: any) => setNewAssignment(p => ({ ...p, dueDate: v }))} icon={CalendarIcon} />
+                      <Input label="Note Max" type="number" value={newAssignment.maxGrade} onChange={(v: any) => setNewAssignment(p => ({ ...p, maxGrade: Number(v) }))} />
                     </div>
                     <textarea rows={3} placeholder="Instructions..." className="w-full px-6 py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500" value={newAssignment.description} onChange={e => setNewAssignment(p => ({ ...p, description: e.target.value }))} />
                   </>
@@ -600,28 +612,39 @@ const AnnouncementCard = ({ item, idx }: any) => (
   </motion.div>
 );
 
-const AssignmentCard = ({ item, idx }: any) => (
-  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.1 }} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col relative overflow-hidden group">
-    <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 -mr-16 -mt-16 rounded-full group-hover:scale-110 transition-transform" />
-    <div className="flex items-center justify-between mb-6 relative">
-      <div className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center text-cyan-400">
-        <ClipboardDocumentCheckIcon className="w-8 h-8" />
+const AssignmentCard = ({ item, idx, onViewSubmissions }: any) => {
+  const submittedCount = item.submissions?.length || 0;
+  
+  return (
+    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.1 }} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-lg transition-shadow">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 -mr-16 -mt-16 rounded-full group-hover:scale-110 transition-transform" />
+      <div className="flex items-center justify-between mb-6 relative">
+        <div className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center text-cyan-400">
+          <ClipboardDocumentCheckIcon className="w-8 h-8" />
+        </div>
+        <div className="text-right">
+          <span className="text-[10px] font-black text-slate-300 uppercase block mb-1 tracking-widest">Note Max</span>
+          <span className="text-xl font-black text-slate-900">/ {item.maxGrade}</span>
+        </div>
       </div>
-      <div className="text-right">
-        <span className="text-[10px] font-black text-slate-300 uppercase block mb-1 tracking-widest">Note Max</span>
-        <span className="text-xl font-black text-slate-900">/ {item.maxGrade}</span>
+      <h4 className="text-xl font-black text-slate-900 mb-2 font-outfit leading-tight">{item.title}</h4>
+      <p className="text-sm text-slate-400 mb-6 line-clamp-3 font-medium">{item.description}</p>
+      <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl mb-4">
+        <CalendarIcon className="w-5 h-5 text-indigo-500" />
+        <div>
+          <span className="text-[10px] font-black text-slate-400 uppercase block tracking-tighter">Échéance</span>
+          <span className="text-xs font-bold text-slate-900">{new Date(item.dueDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
+        </div>
       </div>
-    </div>
-    <h4 className="text-xl font-black text-slate-900 mb-2 font-outfit leading-tight">{item.title}</h4>
-    <p className="text-sm text-slate-400 mb-8 line-clamp-3 font-medium">{item.description}</p>
-    <div className="mt-auto flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
-      <CalendarIcon className="w-5 h-5 text-indigo-500" />
-      <div>
-        <span className="text-[10px] font-black text-slate-400 uppercase block tracking-tighter">Échéance</span>
-        <span className="text-xs font-bold text-slate-900">{new Date(item.dueDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
-      </div>
-    </div>
-  </motion.div>
-);
+      <button 
+        onClick={onViewSubmissions}
+        className="mt-auto w-full py-3 bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white rounded-xl text-xs font-black uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
+      >
+        <UserGroupIcon className="w-4 h-4" />
+        Voir les remises ({submittedCount})
+      </button>
+    </motion.div>
+  );
+};
 
 export default ProfessorCoursesPage;

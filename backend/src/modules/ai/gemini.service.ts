@@ -9,9 +9,9 @@ export class GeminiService {
 
   constructor(private configService: ConfigService) {
     const apiKey = this.configService.get<string>('GEMINI_API_KEY');
+    const modelName = this.configService.get<string>('GEMINI_MODEL') || 'gemini-2.5-flash';
     this.genAI = new GoogleGenerativeAI(apiKey || '');
-    // Using 1.5 Flash for speed and generous free tier
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    this.model = this.genAI.getGenerativeModel({ model: modelName });
   }
 
   async generateContent(prompt: string): Promise<string> {

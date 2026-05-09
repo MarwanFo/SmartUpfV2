@@ -357,7 +357,7 @@ const ProfessorAttendancePage: React.FC = () => {
           <div className="h-px bg-slate-200 my-4 mx-2" />
           <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 px-3">Historique / Présences</h3>
 
-          {sessions.map(session => (
+          {sessions.map((session) => (
             <button
               key={session.id}
               onClick={() => loadAttendanceSheet(session)}
@@ -472,7 +472,7 @@ const ProfessorAttendancePage: React.FC = () => {
                 </div>
               ) : (
                 <div className="space-y-2">
-                  {filteredStudents.map((student, idx) => {
+                  {filteredStudents.map((student) => {
                     return (
                       <div
                         key={student.id}

@@ -102,6 +102,11 @@ export class ProfessorController {
 
   // ─── Assignments ────────────────────────────────────────
 
+  @Get('assignments/:assignmentId')
+  async getAssignmentById(@Request() req: any, @Param('assignmentId') assignmentId: string) {
+    return await this.professorService.getAssignmentById(assignmentId, req.user.sub);
+  }
+
   @Get('courses/:courseId/assignments')
   async getAssignmentsForCourse(@Param('courseId') courseId: string, @Query('classId') classId?: string) {
     return await this.professorService.getAssignments(courseId, classId);
@@ -113,6 +118,15 @@ export class ProfessorController {
     @Body() body: { title: string, description: string, dueDate: string, maxGrade?: number, classId?: string }
   ) {
     return await this.professorService.createAssignment(courseId, body);
+  }
+
+  @Post('submissions/:submissionId/grade')
+  async gradeSubmission(
+    @Request() req: any,
+    @Param('submissionId') submissionId: string,
+    @Body() body: { grade: number; feedback: string }
+  ) {
+    return await this.professorService.gradeSubmission(submissionId, body.grade, body.feedback);
   }
 
   // ─── Grading ──────────────────────────────────────────────

@@ -344,7 +344,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
     
     if (formData.profDepartmentIds?.length === 0) {
       if (formData.profProgramIds?.length > 0) {
-        setFormData(f => ({ ...f, profProgramIds: [], profModuleIds: [] }));
+        setFormData((f: any) => ({ ...f, profProgramIds: [], profModuleIds: [] }));
       }
     } else {
       // Filter out programs that are no longer valid for the selected faculties
@@ -352,11 +352,11 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
       const strictMatches = programs.filter(p => p.facultyId && formData.profDepartmentIds.includes(p.facultyId));
       
       if (strictMatches.length > 0) {
-        const validProgramIds = formData.profProgramIds.filter(pId => 
+        const validProgramIds = formData.profProgramIds.filter((pId: any) => 
           strictMatches.some(p => p.id === pId)
         );
         if (validProgramIds.length !== formData.profProgramIds.length) {
-          setFormData(f => ({ ...f, profProgramIds: validProgramIds }));
+          setFormData((f: any) => ({ ...f, profProgramIds: validProgramIds }));
         }
       }
       // If no strict matches exist in the entire dataset for these faculties, we don't clear anything
@@ -369,7 +369,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
 
     if (formData.profProgramIds?.length === 0) {
       if (formData.profModuleIds?.length > 0) {
-        setFormData(f => ({ ...f, profModuleIds: [] }));
+        setFormData((f: any) => ({ ...f, profModuleIds: [] }));
       }
     } else {
       // Filter out modules that are no longer valid for the selected programs
@@ -379,11 +379,11 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
       );
 
       if (strictMatches.length > 0) {
-        const validModuleIds = formData.profModuleIds.filter(mId => 
+        const validModuleIds = formData.profModuleIds.filter((mId: any) => 
           strictMatches.some(m => m.id === mId)
         );
         if (validModuleIds.length !== formData.profModuleIds.length) {
-          setFormData(f => ({ ...f, profModuleIds: validModuleIds }));
+          setFormData((f: any) => ({ ...f, profModuleIds: validModuleIds }));
         }
       }
     }
@@ -873,7 +873,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                                 required
                                 disabled={!formData.buildingId}
                                 value={formData.studentProgramId} 
-                                onChange={e => setFormData({...formData, studentProgramId: e.target.value})} 
+                                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, studentProgramId: e.target.value})} 
                                 className="w-full px-3 py-2 rounded-lg border border-blue-200 text-sm disabled:bg-slate-50 disabled:text-slate-400 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all bg-white"
                               >
                                 <option value="">{formData.buildingId ? 'Choisir la filière' : '← Choisir d\'abord un établissement'}</option>
@@ -894,7 +894,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                         <div className="grid grid-cols-3 gap-4">
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Titre Académique</label>
-                            <select value={formData.profTitle} onChange={e => setFormData({...formData, profTitle: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
+                            <select value={formData.profTitle} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, profTitle: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
                               <option value="Dr.">Docteur (Dr.)</option>
                               <option value="Prof.">Professeur (Prof.)</option>
                               <option value="Mr.">Monsieur</option>
@@ -903,12 +903,12 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                           </div>
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Spécialité</label>
-                            <input type="text" placeholder="Ex: Informatique" value={formData.profSpeciality} onChange={e => setFormData({...formData, profSpeciality: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
+                            <input type="text" placeholder="Ex: Informatique" value={formData.profSpeciality} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, profSpeciality: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
                           </div>
 
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Type de Contrat</label>
-                            <select value={formData.profContract} onChange={e => setFormData({...formData, profContract: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
+                            <select value={formData.profContract} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, profContract: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
                               <option value="PERMANENT">Permanent (Titulaire)</option>
                               <option value="VACATAIRE">Vacataire</option>
                               <option value="VISITING">Professeur Visiteur</option>
@@ -916,11 +916,11 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                           </div>
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Bureau</label>
-                            <input type="text" value={formData.profOffice} onChange={e => setFormData({...formData, profOffice: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
+                            <input type="text" value={formData.profOffice} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, profOffice: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
                           </div>
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Heures de réception</label>
-                            <input type="text" value={formData.profHours} onChange={e => setFormData({...formData, profHours: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
+                            <input type="text" value={formData.profHours} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, profHours: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
                           </div>
                         </div>
 
@@ -942,7 +942,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                               icon={<UserGroupIcon className="w-4 h-4" />}
                               items={departments}
                               selected={formData.profDepartmentIds}
-                              onChange={ids => setFormData({...formData, profDepartmentIds: ids})}
+                              onChange={(ids: string[]) => setFormData({...formData, profDepartmentIds: ids})}
                               color="amber"
                             />
                             
@@ -952,7 +952,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                                  icon={<AcademicCapIcon className="w-4 h-4" />}
                                  items={isLoadingAcademicData ? [] : filteredPrograms}
                                  selected={formData.profProgramIds}
-                                 onChange={ids => setFormData({...formData, profProgramIds: ids})}
+                                 onChange={(ids: string[]) => setFormData({...formData, profProgramIds: ids})}
                                  color="blue"
                                />
                                {isLoadingAcademicData ? (
@@ -968,7 +968,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                                  icon={<BriefcaseIcon className="w-4 h-4" />}
                                  items={isLoadingAcademicData ? [] : filteredModules}
                                  selected={formData.profModuleIds}
-                                 onChange={ids => setFormData({...formData, profModuleIds: ids})}
+                                 onChange={(ids: string[]) => setFormData({...formData, profModuleIds: ids})}
                                  color="orange"
                                />
                                {isLoadingAcademicData ? (
@@ -988,7 +988,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                         <div className="grid grid-cols-3 gap-4">
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Lien de parenté</label>
-                            <select value={formData.parentRelationship} onChange={e => setFormData({...formData, parentRelationship: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
+                            <select value={formData.parentRelationship} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, parentRelationship: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm">
                               <option value="FATHER">Père</option>
                               <option value="MOTHER">Mère</option>
                               <option value="GUARDIAN">Tuteur Légal</option>
@@ -996,11 +996,11 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                           </div>
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Profession</label>
-                            <input type="text" value={formData.parentProfession} onChange={e => setFormData({...formData, parentProfession: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
+                            <input type="text" value={formData.parentProfession} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, parentProfession: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
                           </div>
                           <div>
                             <label className="block text-xs font-bold text-slate-600 mb-1">Tél. Urgence</label>
-                            <input type="text" value={formData.parentEmergency} onChange={e => setFormData({...formData, parentEmergency: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
+                            <input type="text" value={formData.parentEmergency} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, parentEmergency: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm" />
                           </div>
                         </div>
                         {/* Student smart search */}
@@ -1030,7 +1030,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                               <input
                                 type="text"
                                 value={studentSearch}
-                                onChange={e => { setStudentSearch(e.target.value); setShowStudentDropdown(true); }}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setStudentSearch(e.target.value); setShowStudentDropdown(true); }}
                                 onFocus={() => setShowStudentDropdown(true)}
                                 placeholder="Tapez un CNE (ex: G1234567) ou CIN (ex: BJ567890)..."
                                 className="w-full px-3 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
@@ -1048,7 +1048,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                                   <div className="absolute z-50 mt-1 w-full bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden">
                                     {results.map(s => (
                                       <button key={s.id} type="button"
-                                        onMouseDown={e => e.preventDefault()}
+                                        onMouseDown={(e: React.MouseEvent) => e.preventDefault()}
                                         onClick={() => {
                                           setSelectedStudent(s);
                                           setFormData({...formData, parentStudentId: s.id});

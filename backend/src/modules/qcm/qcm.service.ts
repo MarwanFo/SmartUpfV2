@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { GeminiService } from '../ai/gemini.service';
-const pdf = require('pdf-parse');
+const { PDFParse } = require('pdf-parse');
 
 @Injectable()
 export class QcmService {
@@ -9,8 +9,10 @@ export class QcmService {
   async generateFromPdf(file: Express.Multer.File, options: { difficulty: string, count: number, language: string }) {
     try {
       // 1. Extract text from PDF
-      const data = await pdf(file.buffer);
-      const text = data.text;
+      const parser = new PDFParse(new Uint8Array(file.buffer));
+      await parser.load();
+      const textData = await parser.getText();
+      const text = textData.text;
 
       if (!text || text.length < 100) {
         throw new BadRequestException("Le PDF semble vide ou illisible.");
