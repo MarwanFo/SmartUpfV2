@@ -98,34 +98,68 @@ export class StudentService {
       select: { courseId: true }
     }) : [];
 
-    // Extract unique course IDs
-    const courseIds = [...new Set([...enrollments.map(e => e.courseId), ...slots.map(s => s.courseId)])];
+    // 4. Get courses where the student has grades
+    const gradedCourses = await this.prisma.grade.findMany({
+      where: { studentId: studentId },
+      select: { courseId: true }
+    });
+
+    const courseIds = [...new Set([
+      ...slots.map(s => s.courseId),
+      ...enrollments.map(e => e.courseId),
+      ...gradedCourses.map(g => g.courseId)
+    ])];
 
     // 3. Fetch full course details
     if (courseIds.length === 0) return [];
 
-    return this.prisma.course.findMany({
+    const coursesData = await this.prisma.course.findMany({
       where: { id: { in: courseIds }, isActive: true },
       include: {
         professor: {
           select: { id: true, firstName: true, lastName: true, email: true }
         },
         materials: {
+          where: classId ? { classId } : {},
           orderBy: { createdAt: 'desc' }
         },
         announcements: {
+          where: classId ? { classId } : {},
           orderBy: { createdAt: 'desc' },
           take: 3
         },
         assignments: {
+          where: classId ? { classId } : {},
           orderBy: { dueDate: 'asc' },
           include: {
             submissions: {
               where: { studentId }
             }
           }
+        },
+        grades: {
+          where: { studentId }
         }
       }
+    });
+
+    // 4. Calculate unjustified absences per course
+    const unjustifiedAbsences = await this.prisma.attendance.findMany({
+      where: {
+        studentId,
+        status: 'ABSENT',
+        justified: false,
+        session: { courseId: { in: courseIds } }
+      },
+      include: { session: { select: { courseId: true } } }
+    });
+
+    return coursesData.map(course => {
+      const absencesCount = unjustifiedAbsences.filter(a => a.session.courseId === course.id).length;
+      return {
+        ...course,
+        unjustifiedAbsencesCount: absencesCount
+      };
     });
   }
 
@@ -139,6 +173,58 @@ export class StudentService {
     }
 
     return course;
+  }
+  async getAbsences(studentId: string) {
+    return this.prisma.attendance.findMany({
+      where: { studentId },
+      include: {
+        session: {
+          include: {
+            course: {
+              select: { id: true, name: true, code: true }
+            }
+          }
+        }
+      },
+      orderBy: {
+        markedAt: 'desc'
+      }
+    });
+  }
+
+
+  async justifyAbsence(studentId: string, attendanceId: string, fileUrl: string, note?: string) {
+    const attendance = await this.prisma.attendance.findUnique({
+      where: { id: attendanceId },
+      include: { session: true }
+    });
+
+    if (!attendance || attendance.studentId !== studentId) {
+      throw new Error('Absence introuvable ou non autorisée');
+    }
+
+    if (attendance.status !== 'ABSENT') {
+      throw new Error('Seules les absences peuvent être justifiées');
+    }
+
+    const sessionDate = new Date(attendance.session.date);
+    const now = new Date();
+    // Assuming the class started at session.startTime, but for simplicity we check the date.
+    // 48 hours is roughly 2 days.
+    const diffHours = Math.abs(now.getTime() - sessionDate.getTime()) / 36e5;
+
+    if (diffHours > 48) {
+      throw new Error('Le délai de 48h pour justifier cette absence est dépassé');
+    }
+
+    return this.prisma.attendance.update({
+      where: { id: attendanceId },
+      data: {
+        justificationUrl: fileUrl,
+        justificationNote: note,
+        // Wait for admin validation to set justified: true
+      }
+    });
   }
 
   async submitAssignment(studentId: string, assignmentId: string, fileUrl?: string, note?: string) {

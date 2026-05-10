@@ -96,4 +96,20 @@ export class AbsencesService {
 
     return session;
   }
+
+  async validateJustification(attendanceId: string, isValid: boolean) {
+    const attendance = await this.prisma.attendance.findUnique({
+      where: { id: attendanceId }
+    });
+
+    if (!attendance) throw new NotFoundException('Absence introuvable');
+
+    return this.prisma.attendance.update({
+      where: { id: attendanceId },
+      data: {
+        justified: isValid,
+        // Optional: clear justification url if rejected, or just keep it for history
+      }
+    });
+  }
 }

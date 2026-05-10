@@ -439,7 +439,7 @@ const ProfessorCoursesPage: React.FC = () => {
                         {assignments.length === 0 ? (
                           <EmptyState label="Zéro devoir" description="Planifiez un travail à rendre pour vos classes." />
                         ) : assignments.map((item, idx) => (
-                          <AssignmentCard key={item.id} item={item} idx={idx} onViewSubmissions={() => window.location.href = `/professor/assignments/${item.id}`} />
+                          <AssignmentCard key={item.id} item={item} idx={idx} onViewSubmissions={() => window.location.href = `/prof/assignments/${item.id}`} />
                         ))}
                       </div>
                     )}

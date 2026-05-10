@@ -15,6 +15,25 @@ export class StudentController {
     return this.studentService.getDashboardSummary(req.user.sub);
   }
 
+  @Get('absences')
+  async getAbsences(@Request() req: any) {
+    return this.studentService.getAbsences(req.user.sub);
+  }
+
+  @Post('absences/:id/justify')
+  async justifyAbsence(
+    @Param('id') id: string,
+    @Body() body: { fileUrl: string; note?: string },
+    @Request() req: any
+  ) {
+    try {
+      return await this.studentService.justifyAbsence(req.user.sub, id, body.fileUrl, body.note);
+    } catch (error) {
+      console.error("JUSTIFY ABSENCE ERROR:", error);
+      throw error;
+    }
+  }
+
   @Get('timetable')
   async getTimetable(@Request() req: any) {
     try {

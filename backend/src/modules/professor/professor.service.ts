@@ -470,10 +470,7 @@ export class ProfessorService {
     return this.prisma.courseMaterial.findMany({
       where: { 
         courseId,
-        OR: [
-          { classId: classId || null },
-          { classId: null }
-        ]
+        ...(classId ? { classId } : {})
       },
       orderBy: { createdAt: 'desc' }
     });
@@ -506,10 +503,7 @@ export class ProfessorService {
     return (this.prisma as any).announcement.findMany({
       where: { 
         courseId,
-        OR: [
-          { classId: classId || null },
-          { classId: null }
-        ]
+        ...(classId ? { classId } : {})
       },
       orderBy: { createdAt: 'desc' }
     });
@@ -536,10 +530,7 @@ export class ProfessorService {
     return this.prisma.assignment.findMany({
       where: { 
         courseId,
-        OR: [
-          { classId: classId || null },
-          { classId: null }
-        ]
+        ...(classId ? { classId } : {})
       },
       include: {
         submissions: {

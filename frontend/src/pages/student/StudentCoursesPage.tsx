@@ -6,6 +6,7 @@ import {
   UserCircleIcon,
   FolderOpenIcon,
   MegaphoneIcon,
+  ClipboardDocumentCheckIcon,
 } from '@heroicons/react/24/outline';
 import { useAuthStore } from '../../store/authStore';
 import axios from 'axios';
@@ -38,6 +39,7 @@ interface Course {
   professor: { firstName: string; lastName: string; email: string };
   materials: CourseMaterial[];
   announcements: Announcement[];
+  assignments: any[];
 }
 
 const StudentCoursesPage: React.FC = () => {
@@ -119,6 +121,12 @@ const StudentCoursesPage: React.FC = () => {
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-amber-50 px-3 py-1.5 rounded-lg text-amber-700 border border-amber-100">
                     <MegaphoneIcon className="w-4 h-4" />
                     {course.announcements.length} Annonces
+                  </div>
+                )}
+                {course.assignments && course.assignments.length > 0 && (
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-emerald-50 px-3 py-1.5 rounded-lg text-emerald-700 border border-emerald-100">
+                    <ClipboardDocumentCheckIcon className="w-4 h-4" />
+                    {course.assignments.length} Devoirs
                   </div>
                 )}
               </div>

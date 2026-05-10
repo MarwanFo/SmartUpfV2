@@ -744,6 +744,9 @@ model Attendance {
   status      AttendanceStatus @default(PRESENT)
   markedAt    DateTime         @default(now())
   notes       String?
+  justified   Boolean          @default(false)
+  justificationUrl  String?
+  justificationNote String?
 
   session     Session          @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   student     User             @relation("StudentAttendance", fields: [studentId], references: [id], onDelete: Cascade)

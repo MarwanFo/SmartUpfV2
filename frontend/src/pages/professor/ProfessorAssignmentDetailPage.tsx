@@ -64,7 +64,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
       }
     } catch (error) {
       toast.error('Erreur lors du chargement des remises');
-      navigate('/professor/courses');
+      navigate('/prof/courses');
     } finally {
       setLoading(false);
     }
@@ -111,7 +111,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
       <div className="bg-white border-b border-slate-200 px-8 py-6 shrink-0 z-10 shadow-sm">
         <div className="flex items-center gap-4 mb-4">
           <button 
-            onClick={() => navigate('/professor/courses')}
+            onClick={() => navigate('/prof/courses')}
             className="p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl text-slate-500 transition-colors"
           >
             <ArrowLeftIcon className="w-5 h-5" />

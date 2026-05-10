@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { AbsencesService } from './absences.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
@@ -19,5 +19,14 @@ export class AbsencesController {
   @Roles('SUPER_ADMIN', 'ADMIN')
   async getSessionDetails(@Param('id') id: string) {
     return await this.absencesService.getSessionDetails(id);
+  }
+
+  @Post('justify/:id/validate')
+  @Roles('SUPER_ADMIN', 'ADMIN')
+  async validateJustification(
+    @Param('id') id: string,
+    @Body() body: { isValid: boolean }
+  ) {
+    return await this.absencesService.validateJustification(id, body.isValid);
   }
 }
