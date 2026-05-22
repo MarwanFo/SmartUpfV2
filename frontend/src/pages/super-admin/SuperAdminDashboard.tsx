@@ -89,7 +89,7 @@ const SuperAdminDashboard: React.FC = () => {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {renderStatCard("Étudiants Actifs", stats?.counts?.students?.toString() || '0', <UsersIcon className="w-6 h-6 text-blue-600" />, "blue")}
           {renderStatCard("Professeurs & Staff", stats?.counts?.professors?.toString() || '0', <AcademicCapIcon className="w-6 h-6 text-[#E6B014]" />, "gold")}
-          {renderStatCard("Établissements", stats?.counts?.buildings?.toString() || '0', <BuildingOffice2Icon className="w-6 h-6 text-indigo-600" />, "indigo")}
+          {renderStatCard("Établissements", stats?.counts?.buildings?.toString() || '0', <BuildingOffice2Icon className="w-6 h-6 text-upf-primary" />, "indigo")}
           {renderStatCard("Comptes Staff", stats?.counts?.staff?.toString() || '0', <ShieldExclamationIcon className="w-6 h-6 text-emerald-600" />, "emerald")}
         </div>
       )}
@@ -99,7 +99,7 @@ const SuperAdminDashboard: React.FC = () => {
         <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="px-6 py-5 border-b border-slate-100 flex justify-between items-center">
             <h3 className="font-bold text-slate-900 font-outfit">Activité Récente du Système</h3>
-            <button className="text-sm text-upf-blue font-semibold hover:text-upf-gold transition-colors">Tout voir</button>
+            <button className="text-sm text-upf-primary font-semibold hover:text-upf-accent transition-colors">Tout voir</button>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
@@ -115,7 +115,7 @@ const SuperAdminDashboard: React.FC = () => {
                 {stats?.recentActivity?.length ? stats.recentActivity.map((activity) => (
                   <tr key={activity.id} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 font-medium text-slate-900 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-upf-gold"></span>
+                      <span className="w-2 h-2 rounded-full bg-upf-accent"></span>
                       {activity.action}
                     </td>
                     <td className="px-6 py-4 text-slate-500">{activity.user} <span className="text-xs text-slate-400 ml-1">({activity.role})</span></td>
@@ -178,7 +178,7 @@ const StatCard = ({ title, value, trend, trendUp, icon, color }: { title: string
   const colorMap: Record<string, string> = {
     blue: 'bg-blue-50 text-blue-600 border-blue-100',
     gold: 'bg-[#E6B014]/10 text-[#E6B014] border-[#E6B014]/20',
-    indigo: 'bg-indigo-50 text-indigo-600 border-indigo-100',
+    indigo: 'bg-upf-primary/10 text-upf-primary border-upf-primary/20',
     emerald: 'bg-emerald-50 text-emerald-600 border-emerald-100',
   };
 
@@ -205,3 +205,4 @@ const StatCard = ({ title, value, trend, trendUp, icon, color }: { title: string
 };
 
 export default SuperAdminDashboard;
+

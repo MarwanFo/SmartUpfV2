@@ -96,7 +96,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen bg-[#F8FAFC]">
-        <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-upf-primary/30 border-t-upf-primary rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -118,7 +118,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
           </button>
           <div>
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+              <div className="w-8 h-8 rounded-lg bg-upf-primary/10 flex items-center justify-center text-upf-primary">
                 <ClipboardDocumentCheckIcon className="w-5 h-5" />
               </div>
               <h1 className="text-2xl font-black text-slate-900 font-outfit">{assignment.title}</h1>
@@ -161,7 +161,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
                 }}
                 className={`w-full flex items-center justify-between p-4 rounded-xl text-left transition-all ${
                   selectedSubmissionId === sub.id 
-                    ? 'bg-[#0A192F] text-white shadow-lg' 
+                    ? 'bg-upf-primary text-white shadow-lg' 
                     : 'hover:bg-slate-50 text-slate-700'
                 }`}
               >
@@ -174,7 +174,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
                   </p>
                 </div>
                 {sub.status === 'GRADED' && (
-                  <CheckBadgeIcon className={`w-5 h-5 ${selectedSubmissionId === sub.id ? 'text-cyan-400' : 'text-emerald-500'}`} />
+                  <CheckBadgeIcon className={`w-5 h-5 ${selectedSubmissionId === sub.id ? 'text-upf-primaryLight' : 'text-emerald-500'}`} />
                 )}
               </button>
             ))}
@@ -248,10 +248,10 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
                             href={selectedSubmission.fileUrl} 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            className="inline-flex items-center gap-3 px-6 py-4 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 text-indigo-700 rounded-2xl text-sm font-black transition-colors w-full sm:w-auto"
+                            className="inline-flex items-center gap-3 px-6 py-4 bg-upf-primary/10 hover:bg-upf-primary/20 border border-upf-primary/20 text-upf-primary rounded-2xl text-sm font-black transition-colors w-full sm:w-auto"
                           >
                             <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-sm">
-                              <DocumentArrowUpIcon className="w-5 h-5 text-indigo-500" />
+                              <DocumentArrowUpIcon className="w-5 h-5 text-upf-primary" />
                             </div>
                             Télécharger le fichier complet
                           </a>
@@ -280,7 +280,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
                               type="number" 
                               value={gradeInput}
                               onChange={(e) => setGradeInput(e.target.value)}
-                              className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-2xl font-black text-indigo-600 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                              className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-2xl font-black text-upf-primary focus:ring-2 focus:ring-upf-primary outline-none transition-all"
                               placeholder="..."
                               max={assignment.maxGrade}
                               min={0}
@@ -297,7 +297,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
                           <textarea 
                             value={feedbackInput}
                             onChange={(e) => setFeedbackInput(e.target.value)}
-                            className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium outline-none focus:ring-2 focus:ring-indigo-500 min-h-[120px] transition-all"
+                            className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium outline-none focus:ring-2 focus:ring-upf-primary min-h-[120px] transition-all"
                             placeholder="Points forts, points à améliorer..."
                           />
                         </div>
@@ -305,7 +305,7 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
                         <button 
                           onClick={handleGradeSubmit}
                           disabled={isSaving || !gradeInput}
-                          className="w-full py-4 bg-[#0A192F] hover:bg-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl shadow-indigo-100 transition-all flex items-center justify-center gap-2"
+                          className="w-full py-4 bg-upf-primary hover:bg-upf-primary disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl shadow-upf-primary/20 transition-all flex items-center justify-center gap-2"
                         >
                           {isSaving ? (
                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -336,3 +336,5 @@ const ProfessorAssignmentDetailPage: React.FC = () => {
 };
 
 export default ProfessorAssignmentDetailPage;
+
+

@@ -596,7 +596,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                         <span className="font-mono text-slate-700 text-sm truncate mr-2">{createdCredentials.email}</span>
                         <button 
                           onClick={() => copyToClipboard(createdCredentials.email)} 
-                          className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors text-xs font-bold whitespace-nowrap"
+                          className="px-3 py-1 bg-upf-primary/10 text-upf-primary rounded-lg hover:bg-upf-primary/20 transition-colors text-xs font-bold whitespace-nowrap"
                         >
                           Copier
                         </button>
@@ -606,10 +606,10 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
                     <div className="text-left">
                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Mot de Passe Sécurisé</label>
                       <div className="flex items-center justify-between mt-1 p-3 bg-white rounded-xl border border-slate-100 shadow-sm group">
-                        <span className="font-mono text-xl font-bold text-indigo-600 tracking-wider">{createdCredentials.password}</span>
+                        <span className="font-mono text-xl font-bold text-upf-primary tracking-wider">{createdCredentials.password}</span>
                         <button 
                           onClick={() => copyToClipboard(createdCredentials.password)} 
-                          className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors text-xs font-bold whitespace-nowrap"
+                          className="px-3 py-1 bg-upf-primary/10 text-upf-primary rounded-lg hover:bg-upf-primary/20 transition-colors text-xs font-bold whitespace-nowrap"
                         >
                           Copier
                         </button>
@@ -1128,3 +1128,4 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, user }) => {
 };
 
 export default UserModal;
+

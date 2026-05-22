@@ -7,15 +7,54 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply font-inter bg-[#f8fafc];
+    @apply font-inter bg-[#f8fafc] text-slate-800 antialiased;
+  }
+  ::selection {
+    background-color: theme('colors.upf.primary');
+    color: white;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-outfit;
+    @apply font-outfit text-slate-900;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
   }
 }
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/90 backdrop-blur-md border border-white shadow-sm;
+    @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-glass;
+  }
+  
+  .glass-panel-hover {
+    @apply hover:bg-white/90 hover:shadow-glass-hover hover:-translate-y-0.5 transition-all duration-300 ease-out;
+  }
+
+  /* Form Validation Utilities */
+  .input-standard {
+    @apply w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 
+    placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary transition-all shadow-sm;
+  }
+
+  .input-error {
+    @apply border-semantic-danger focus:ring-semantic-danger/20 focus:border-semantic-danger bg-semantic-danger/5 text-semantic-danger;
+  }
+
+  .label-standard {
+    @apply block text-xs font-bold text-slate-600 uppercase tracking-widest mb-1.5;
+  }
+
+  .label-required::after {
+    content: '*';
+    @apply ml-1 text-semantic-danger;
   }
 }

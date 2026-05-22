@@ -222,20 +222,20 @@ const ProfessorCalendarPage: React.FC = () => {
     <div className="flex h-screen bg-slate-50 overflow-hidden font-outfit">
       {/* ─── AI Intentions Sidebar ─── */}
       <aside className="w-80 border-r border-slate-200 bg-white flex flex-col shadow-2xl z-10">
-        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-indigo-600 to-violet-700 text-white">
+        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-upf-primary to-violet-700 text-white">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-md">
               <SparklesIcon className="w-6 h-6" />
             </div>
             <h2 className="text-lg font-black uppercase tracking-tight">IA Assistant</h2>
           </div>
-          <p className="text-[9px] font-bold text-indigo-100 uppercase tracking-widest opacity-70">Décrivez vos souhaits, l'IA s'occupe du reste</p>
+          <p className="text-[9px] font-bold text-upf-primary/20 uppercase tracking-widest opacity-70">Décrivez vos souhaits, l'IA s'occupe du reste</p>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-          <div className="bg-indigo-50/50 rounded-2xl p-4 border border-indigo-100">
-            <p className="text-[10px] font-black text-indigo-600 uppercase mb-1">Comment ça marche ?</p>
-            <p className="text-[11px] text-indigo-900 leading-relaxed opacity-80">
+          <div className="bg-upf-primary/10/50 rounded-2xl p-4 border border-upf-primary/20">
+            <p className="text-[10px] font-black text-upf-primary uppercase mb-1">Comment ça marche ?</p>
+            <p className="text-[11px] text-upf-primary leading-relaxed opacity-80">
               Saisissez vos activités sans date précise. Cliquez sur "Optimiser" et l'IA les placera dans vos créneaux libres.
             </p>
           </div>
@@ -243,7 +243,7 @@ const ProfessorCalendarPage: React.FC = () => {
           <div className="space-y-3">
             <div className="flex items-center justify-between px-2">
               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mes Intentions</h3>
-              <button onClick={() => setShowTaskModal(true)} className="p-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all shadow-md">
+              <button onClick={() => setShowTaskModal(true)} className="p-1.5 bg-upf-primary text-white rounded-lg hover:bg-upf-primary transition-all shadow-md">
                 <PlusIcon className="w-4 h-4" />
               </button>
             </div>
@@ -267,7 +267,7 @@ const ProfessorCalendarPage: React.FC = () => {
         </div>
 
         <div className="p-4 bg-slate-50/50">
-          <button onClick={startOptimization} disabled={isOptimizing} className="w-full py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl text-xs font-black shadow-lg shadow-indigo-200 hover:scale-[1.02] transition-all active:scale-95 flex items-center justify-center gap-2">
+          <button onClick={startOptimization} disabled={isOptimizing} className="w-full py-4 bg-gradient-to-r from-upf-primary to-violet-600 text-white rounded-2xl text-xs font-black shadow-lg shadow-upf-primary/30 hover:scale-[1.02] transition-all active:scale-95 flex items-center justify-center gap-2">
             <SparklesIcon className="w-4 h-4" />
             OPTIMISER MA SEMAINE
           </button>
@@ -282,7 +282,7 @@ const ProfessorCalendarPage: React.FC = () => {
               <CalendarDaysIcon className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-black text-slate-900 uppercase tracking-tight">IntelliSchedule <span className="text-indigo-600">Hybrid</span></h1>
+              <h1 className="text-xl font-black text-slate-900 uppercase tracking-tight">IntelliSchedule <span className="text-upf-primary">Hybrid</span></h1>
               <div className="flex items-center gap-2">
                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Planning Optimisé par NVIDIA</p>
                 {slots.length === 0 && !loading && (
@@ -333,10 +333,10 @@ const ProfessorCalendarPage: React.FC = () => {
                             if (item.type === 'UNIVERSITY') {
                               const isDone = isSessionFinished(item as any);
                               return (
-                                <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} key={`univ-${item.id || idx}`} className={`p-4 rounded-2xl border-l-4 shadow-sm border border-slate-100 flex flex-col justify-between h-full transition-all relative group ${isDone ? 'bg-emerald-50/30 border-l-emerald-400 opacity-60' : 'bg-white border-l-cyan-500 hover:shadow-lg'}`}>
+                                <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} key={`univ-${item.id || idx}`} className={`p-4 rounded-2xl border-l-4 shadow-sm border border-slate-100 flex flex-col justify-between h-full transition-all relative group ${isDone ? 'bg-emerald-50/30 border-l-emerald-400 opacity-60' : 'bg-white border-l-upf-primaryLight hover:shadow-lg'}`}>
                                   <div>
                                     <div className="flex items-center justify-between mb-1">
-                                      <span className="text-[8px] font-black uppercase text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded border border-cyan-100">UNIV</span>
+                                      <span className="text-[8px] font-black uppercase text-cyan-700 bg-upf-primaryLight/10 px-1.5 py-0.5 rounded border border-upf-primaryLight/20">UNIV</span>
                                       {!isDone && <button onClick={() => markFinished(item.id)} className="p-1 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-all opacity-0 group-hover:opacity-100"><CheckIcon className="w-3 h-3" /></button>}
                                     </div>
                                     <h4 className="text-[11px] font-black text-slate-900 leading-tight">{(item as any).course?.name}</h4>
@@ -346,18 +346,18 @@ const ProfessorCalendarPage: React.FC = () => {
                               );
                             } else {
                               return (
-                                <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} key={`perso-${item.id || idx}`} className="p-4 rounded-2xl border-l-4 border-l-indigo-500 bg-gradient-to-br from-indigo-50 to-white shadow-sm border border-indigo-100 flex flex-col justify-between h-full hover:shadow-lg transition-all">
+                                <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} key={`perso-${item.id || idx}`} className="p-4 rounded-2xl border-l-4 border-l-upf-primary bg-gradient-to-br from-upf-primary/10 to-white shadow-sm border border-upf-primary/20 flex flex-col justify-between h-full hover:shadow-lg transition-all">
                                   <div>
                                     <div className="flex items-center justify-between mb-1">
-                                      <span className="text-[8px] font-black uppercase text-indigo-700 bg-indigo-100 px-1.5 py-0.5 rounded border border-indigo-200">PERSO</span>
+                                      <span className="text-[8px] font-black uppercase text-upf-primary bg-upf-primary/20 px-1.5 py-0.5 rounded border border-upf-primary/30">PERSO</span>
                                       <div className="flex gap-1">
-                                        {(item as any).category === 'SPORT' && <TrophyIcon className="w-3 h-3 text-indigo-400" />}
+                                        {(item as any).category === 'SPORT' && <TrophyIcon className="w-3 h-3 text-upf-primaryLight" />}
                                         {(item as any).category === 'HEALTH' && <HeartIcon className="w-3 h-3 text-rose-400" />}
                                       </div>
                                     </div>
-                                    <h4 className="text-[11px] font-black text-indigo-900 leading-tight">{(item as any).title}</h4>
+                                    <h4 className="text-[11px] font-black text-upf-primary leading-tight">{(item as any).title}</h4>
                                   </div>
-                                  <div className="flex items-center gap-1 mt-2 text-indigo-400 text-[9px] font-bold"><ClockIcon className="w-3 h-3" /><span>{(item as any).startTime} - {(item as any).endTime}</span></div>
+                                  <div className="flex items-center gap-1 mt-2 text-upf-primaryLight text-[9px] font-bold"><ClockIcon className="w-3 h-3" /><span>{(item as any).startTime} - {(item as any).endTime}</span></div>
                                 </motion.div>
                               );
                             }
@@ -401,7 +401,7 @@ const ProfessorCalendarPage: React.FC = () => {
                 <textarea 
                   value={newFlexTask} 
                   onChange={e => setNewFlexTask(e.target.value)}
-                  className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none min-h-[120px] resize-none font-bold text-slate-700" 
+                  className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-upf-primary outline-none min-h-[120px] resize-none font-bold text-slate-700" 
                   placeholder="Ex: Aller à la piscine 2 fois, Dîner en famille, Acheter des fournitures..."
                 />
                 <button onClick={handleAddFlexTask} className="w-full py-5 bg-slate-900 text-white rounded-2xl text-xs font-black shadow-xl hover:bg-slate-800 transition-all active:scale-95 flex items-center justify-center gap-2">
@@ -414,14 +414,14 @@ const ProfessorCalendarPage: React.FC = () => {
         )}
 
         {isOptimizing && (
-          <motion.div key="optimizing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[600] flex items-center justify-center bg-indigo-900/90 backdrop-blur-2xl p-6">
+          <motion.div key="optimizing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[600] flex items-center justify-center bg-upf-primary/90 backdrop-blur-2xl p-6">
             <div className="max-w-md w-full text-center space-y-8 text-white">
               <div className="w-24 h-24 rounded-[2rem] bg-white/10 flex items-center justify-center mx-auto animate-spin-slow">
                 <SparklesIcon className="w-12 h-12 text-white" />
               </div>
               <div className="space-y-4">
                 <h2 className="text-3xl font-black">NVIDIA Hybrid Engine</h2>
-                <p className="text-indigo-200/50 font-bold uppercase tracking-widest text-[10px]">Calcul de l'équilibre parfait</p>
+                <p className="text-upf-primary/30/50 font-bold uppercase tracking-widest text-[10px]">Calcul de l'équilibre parfait</p>
               </div>
               <div className="space-y-3">
                 {optimizationSteps.map((step, idx) => (
@@ -439,11 +439,11 @@ const ProfessorCalendarPage: React.FC = () => {
           <motion.div key="report" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[700] flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4">
             <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="bg-white rounded-[3rem] shadow-2xl max-w-xl w-full p-10 overflow-hidden">
               <div className="text-center mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mx-auto mb-4 shadow-xl shadow-indigo-200">
+                <div className="w-16 h-16 rounded-2xl bg-upf-primary text-white flex items-center justify-center mx-auto mb-4 shadow-xl shadow-upf-primary/30">
                   <TrophyIcon className="w-8 h-8" />
                 </div>
                 <h2 className="text-3xl font-black text-slate-900">Analyse de l'IA</h2>
-                <div className="mt-2 inline-flex items-center px-4 py-1.5 bg-indigo-50 rounded-full text-xs font-black text-indigo-600 uppercase tracking-widest">
+                <div className="mt-2 inline-flex items-center px-4 py-1.5 bg-upf-primary/10 rounded-full text-xs font-black text-upf-primary uppercase tracking-widest">
                   Score : {report.wellbeingScore}/10
                 </div>
               </div>
@@ -460,3 +460,5 @@ const ProfessorCalendarPage: React.FC = () => {
 };
 
 export default ProfessorCalendarPage;
+
+

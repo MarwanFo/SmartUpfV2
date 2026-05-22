@@ -125,7 +125,7 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
               <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.02]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E")'}} />
                 <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-upf-primary to-purple-600 flex items-center justify-center shadow-lg shadow-upf-primary/20">
                     <AcademicCapIcon className="w-7 h-7 text-white" />
                   </div>
                   <div>
@@ -155,14 +155,14 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Code *</label>
                         <div className="relative">
                           <TagIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-                          <input type="text" required value={formData.code} onChange={e => setFormData({...formData, code: e.target.value})} className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm font-medium uppercase" placeholder="Ex: GL" />
+                          <input type="text" required value={formData.code} onChange={e => setFormData({...formData, code: e.target.value})} className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary outline-none transition-all text-sm font-medium uppercase" placeholder="Ex: GL" />
                         </div>
                       </div>
                       <div className="sm:col-span-2">
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Intitulé *</label>
                         <div className="relative">
                           <AcademicCapIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-                          <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm font-medium" placeholder="Ex: Génie Logiciel" />
+                          <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary outline-none transition-all text-sm font-medium" placeholder="Ex: Génie Logiciel" />
                         </div>
                       </div>
                     </div>
@@ -177,13 +177,13 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                     <div className="grid grid-cols-2 gap-5">
                       <div>
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Cycle *</label>
-                        <select required value={formData.cycle} onChange={e => setFormData({...formData, cycle: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm font-bold text-slate-700">
+                        <select required value={formData.cycle} onChange={e => setFormData({...formData, cycle: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary outline-none transition-all text-sm font-bold text-slate-700">
                           {CYCLES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
                         </select>
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Durée (Années) *</label>
-                        <input type="number" min="1" max="7" required value={formData.duration} onChange={e => setFormData({...formData, duration: Number(e.target.value)})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm font-bold text-slate-700" />
+                        <input type="number" min="1" max="7" required value={formData.duration} onChange={e => setFormData({...formData, duration: Number(e.target.value)})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary outline-none transition-all text-sm font-bold text-slate-700" />
                       </div>
                     </div>
                   </div>
@@ -196,7 +196,7 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                     </h3>
                     <div>
                       <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Établissement rattaché (Optionnel)</label>
-                      <select value={formData.buildingId} onChange={e => setFormData({...formData, buildingId: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm font-medium text-slate-700">
+                      <select value={formData.buildingId} onChange={e => setFormData({...formData, buildingId: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary outline-none transition-all text-sm font-medium text-slate-700">
                         <option value="">Campus Général (Non assigné)</option>
                         {buildings.filter(b => b.isActive).map(b => (
                           <option key={b.id} value={b.id}>{b.name}</option>
@@ -208,7 +208,7 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                   {/* Projet PFA/PFE Config */}
                   <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-6">
                     <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-                      <AcademicCapIcon className="w-4 h-4 text-indigo-500" />
+                      <AcademicCapIcon className="w-4 h-4 text-upf-primary" />
                       Configuration des Projets (PFA / PFE)
                     </h3>
 
@@ -217,7 +217,7 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                       <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${formData.hasPFA ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${formData.hasPFA ? 'bg-upf-primary text-white' : 'bg-slate-200 text-slate-500'}`}>
                               <TagIcon className="w-5 h-5" />
                             </div>
                             <div>
@@ -227,7 +227,7 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                           </div>
                           <label className="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" checked={formData.hasPFA} onChange={e => setFormData({...formData, hasPFA: e.target.checked})} className="sr-only peer" />
-                            <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                            <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-upf-primary"></div>
                           </label>
                         </div>
 
@@ -235,13 +235,13 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                           <div className="grid grid-cols-2 gap-4 pt-2">
                             <div>
                               <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Année académique</label>
-                              <select value={formData.pfaYear} onChange={e => setFormData({...formData, pfaYear: Number(e.target.value)})} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20">
+                              <select value={formData.pfaYear} onChange={e => setFormData({...formData, pfaYear: Number(e.target.value)})} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-upf-primary/20">
                                 {[...Array(formData.duration)].map((_, i) => <option key={i+1} value={i+1}>{i+1}ère Année</option>)}
                               </select>
                             </div>
                             <div>
                               <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Semestre</label>
-                              <select value={formData.pfaSemester} onChange={e => setFormData({...formData, pfaSemester: e.target.value})} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20">
+                              <select value={formData.pfaSemester} onChange={e => setFormData({...formData, pfaSemester: e.target.value})} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-upf-primary/20">
                                 <option value="S1">Semestre 1</option>
                                 <option value="S2">Semestre 2</option>
                               </select>
@@ -301,7 +301,7 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
                   type="submit"
                   form="programForm"
                   disabled={isSubmitting}
-                  className="px-7 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/30 disabled:opacity-50 flex items-center gap-2"
+                  className="px-7 py-2.5 bg-gradient-to-r from-upf-primary to-purple-600 hover:from-upf-primary hover:to-purple-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-upf-primary/30 disabled:opacity-50 flex items-center gap-2"
                 >
                   {isSubmitting && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
                   {program ? 'Enregistrer les modifications' : 'Créer la filière'}
@@ -317,3 +317,4 @@ const ProgramModal: React.FC<ProgramModalProps> = ({ isOpen, onClose, program })
 };
 
 export default ProgramModal;
+

@@ -258,7 +258,7 @@ const ProfessorCoursesPage: React.FC = () => {
       <div className="w-80 shrink-0 bg-white border-r border-slate-200 flex flex-col shadow-xl shadow-slate-200/50 z-20">
         <div className="p-8 border-b border-slate-100">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#0A192F] flex items-center justify-center text-cyan-400 shadow-lg shadow-cyan-900/20">
+            <div className="w-10 h-10 rounded-2xl bg-upf-primary flex items-center justify-center text-upf-primaryLight shadow-lg shadow-cyan-900/20">
               <BookOpenIcon className="w-6 h-6" />
             </div>
             <h2 className="text-xl font-black text-slate-900 font-outfit tracking-tight">Mes Cours</h2>
@@ -272,7 +272,7 @@ const ProfessorCoursesPage: React.FC = () => {
               <button
                 onClick={() => toggleProgram(program.id)}
                 className={`w-full flex items-center justify-between p-3.5 rounded-2xl transition-all ${
-                  expandedPrograms.includes(program.id) ? 'bg-indigo-50/50 text-indigo-700' : 'hover:bg-slate-50 text-slate-600'
+                  expandedPrograms.includes(program.id) ? 'bg-upf-primary/10/50 text-upf-primary' : 'hover:bg-slate-50 text-slate-600'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -289,7 +289,7 @@ const ProfessorCoursesPage: React.FC = () => {
                       <button
                         onClick={() => toggleClass(cls.id)}
                         className={`w-full flex items-center justify-between p-3 rounded-xl transition-all ${
-                          expandedClasses.includes(cls.id) ? 'text-indigo-600' : 'text-slate-500 hover:text-slate-900'
+                          expandedClasses.includes(cls.id) ? 'text-upf-primary' : 'text-slate-500 hover:text-slate-900'
                         }`}
                       >
                         <div className="flex items-center gap-2">
@@ -310,12 +310,12 @@ const ProfessorCoursesPage: React.FC = () => {
                               }}
                               className={`w-full text-left p-2.5 rounded-lg text-[11px] font-bold transition-all relative group ${
                                 selectedCourse?.id === course.id && selectedClass?.id === cls.id
-                                  ? 'bg-[#0A192F] text-white shadow-md'
+                                  ? 'bg-upf-primary text-white shadow-md'
                                   : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'
                               }`}
                             >
                               {selectedCourse?.id === course.id && selectedClass?.id === cls.id && (
-                                <div className="absolute left-0 top-1 bottom-1 w-1 bg-cyan-400 rounded-full" />
+                                <div className="absolute left-0 top-1 bottom-1 w-1 bg-upf-primaryLight rounded-full" />
                               )}
                               <span className="truncate block pr-4">{course.name}</span>
                             </button>
@@ -353,17 +353,17 @@ const ProfessorCoursesPage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-black rounded-full uppercase tracking-widest">Espace de Travail</span>
+                      <span className="px-3 py-1 bg-upf-primary/10 text-upf-primary text-[10px] font-black rounded-full uppercase tracking-widest">Espace de Travail</span>
                       <h2 className="text-2xl font-black text-slate-900 font-outfit leading-none">{selectedCourse.name}</h2>
                     </div>
                     <p className="text-slate-400 text-sm font-bold flex items-center gap-2">
                       <AcademicCapIcon className="w-4 h-4" /> Semestre {selectedCourse.semester} • {selectedCourse.code} 
-                      {selectedClass && <span className="text-indigo-500 ml-2">• Classe: {selectedClass.name}</span>}
+                      {selectedClass && <span className="text-upf-primary ml-2">• Classe: {selectedClass.name}</span>}
                     </p>
                   </div>
                   <button
                     onClick={() => setShowAddModal(true)}
-                    className="flex items-center gap-2 px-6 py-3.5 bg-[#0A192F] text-white text-xs font-black rounded-2xl shadow-xl shadow-slate-900/20 hover:bg-cyan-600 transition-all active:scale-95 uppercase tracking-widest"
+                    className="flex items-center gap-2 px-6 py-3.5 bg-upf-primary text-white text-xs font-black rounded-2xl shadow-xl shadow-slate-900/20 hover:bg-upf-primaryLight transition-all active:scale-95 uppercase tracking-widest"
                   >
                     <PlusIcon className="w-4 h-4 stroke-[3]" />
                     Nouveau {activeTab === 'materials' ? 'Support' : activeTab === 'announcements' ? 'Annonce' : 'Devoir'}
@@ -381,13 +381,13 @@ const ProfessorCoursesPage: React.FC = () => {
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id as TabType)}
                       className={`flex items-center gap-2 pb-4 text-xs font-black uppercase tracking-widest transition-all relative ${
-                        activeTab === tab.id ? 'text-indigo-600' : 'text-slate-400 hover:text-slate-600'
+                        activeTab === tab.id ? 'text-upf-primary' : 'text-slate-400 hover:text-slate-600'
                       }`}
                     >
                       <tab.icon className="w-4 h-4" />
                       {tab.label}
                       {activeTab === tab.id && (
-                        <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 rounded-full" />
+                        <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-upf-primary rounded-full" />
                       )}
                     </button>
                   ))}
@@ -399,7 +399,7 @@ const ProfessorCoursesPage: React.FC = () => {
             <div className="flex-1 overflow-y-auto p-8 bg-slate-50/50">
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-20 gap-4">
-                  <ArrowPathIcon className="w-10 h-10 text-indigo-500 animate-spin" />
+                  <ArrowPathIcon className="w-10 h-10 text-upf-primary animate-spin" />
                   <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Mise à jour du dataset...</p>
                 </div>
               ) : (
@@ -469,7 +469,7 @@ const ProfessorCoursesPage: React.FC = () => {
               </button>
 
               <div className="flex items-center gap-5 mb-8">
-                <div className="w-16 h-16 rounded-[1.5rem] bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-inner">
+                <div className="w-16 h-16 rounded-[1.5rem] bg-upf-primary/10 flex items-center justify-center text-upf-primary shadow-inner">
                   {uploading ? <ArrowPathIcon className="w-8 h-8 animate-spin" /> : activeTab === 'materials' ? <DocumentIcon className="w-8 h-8" /> : activeTab === 'announcements' ? <MegaphoneIcon className="w-8 h-8" /> : <ClipboardDocumentCheckIcon className="w-8 h-8" />}
                 </div>
                 <div>
@@ -491,11 +491,11 @@ const ProfessorCoursesPage: React.FC = () => {
                       <div 
                         onClick={() => fileInputRef.current?.click()}
                         className={`group relative p-12 border-2 border-dashed rounded-3xl flex flex-col items-center justify-center transition-all cursor-pointer ${
-                          selectedFile ? 'border-emerald-500 bg-emerald-50/20' : 'border-slate-200 hover:border-indigo-400 hover:bg-slate-50'
+                          selectedFile ? 'border-emerald-500 bg-emerald-50/20' : 'border-slate-200 hover:border-upf-primaryLight hover:bg-slate-50'
                         }`}
                       >
                         <input type="file" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
-                        <DocumentArrowUpIcon className={`w-12 h-12 mb-3 ${selectedFile ? 'text-emerald-500' : 'text-slate-300 group-hover:text-indigo-400'}`} />
+                        <DocumentArrowUpIcon className={`w-12 h-12 mb-3 ${selectedFile ? 'text-emerald-500' : 'text-slate-300 group-hover:text-upf-primaryLight'}`} />
                         {selectedFile ? (
                           <div className="text-center">
                             <p className="text-sm font-black text-emerald-700">{selectedFile.name}</p>
@@ -519,7 +519,7 @@ const ProfessorCoursesPage: React.FC = () => {
                     <Input label="Titre" placeholder="Avis important..." value={newAnnouncement.title} onChange={(v: any) => setNewAnnouncement(p => ({ ...p, title: v }))} />
                     <div>
                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Contenu du message</label>
-                      <textarea rows={4} className="w-full px-6 py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500" value={newAnnouncement.content} onChange={e => setNewAnnouncement(p => ({ ...p, content: e.target.value }))} />
+                      <textarea rows={4} className="w-full px-6 py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary" value={newAnnouncement.content} onChange={e => setNewAnnouncement(p => ({ ...p, content: e.target.value }))} />
                     </div>
                     <button onClick={() => setNewAnnouncement(p => ({ ...p, isImportant: !p.isImportant }))} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${newAnnouncement.isImportant ? 'bg-rose-100 text-rose-600' : 'bg-slate-100 text-slate-400'}`}>
                       <BellIcon className="w-4 h-4" /> Marquer comme Important
@@ -534,14 +534,14 @@ const ProfessorCoursesPage: React.FC = () => {
                       <Input label="Date Limite" type="date" value={newAssignment.dueDate} onChange={(v: any) => setNewAssignment(p => ({ ...p, dueDate: v }))} icon={CalendarIcon} />
                       <Input label="Note Max" type="number" value={newAssignment.maxGrade} onChange={(v: any) => setNewAssignment(p => ({ ...p, maxGrade: Number(v) }))} />
                     </div>
-                    <textarea rows={3} placeholder="Instructions..." className="w-full px-6 py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500" value={newAssignment.description} onChange={e => setNewAssignment(p => ({ ...p, description: e.target.value }))} />
+                    <textarea rows={3} placeholder="Instructions..." className="w-full px-6 py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary" value={newAssignment.description} onChange={e => setNewAssignment(p => ({ ...p, description: e.target.value }))} />
                   </>
                 )}
               </div>
 
               <div className="flex gap-4 mt-10">
                 <button disabled={uploading} onClick={() => setShowAddModal(false)} className="flex-1 py-4 text-slate-400 text-xs font-black uppercase tracking-widest hover:text-slate-600 disabled:opacity-30">Annuler</button>
-                <button disabled={uploading || (activeTab === 'materials' && newMaterial.type === 'FILE' && !selectedFile)} onClick={handleAddAction} className="flex-[2] py-4 bg-[#0A192F] text-white text-xs font-black rounded-2xl shadow-xl shadow-indigo-100 hover:bg-indigo-600 transition-all uppercase tracking-widest disabled:opacity-30">
+                <button disabled={uploading || (activeTab === 'materials' && newMaterial.type === 'FILE' && !selectedFile)} onClick={handleAddAction} className="flex-[2] py-4 bg-upf-primary text-white text-xs font-black rounded-2xl shadow-xl shadow-upf-primary/20 hover:bg-upf-primary transition-all uppercase tracking-widest disabled:opacity-30">
                   {uploading ? 'Chargement...' : 'Sauvegarder'}
                 </button>
               </div>
@@ -560,13 +560,13 @@ const Input = ({ label, placeholder, value, onChange, type = 'text', icon: Icon 
     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">{label}</label>
     <div className="relative">
       {Icon && <Icon className="w-4 h-4 absolute left-5 top-1/2 -translate-y-1/2 text-slate-300" />}
-      <input type={type} placeholder={placeholder} className={`w-full ${Icon ? 'pl-12' : 'px-6'} py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500 transition-all`} value={value} onChange={e => onChange(e.target.value)} />
+      <input type={type} placeholder={placeholder} className={`w-full ${Icon ? 'pl-12' : 'px-6'} py-4 bg-slate-50 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary transition-all`} value={value} onChange={e => onChange(e.target.value)} />
     </div>
   </div>
 );
 
 const TypeBtn = ({ active, onClick, label, icon: Icon }: any) => (
-  <button onClick={onClick} className={`p-4 rounded-2xl border-2 flex items-center gap-3 transition-all ${active ? 'border-indigo-500 bg-indigo-50/50 text-indigo-700' : 'border-slate-50 bg-slate-50 text-slate-400'}`}>
+  <button onClick={onClick} className={`p-4 rounded-2xl border-2 flex items-center gap-3 transition-all ${active ? 'border-upf-primary bg-upf-primary/10/50 text-upf-primary' : 'border-slate-50 bg-slate-50 text-slate-400'}`}>
     <Icon className="w-5 h-5" />
     <span className="text-[10px] font-black uppercase tracking-widest">{label}</span>
   </button>
@@ -583,7 +583,7 @@ const EmptyState = ({ label, description }: any) => (
 const MaterialCard = ({ item, idx, onDelete }: any) => (
   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }} className="bg-white p-7 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group flex flex-col">
     <div className="flex items-start justify-between mb-6">
-      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner ${item.type === 'FILE' ? 'bg-indigo-50 text-indigo-600' : 'bg-cyan-50 text-cyan-600'}`}>
+      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-inner ${item.type === 'FILE' ? 'bg-upf-primary/10 text-upf-primary' : 'bg-upf-primaryLight/10 text-upf-primaryLight'}`}>
         {item.type === 'FILE' ? <DocumentIcon className="w-7 h-7" /> : <GlobeAltIcon className="w-7 h-7" />}
       </div>
       <button onClick={() => onDelete(item.id)} className="opacity-0 group-hover:opacity-100 p-2 text-slate-300 hover:text-rose-500 transition-all"><TrashIcon className="w-5 h-5" /></button>
@@ -592,16 +592,16 @@ const MaterialCard = ({ item, idx, onDelete }: any) => (
     <p className="text-xs text-slate-400 mb-8 line-clamp-2 font-medium">{item.description || 'Aucune description.'}</p>
     <div className="mt-auto flex items-center justify-between">
       <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{new Date(item.createdAt).toLocaleDateString()}</span>
-      <a href={item.url} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl text-[10px] font-black uppercase shadow-lg shadow-indigo-100">Consulter</a>
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-upf-primary text-white rounded-xl text-[10px] font-black uppercase shadow-lg shadow-upf-primary/20">Consulter</a>
     </div>
   </motion.div>
 );
 
 const AnnouncementCard = ({ item, idx }: any) => (
-  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.1 }} className={`p-8 rounded-[2.5rem] border-l-8 bg-white shadow-sm hover:shadow-md transition-all ${item.isImportant ? 'border-rose-500' : 'border-indigo-500'}`}>
+  <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.1 }} className={`p-8 rounded-[2.5rem] border-l-8 bg-white shadow-sm hover:shadow-md transition-all ${item.isImportant ? 'border-rose-500' : 'border-upf-primary'}`}>
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-3">
-        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${item.isImportant ? 'bg-rose-100 text-rose-600' : 'bg-indigo-100 text-indigo-600'}`}>
+        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${item.isImportant ? 'bg-rose-100 text-rose-600' : 'bg-upf-primary/20 text-upf-primary'}`}>
           <MegaphoneIcon className="w-5 h-5" />
         </div>
         <h4 className="text-xl font-black text-slate-900 font-outfit">{item.title}</h4>
@@ -619,7 +619,7 @@ const AssignmentCard = ({ item, idx, onViewSubmissions }: any) => {
     <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: idx * 0.1 }} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col relative overflow-hidden group hover:shadow-lg transition-shadow">
       <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 -mr-16 -mt-16 rounded-full group-hover:scale-110 transition-transform" />
       <div className="flex items-center justify-between mb-6 relative">
-        <div className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center text-cyan-400">
+        <div className="w-14 h-14 rounded-2xl bg-slate-900 flex items-center justify-center text-upf-primaryLight">
           <ClipboardDocumentCheckIcon className="w-8 h-8" />
         </div>
         <div className="text-right">
@@ -630,7 +630,7 @@ const AssignmentCard = ({ item, idx, onViewSubmissions }: any) => {
       <h4 className="text-xl font-black text-slate-900 mb-2 font-outfit leading-tight">{item.title}</h4>
       <p className="text-sm text-slate-400 mb-6 line-clamp-3 font-medium">{item.description}</p>
       <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl mb-4">
-        <CalendarIcon className="w-5 h-5 text-indigo-500" />
+        <CalendarIcon className="w-5 h-5 text-upf-primary" />
         <div>
           <span className="text-[10px] font-black text-slate-400 uppercase block tracking-tighter">Échéance</span>
           <span className="text-xs font-bold text-slate-900">{new Date(item.dueDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
@@ -638,7 +638,7 @@ const AssignmentCard = ({ item, idx, onViewSubmissions }: any) => {
       </div>
       <button 
         onClick={onViewSubmissions}
-        className="mt-auto w-full py-3 bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white rounded-xl text-xs font-black uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
+        className="mt-auto w-full py-3 bg-upf-primary/10 hover:bg-upf-primary text-upf-primary hover:text-white rounded-xl text-xs font-black uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
       >
         <UserGroupIcon className="w-4 h-4" />
         Voir les remises ({submittedCount})
@@ -648,3 +648,5 @@ const AssignmentCard = ({ item, idx, onViewSubmissions }: any) => {
 };
 
 export default ProfessorCoursesPage;
+
+

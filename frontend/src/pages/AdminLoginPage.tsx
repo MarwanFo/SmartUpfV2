@@ -10,6 +10,8 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { toast } from 'react-hot-toast';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
 
 const AdminLoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ const AdminLoginPage: React.FC = () => {
         <div className="relative z-20 flex flex-col justify-between h-full p-16">
           <Link to="/" className="flex items-center gap-3 w-max hover:opacity-80 transition-opacity">
             <div className="w-12 h-12 rounded bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20">
-              <ShieldCheckIcon className="w-7 h-7 text-upf-gold" />
+              <ShieldCheckIcon className="w-7 h-7 text-upf-accent" />
             </div>
             <span className="font-outfit font-bold text-2xl text-white">UPF Command Center</span>
           </Link>
@@ -58,7 +60,7 @@ const AdminLoginPage: React.FC = () => {
             </div>
             <h1 className="text-4xl xl:text-5xl font-outfit font-extrabold text-white leading-tight mb-6">
               Portail d'Administration <br />
-              <span className="text-upf-gold">Hautement Sécurisé.</span>
+              <span className="text-upf-accent">Hautement Sécurisé.</span>
             </h1>
             <p className="text-slate-400 text-lg max-w-md font-light leading-relaxed mb-8">
               Vous êtes sur le point de vous connecter à l'interface de gestion centrale Zero-Trust de l'Université Privée de Fès. 
@@ -88,7 +90,7 @@ const AdminLoginPage: React.FC = () => {
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-3 mb-10">
             <div className="w-10 h-10 rounded bg-slate-900 flex items-center justify-center">
-              <ShieldCheckIcon className="w-6 h-6 text-upf-gold" />
+              <ShieldCheckIcon className="w-6 h-6 text-upf-accent" />
             </div>
             <span className="font-outfit font-bold text-xl text-slate-900">UPF Admin</span>
           </div>
@@ -113,54 +115,36 @@ const AdminLoginPage: React.FC = () => {
               )}
 
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Identifiant Super Admin</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <EnvelopeIcon className="h-5 w-5 text-slate-400" />
-                  </div>
-                  <input 
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="block w-full pl-10 pr-3 py-3.5 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all bg-slate-50"
-                    placeholder="admin.name@upf.ac.ma"
-                  />
-                </div>
-              </div>
+              <Input 
+                label="Identifiant Super Admin"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="admin.name@upf.ac.ma"
+                leftIcon={<EnvelopeIcon className="h-5 w-5 text-slate-400" />}
+              />
 
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="block text-sm font-semibold text-slate-700">Clé d'Accès (Mot de passe)</label>
-                </div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <LockClosedIcon className="h-5 w-5 text-slate-400" />
-                  </div>
-                  <input 
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className="block w-full pl-10 pr-3 py-3.5 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all bg-slate-50"
-                    placeholder="••••••••••••••••"
-                  />
-                </div>
-              </div>
+              <Input 
+                label="Clé d'Accès (Mot de passe)"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="••••••••••••••••"
+                leftIcon={<LockClosedIcon className="h-5 w-5 text-slate-400" />}
+              />
 
               <div className="pt-2">
-                <button 
+                <Button 
                   type="submit"
-                  disabled={isLoading}
-                  className="w-full bg-slate-900 hover:bg-black disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 px-4 rounded-lg transition-all shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2"
+                  variant="primary"
+                  className="w-full py-4 !bg-slate-900 hover:!bg-black shadow-xl shadow-slate-900/20"
+                  isLoading={isLoading}
                 >
-                  {isLoading ? (
-                    <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Authentification en cours...</>
-                  ) : (
-                    <><LockClosedIcon className="w-5 h-5 text-upf-gold" /> Initialiser la connexion sécurisée</>
-                  )}
-                </button>
+                  {!isLoading && <LockClosedIcon className="w-5 h-5 text-upf-accent mr-2" />}
+                  {isLoading ? 'Authentification en cours...' : 'Initialiser la connexion sécurisée'}
+                </Button>
               </div>
             </form>
 

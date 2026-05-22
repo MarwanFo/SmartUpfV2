@@ -147,12 +147,12 @@ const ProfessorQCMPage: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-indigo-100 rounded-lg">
-                <AcademicCapIcon className="w-6 h-6 text-indigo-600" />
+              <div className="p-2 bg-upf-primary/20 rounded-lg">
+                <AcademicCapIcon className="w-6 h-6 text-upf-primary" />
               </div>
-              <span className="text-indigo-600 font-bold text-xs uppercase tracking-widest">Assistant Pédagogique IA</span>
+              <span className="text-upf-primary font-bold text-xs uppercase tracking-widest">Assistant Pédagogique IA</span>
             </div>
-            <h1 className="text-4xl font-black tracking-tight">Générateur <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">QCM Intelligent</span></h1>
+            <h1 className="text-4xl font-black tracking-tight">Générateur <span className="bg-gradient-to-r from-upf-primaryLight to-violet-400 bg-clip-text text-transparent">QCM Intelligent</span></h1>
             <p className="text-slate-500 mt-2 text-sm max-w-xl">Transformez vos supports de cours PDF en examens interactifs en quelques secondes grâce à la puissance de Google Gemini 1.5 Flash.</p>
           </motion.div>
 
@@ -169,7 +169,7 @@ const ProfessorQCMPage: React.FC = () => {
           {/* Controls Panel */}
           <div className="lg:col-span-4 space-y-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xl">
-              <h2 className="text-lg font-bold flex items-center gap-2 mb-6 text-indigo-600">
+              <h2 className="text-lg font-bold flex items-center gap-2 mb-6 text-upf-primary">
                 <AdjustmentsHorizontalIcon className="w-5 h-5" />
                 Configuration
               </h2>
@@ -178,14 +178,14 @@ const ProfessorQCMPage: React.FC = () => {
                 {/* File Upload */}
                 <div>
                   <label className="text-[10px] font-black uppercase text-slate-500 mb-3 block tracking-widest">Document Source (PDF)</label>
-                  <label className="group relative flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer hover:border-indigo-500 hover:bg-indigo-50/50 transition-all">
+                  <label className="group relative flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer hover:border-upf-primary hover:bg-upf-primary/10/50 transition-all">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       {file ? (
-                        <DocumentTextIcon className="w-10 h-10 text-indigo-600 mb-3" />
+                        <DocumentTextIcon className="w-10 h-10 text-upf-primary mb-3" />
                       ) : (
-                        <CloudArrowUpIcon className="w-10 h-10 text-slate-400 group-hover:text-indigo-600 transition-all mb-3" />
+                        <CloudArrowUpIcon className="w-10 h-10 text-slate-400 group-hover:text-upf-primary transition-all mb-3" />
                       )}
-                      <p className="text-[11px] font-bold text-slate-500 group-hover:text-indigo-600 text-center px-4">
+                      <p className="text-[11px] font-bold text-slate-500 group-hover:text-upf-primary text-center px-4">
                         {file ? file.name : "Glissez votre PDF ici ou cliquez pour parcourir"}
                       </p>
                     </div>
@@ -201,7 +201,7 @@ const ProfessorQCMPage: React.FC = () => {
                       <button
                         key={level}
                         onClick={() => setDifficulty(level)}
-                        className={`py-3 rounded-xl text-[10px] font-black uppercase transition-all ${difficulty === level ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'bg-slate-50 text-slate-500 border border-slate-200 hover:bg-slate-100'}`}
+                        className={`py-3 rounded-xl text-[10px] font-black uppercase transition-all ${difficulty === level ? 'bg-upf-primary text-white shadow-lg shadow-upf-primary/30' : 'bg-slate-50 text-slate-500 border border-slate-200 hover:bg-slate-100'}`}
                       >
                         {level}
                       </button>
@@ -222,7 +222,7 @@ const ProfessorQCMPage: React.FC = () => {
                           const val = parseInt(e.target.value);
                           setCount(isNaN(val) ? 0 : val);
                         }}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-upf-primary outline-none"
                       />
                     </div>
                   </div>
@@ -233,7 +233,7 @@ const ProfessorQCMPage: React.FC = () => {
                       <select 
                         value={language}
                         onChange={e => setLanguage(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none appearance-none"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-upf-primary outline-none appearance-none"
                       >
                         <option>Français</option>
                         <option>Anglais</option>
@@ -246,7 +246,7 @@ const ProfessorQCMPage: React.FC = () => {
                 <button 
                   onClick={generateQcm}
                   disabled={isGenerating || !file}
-                  className="w-full py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl shadow-indigo-200 hover:scale-[1.02] transition-all active:scale-95 disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-gradient-to-r from-upf-primary to-violet-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl shadow-upf-primary/30 hover:scale-[1.02] transition-all active:scale-95 disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
                 >
                   {isGenerating ? <ArrowPathIcon className="w-5 h-5 animate-spin" /> : <SparklesIcon className="w-5 h-5" />}
                   Lancer la Génération
@@ -255,9 +255,9 @@ const ProfessorQCMPage: React.FC = () => {
             </motion.div>
 
             {/* Info Tip */}
-            <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 flex gap-3">
-              <ExclamationCircleIcon className="w-5 h-5 text-indigo-600 shrink-0" />
-              <p className="text-[11px] text-indigo-900/80 leading-relaxed italic">
+            <div className="bg-upf-primary/10 border border-upf-primary/20 rounded-2xl p-4 flex gap-3">
+              <ExclamationCircleIcon className="w-5 h-5 text-upf-primary shrink-0" />
+              <p className="text-[11px] text-upf-primary/80 leading-relaxed italic">
                 L'IA analyse le contenu profond de votre document pour créer des questions qui testent réellement la compréhension, et non seulement la mémoire.
               </p>
             </div>
@@ -277,8 +277,8 @@ const ProfessorQCMPage: React.FC = () => {
                     className="absolute inset-0 z-10 bg-white/80 backdrop-blur-md flex flex-col items-center justify-center p-12 text-center"
                   >
                     <div className="relative mb-12">
-                      <div className="w-32 h-32 rounded-full border-4 border-slate-100 border-t-indigo-600 animate-spin" />
-                      <SparklesIcon className="absolute inset-0 m-auto w-10 h-10 text-indigo-600 animate-pulse" />
+                      <div className="w-32 h-32 rounded-full border-4 border-slate-100 border-t-upf-primary animate-spin" />
+                      <SparklesIcon className="absolute inset-0 m-auto w-10 h-10 text-upf-primary animate-pulse" />
                     </div>
                     <div className="space-y-4 max-w-sm">
                       <h3 className="text-xl font-black text-slate-900">Analyse Pédagogique...</h3>
@@ -294,7 +294,7 @@ const ProfessorQCMPage: React.FC = () => {
                             }}
                             className="flex items-center gap-3 text-xs font-bold"
                           >
-                            <div className={`w-1.5 h-1.5 rounded-full ${idx === generationStep ? 'bg-indigo-600' : 'bg-slate-200'}`} />
+                            <div className={`w-1.5 h-1.5 rounded-full ${idx === generationStep ? 'bg-upf-primary' : 'bg-slate-200'}`} />
                             {step}
                           </motion.div>
                         ))}
@@ -315,7 +315,7 @@ const ProfessorQCMPage: React.FC = () => {
                       </div>
                       <div className="flex gap-2">
                         <button onClick={copyToClipboard} className="p-2.5 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-all">
-                          <ClipboardDocumentCheckIcon className="w-5 h-5 text-indigo-600" />
+                          <ClipboardDocumentCheckIcon className="w-5 h-5 text-upf-primary" />
                         </button>
                         <button className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 text-white rounded-xl text-xs font-black hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-200">
                           <ArrowDownTrayIcon className="w-4 h-4" />
@@ -345,8 +345,8 @@ const ProfessorQCMPage: React.FC = () => {
                             ))}
                           </div>
                           <div className="pl-12">
-                            <div className="bg-indigo-50/50 rounded-2xl p-4 border-l-2 border-indigo-500">
-                              <p className="text-[10px] font-black text-indigo-600 uppercase mb-1 tracking-widest">Explication Pédagogique</p>
+                            <div className="bg-upf-primary/10/50 rounded-2xl p-4 border-l-2 border-upf-primary">
+                              <p className="text-[10px] font-black text-upf-primary uppercase mb-1 tracking-widest">Explication Pédagogique</p>
                               <p className="text-xs text-slate-600 leading-relaxed italic">{q.explanation}</p>
                             </div>
                           </div>
@@ -356,8 +356,8 @@ const ProfessorQCMPage: React.FC = () => {
                   </motion.div>
                 ) : (
                   <div className="flex-1 flex flex-col items-center justify-center p-12 text-center opacity-60">
-                    <div className="w-24 h-24 rounded-[2.5rem] bg-indigo-50 flex items-center justify-center mb-6 border border-indigo-100">
-                      <SparklesIcon className="w-12 h-12 text-indigo-400" />
+                    <div className="w-24 h-24 rounded-[2.5rem] bg-upf-primary/10 flex items-center justify-center mb-6 border border-upf-primary/20">
+                      <SparklesIcon className="w-12 h-12 text-upf-primaryLight" />
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-slate-900">Prêt à Générer ?</h3>
                     <p className="text-sm max-w-xs text-slate-500">Configurez vos options sur la gauche et téléchargez un PDF pour commencer l'aventure IA.</p>
@@ -375,3 +375,4 @@ const ProfessorQCMPage: React.FC = () => {
 };
 
 export default ProfessorQCMPage;
+

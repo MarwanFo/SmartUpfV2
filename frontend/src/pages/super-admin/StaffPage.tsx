@@ -10,7 +10,7 @@ const StaffPage: React.FC = () => {
         <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}} />
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-xl shadow-purple-500/20 text-white">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-upf-primary flex items-center justify-center shadow-xl shadow-purple-500/20 text-white">
               <ShieldCheckIcon className="w-8 h-8" />
             </div>
             <div>
@@ -35,7 +35,7 @@ const StaffPage: React.FC = () => {
       >
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-purple-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-50 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 opacity-50" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-upf-primary/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 opacity-50" />
 
         <div className="relative z-10">
           <div className="w-24 h-24 mx-auto mb-8 bg-slate-50 rounded-[2rem] flex items-center justify-center">
@@ -53,7 +53,7 @@ const StaffPage: React.FC = () => {
               { title: 'Isolation', desc: 'Données par bâtiment', icon: LockClosedIcon },
             ].map((feature, i) => (
               <div key={i} className="p-6 bg-slate-50 rounded-[2rem] border border-slate-100">
-                <feature.icon className="w-6 h-6 text-indigo-400 mx-auto mb-3" />
+                <feature.icon className="w-6 h-6 text-upf-primaryLight mx-auto mb-3" />
                 <div className="font-black text-slate-800 text-sm uppercase tracking-widest">{feature.title}</div>
                 <div className="text-xs text-slate-400 font-bold mt-1">{feature.desc}</div>
               </div>
@@ -66,3 +66,4 @@ const StaffPage: React.FC = () => {
 };
 
 export default StaffPage;
+

@@ -11,6 +11,8 @@ import { useAuthStore } from '../../store/authStore';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { Card } from '../../components/ui/Card';
+import Badge from '../../components/ui/Badge';
 
 const API = 'http://localhost:3001/api';
 
@@ -39,7 +41,6 @@ const StudentDashboardPage: React.FC = () => {
         const res = await axios.get(`${API}/student/dashboard`, {
           headers: { Authorization: `Bearer ${accessToken}` }
         });
-        // The backend wraps responses in { success: true, data: ... }
         setData(res.data.data || res.data);
       } catch (error) {
         toast.error('Erreur lors du chargement du tableau de bord');
@@ -54,50 +55,56 @@ const StudentDashboardPage: React.FC = () => {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { staggerChildren: 0.08 }
     }
   };
 
   const itemVariants: any = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } }
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 260, damping: 20 } }
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="animate-spin rounded-full h-10 w-10 border-[3px] border-slate-200 border-t-upf-primary"></div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8 font-inter">
       {/* Welcome Banner */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-[#1e1b4b] to-indigo-900 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden"
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-gradient-to-r from-upf-primary via-upf-primaryLight to-[#1e1b4b] rounded-3xl p-6 sm:p-8 lg:p-10 text-white shadow-xl relative overflow-hidden border border-upf-primaryLight/25"
       >
-        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-        <div className="absolute top-0 right-40 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+        {/* Glow Spheres */}
+        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-upf-primaryLight/40 rounded-full mix-blend-multiply filter blur-3xl opacity-40 pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 -mb-10 w-64 h-64 bg-upf-accent/35 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pointer-events-none"></div>
         
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div>
-            <h2 className="text-3xl font-outfit font-extrabold mb-2">Bonjour, {user?.firstName} 👋</h2>
-            <p className="text-indigo-200 font-medium max-w-xl">
-              Bienvenue dans votre espace étudiant. Classe : <span className="text-white font-bold">{data?.classInfo}</span>.
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold tracking-wider uppercase mb-4">
+              🎓 Espace Étudiant
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black mb-2 tracking-tight">Bonjour, {user?.firstName} 👋</h2>
+            <p className="text-blue-100/80 text-sm font-medium max-w-xl">
+              Bienvenue dans votre portail SMART UPF. Votre classe actuelle : <span className="text-white font-extrabold">{data?.classInfo || 'Non spécifiée'}</span>.
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-center">
-              <p className="text-indigo-200 text-xs font-bold uppercase tracking-wider mb-1">Moyenne Générale</p>
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-center shadow-glass min-w-[120px]">
+              <p className="text-blue-200 text-[10px] font-bold uppercase tracking-wider mb-1">Moyenne Générale</p>
               <p className="text-3xl font-black text-white">--</p>
             </div>
           </div>
         </div>
       </motion.div>
 
+      {/* Grid Bento Widgets */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -105,98 +112,116 @@ const StudentDashboardPage: React.FC = () => {
         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
       >
         {/* Widget 1: Next Class */}
-        <motion.div variants={itemVariants} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-6">
-            <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center">
-              <ClockIcon className="w-6 h-6 text-indigo-600" />
-            </div>
-          </div>
-          <h3 className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-4">Prochain Cours</h3>
-          {data?.nextClass ? (
+        <motion.div variants={itemVariants}>
+          <Card hoverable className="h-full relative overflow-hidden border border-slate-100 rounded-2xl bg-white shadow-sm flex flex-col justify-between p-6">
             <div>
-              <p className="text-xl font-black text-slate-900 mb-1">{data.nextClass.moduleName}</p>
-              <p className="text-sm font-medium text-indigo-600 mb-4">{data.nextClass.startTime} - {data.nextClass.endTime}</p>
-              <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-                <span className="px-2 py-1 bg-slate-100 rounded-md">{data.nextClass.room}</span>
-                <span>• Prof. {data.nextClass.professorName}</span>
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Prochain Cours</h3>
+                <div className="w-10 h-10 bg-upf-primary/5 rounded-xl border border-upf-primary/10 flex items-center justify-center">
+                  <ClockIcon className="w-5 h-5 text-upf-primary" />
+                </div>
               </div>
+              {data?.nextClass ? (
+                <div>
+                  <p className="text-lg font-bold text-slate-800 font-outfit mb-1 tracking-tight leading-snug">{data.nextClass.moduleName}</p>
+                  <p className="text-xs font-bold text-upf-primary mb-4">{data.nextClass.startTime} - {data.nextClass.endTime}</p>
+                  <div className="flex items-center gap-2 text-xs text-slate-500 font-semibold flex-wrap">
+                    <Badge variant="ghost" className="bg-slate-50 border border-slate-200/50 text-slate-600 rounded-md text-[10px]">{data.nextClass.room}</Badge>
+                    <span>Prof. {data.nextClass.professorName}</span>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-xs font-semibold text-slate-400">Aucun cours prévu aujourd'hui.</p>
+              )}
             </div>
-          ) : (
-            <p className="text-slate-400 font-medium">Aucun cours prévu aujourd'hui.</p>
-          )}
+          </Card>
         </motion.div>
 
         {/* Widget 2: Pending Assignments */}
-        <motion.div variants={itemVariants} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
-          <div className="absolute top-0 right-0 p-6">
-            <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center">
-              <ClipboardDocumentListIcon className="w-6 h-6 text-rose-500" />
+        <motion.div variants={itemVariants}>
+          <Card hoverable className="h-full flex flex-col justify-between border border-slate-100 rounded-2xl bg-white shadow-sm p-6">
+            <div>
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Devoirs</h3>
+                <div className="w-10 h-10 bg-semantic-danger/5 rounded-xl border border-semantic-danger/10 flex items-center justify-center">
+                  <ClipboardDocumentListIcon className="w-5 h-5 text-semantic-danger" />
+                </div>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-black text-slate-900 font-outfit tracking-tight">{data?.pendingAssignments || 0}</span>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">En attente</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <h3 className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-4">Devoirs à rendre</h3>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-black text-slate-900">{data?.pendingAssignments || 0}</span>
-              <span className="text-sm font-medium text-slate-500">en attente</span>
+            <div className="mt-8 border-t border-slate-50 pt-4">
+              <Link to="/student/assignments" className="flex items-center text-xs font-bold text-upf-primary hover:text-upf-primaryLight transition-colors gap-1 group">
+                Voir les devoirs <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
-          </div>
-          <Link to="/student/assignments" className="mt-6 flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 gap-1">
-            Voir les devoirs <ArrowRightIcon className="w-4 h-4" />
-          </Link>
+          </Card>
         </motion.div>
 
         {/* Widget 3: Unread Announcements */}
-        <motion.div variants={itemVariants} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
-          <div className="absolute top-0 right-0 p-6">
-            <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center">
-              <BellAlertIcon className="w-6 h-6 text-amber-500" />
+        <motion.div variants={itemVariants}>
+          <Card hoverable className="h-full flex flex-col justify-between border border-slate-100 rounded-2xl bg-white shadow-sm p-6">
+            <div>
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Annonces</h3>
+                <div className="w-10 h-10 bg-semantic-warning/5 rounded-xl border border-semantic-warning/10 flex items-center justify-center">
+                  <BellAlertIcon className="w-5 h-5 text-semantic-warning" />
+                </div>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-black text-slate-900 font-outfit tracking-tight">{data?.unreadAnnouncements || 0}</span>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Non lues</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <h3 className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-4">Annonces</h3>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-black text-slate-900">{data?.unreadAnnouncements || 0}</span>
-              <span className="text-sm font-medium text-slate-500">non lues</span>
+            <div className="mt-8 border-t border-slate-50 pt-4">
+              <Link to="/student/courses" className="flex items-center text-xs font-bold text-upf-primary hover:text-upf-primaryLight transition-colors gap-1 group">
+                Voir les annonces <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
-          </div>
-          <Link to="/student/courses" className="mt-6 flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 gap-1">
-            Voir les annonces <ArrowRightIcon className="w-4 h-4" />
-          </Link>
+          </Card>
         </motion.div>
 
         {/* Widget 4: Recent Grades */}
-        <motion.div variants={itemVariants} className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col h-full">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-slate-500 text-sm font-bold uppercase tracking-wider">Dernières Notes</h3>
-            <div className="w-8 h-8 bg-emerald-50 rounded-xl flex items-center justify-center">
-              <ChartBarIcon className="w-4 h-4 text-emerald-500" />
-            </div>
-          </div>
-          <div className="flex-1 space-y-4">
-            {data?.recentGrades && data.recentGrades.length > 0 ? (
-              data.recentGrades.map((grade, idx) => (
-                <div key={idx} className="flex justify-between items-center p-3 rounded-2xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100">
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">{grade.module}</p>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase">{grade.date}</p>
-                  </div>
-                  <div className={`px-3 py-1 rounded-lg text-sm font-black ${grade.score >= 10 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>
-                    {grade.score}/20
-                  </div>
+        <motion.div variants={itemVariants} className="h-full">
+          <Card hoverable className="h-full flex flex-col justify-between border border-slate-100 rounded-2xl bg-white shadow-sm p-6">
+            <div>
+              <div className="flex justify-between items-center mb-5">
+                <h3 className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Dernières Notes</h3>
+                <div className="w-10 h-10 bg-semantic-success/5 rounded-xl border border-semantic-success/10 flex items-center justify-center">
+                  <ChartBarIcon className="w-5 h-5 text-semantic-success" />
                 </div>
-              ))
-            ) : (
-              <p className="text-sm text-slate-400 font-medium">Aucune note récente.</p>
-            )}
-          </div>
-          <Link to="/student/grades" className="mt-4 flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-700 gap-1 pt-4 border-t border-slate-100">
-            Voir le carnet <ArrowRightIcon className="w-4 h-4" />
-          </Link>
+              </div>
+              <div className="space-y-3">
+                {data?.recentGrades && data.recentGrades.length > 0 ? (
+                  data.recentGrades.slice(0, 2).map((grade, idx) => (
+                    <div key={idx} className="flex justify-between items-center p-2 rounded-xl bg-slate-50/50 hover:bg-slate-50 transition-colors border border-slate-100/50">
+                      <div className="overflow-hidden pr-2">
+                        <p className="text-xs font-bold text-slate-800 truncate">{grade.module}</p>
+                        <p className="text-[9px] font-bold text-slate-400 uppercase">{grade.date}</p>
+                      </div>
+                      <Badge variant={grade.score >= 10 ? 'success' : 'danger'} className="text-[10px] py-0.5 px-2 rounded-full font-bold">
+                        {grade.score}/20
+                      </Badge>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-xs font-semibold text-slate-400">Aucune note récente.</p>
+                )}
+              </div>
+            </div>
+            <div className="mt-6 border-t border-slate-50 pt-4 bg-white">
+              <Link to="/student/grades" className="flex items-center text-xs font-bold text-upf-primary hover:text-upf-primaryLight transition-colors gap-1 group">
+                Voir le carnet <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
+          </Card>
         </motion.div>
       </motion.div>
-
     </div>
   );
 };
 
 export default StudentDashboardPage;
+

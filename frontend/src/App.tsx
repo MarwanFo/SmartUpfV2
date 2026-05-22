@@ -134,7 +134,32 @@ function App() {
         {/* Catch-all Route for 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Toaster position="top-right" />
+      <Toaster 
+        position="top-right" 
+        toastOptions={{
+          className: 'font-inter text-sm shadow-glass',
+          duration: 4000,
+          style: {
+            background: '#ffffff',
+            color: '#1e293b', // slate-800
+            borderRadius: '16px',
+            border: '1px solid #e2e8f0', // slate-200
+            padding: '16px 24px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#ffffff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#ffffff',
+            },
+          },
+        }}
+      />
       <GlobalConfirmModal />
     </BrowserRouter>
   );

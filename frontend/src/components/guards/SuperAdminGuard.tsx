@@ -67,7 +67,7 @@ const SuperAdminGuard: React.FC<SuperAdminGuardProps> = ({ children }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 href="/secure-portal-upf-sysadmin"
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-upf-gold to-yellow-500 text-slate-900 font-black px-10 py-4 rounded-2xl shadow-xl shadow-yellow-500/20 hover:shadow-yellow-500/40 transition-all duration-300 uppercase tracking-tighter text-sm"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-upf-accent to-yellow-500 text-slate-900 font-black px-10 py-4 rounded-2xl shadow-xl shadow-yellow-500/20 hover:shadow-yellow-500/40 transition-all duration-300 uppercase tracking-tighter text-sm"
               >
                 Retourner au portail Admin
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

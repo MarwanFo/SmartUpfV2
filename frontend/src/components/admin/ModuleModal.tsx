@@ -114,7 +114,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
               <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.02]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E")'}} />
                 <div className="flex items-center gap-4 relative z-10">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-upf-primaryLight to-blue-600 flex items-center justify-center shadow-lg shadow-upf-primaryLight/20">
                     <RectangleGroupIcon className="w-6 h-6 md:w-7 md:h-7 text-white" />
                   </div>
                   <div>
@@ -165,7 +165,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                                 }}
                                 className={`px-4 py-2 rounded-xl border-2 text-xs font-bold transition-all flex items-center gap-2 ${
                                   isSelected 
-                                    ? 'border-cyan-500 bg-cyan-50 text-cyan-700' 
+                                    ? 'border-upf-primaryLight bg-upf-primaryLight/10 text-cyan-700' 
                                     : 'border-slate-100 bg-white text-slate-500 hover:border-slate-200'
                                 }`}
                               >
@@ -190,7 +190,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                                   key={p.id}
                                   className={`group relative flex flex-col md:flex-row md:items-center p-4 rounded-xl border-2 transition-all duration-200 gap-4 ${
                                     isSelected 
-                                      ? 'border-cyan-500 bg-cyan-50/50 shadow-sm shadow-cyan-500/10' 
+                                      ? 'border-upf-primaryLight bg-upf-primaryLight/10/50 shadow-sm shadow-upf-primaryLight/10' 
                                       : 'border-white bg-white hover:border-slate-200 hover:bg-slate-50'
                                   }`}
                                 >
@@ -206,7 +206,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                                   >
                                     <div className={`w-6 h-6 flex shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
                                       isSelected 
-                                        ? 'bg-cyan-500 border-cyan-500 text-white' 
+                                        ? 'bg-upf-primaryLight border-upf-primaryLight text-white' 
                                         : 'border-slate-300 bg-white group-hover:border-slate-400'
                                     }`}>
                                       {isSelected && <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
@@ -220,35 +220,35 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                                   {isSelected && (
                                     <div className="flex items-center gap-3 bg-white p-2 rounded-lg border border-cyan-200 shadow-sm self-end md:self-auto animate-in fade-in slide-in-from-right-4">
                                       <div className="flex flex-col gap-1">
-                                        <span className="text-[9px] font-bold text-cyan-600 uppercase ml-1">Année</span>
+                                        <span className="text-[9px] font-bold text-upf-primaryLight uppercase ml-1">Année</span>
                                         <select 
                                           value={currentLink.year} 
                                           onChange={(e) => {
                                             const newLinks = formData.links.map(l => l.programId === p.id ? { ...l, year: Number(e.target.value) } : l);
                                             setFormData({ ...formData, links: newLinks });
                                           }}
-                                          className="text-xs font-bold text-slate-700 bg-slate-50 border-none rounded-md py-1 px-2 focus:ring-1 focus:ring-cyan-500 outline-none"
+                                          className="text-xs font-bold text-slate-700 bg-slate-50 border-none rounded-md py-1 px-2 focus:ring-1 focus:ring-upf-primaryLight outline-none"
                                         >
                                           {getAvailableYears(p.id).map(y => <option key={y} value={y}>An {y}</option>)}
                                         </select>
                                       </div>
                                       <div className="w-px h-8 bg-slate-100 mx-1" />
                                       <div className="flex flex-col gap-1">
-                                        <span className="text-[9px] font-bold text-cyan-600 uppercase ml-1">Semestre</span>
+                                        <span className="text-[9px] font-bold text-upf-primaryLight uppercase ml-1">Semestre</span>
                                         <select 
                                           value={currentLink.semester} 
                                           onChange={(e) => {
                                             const newLinks = formData.links.map(l => l.programId === p.id ? { ...l, semester: e.target.value } : l);
                                             setFormData({ ...formData, links: newLinks });
                                           }}
-                                          className="text-xs font-bold text-slate-700 bg-slate-50 border-none rounded-md py-1 px-2 focus:ring-1 focus:ring-cyan-500 outline-none"
+                                          className="text-xs font-bold text-slate-700 bg-slate-50 border-none rounded-md py-1 px-2 focus:ring-1 focus:ring-upf-primaryLight outline-none"
                                         >
                                           {SEMESTERS.map(s => <option key={s} value={s}>{s}</option>)}
                                         </select>
                                       </div>
                                       <div className="w-px h-8 bg-slate-100 mx-1" />
                                       <div className="flex flex-col gap-1">
-                                        <span className="text-[9px] font-bold text-cyan-600 uppercase ml-1">Heures/Sem</span>
+                                        <span className="text-[9px] font-bold text-upf-primaryLight uppercase ml-1">Heures/Sem</span>
                                         <input 
                                           type="number"
                                           step="0.5"
@@ -260,7 +260,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                                             const newLinks = formData.links.map(l => l.programId === p.id ? { ...l, weeklyHours: val } : l);
                                             setFormData({ ...formData, links: newLinks });
                                           }}
-                                          className="text-xs font-bold text-slate-700 bg-slate-50 border-none rounded-md py-1 px-2 focus:ring-1 focus:ring-cyan-500 outline-none w-14"
+                                          className="text-xs font-bold text-slate-700 bg-slate-50 border-none rounded-md py-1 px-2 focus:ring-1 focus:ring-upf-primaryLight outline-none w-14"
                                           placeholder="4.0"
                                         />
                                       </div>
@@ -286,11 +286,11 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                       <div className="md:col-span-1">
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Code *</label>
-                        <input type="text" required value={formData.code} onChange={e => setFormData({...formData, code: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 outline-none transition-all text-sm font-medium uppercase" placeholder="Ex: M101" />
+                        <input type="text" required value={formData.code} onChange={e => setFormData({...formData, code: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primaryLight/20 focus:border-upf-primaryLight outline-none transition-all text-sm font-medium uppercase" placeholder="Ex: M101" />
                       </div>
                       <div className="md:col-span-2">
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Intitulé du Module *</label>
-                        <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 outline-none transition-all text-sm font-medium" placeholder="Ex: Algorithmique Avancée" />
+                        <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primaryLight/20 focus:border-upf-primaryLight outline-none transition-all text-sm font-medium" placeholder="Ex: Algorithmique Avancée" />
                       </div>
                     </div>
                   </div>
@@ -303,12 +303,12 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1 flex items-center gap-1">Crédits ECTS * <CheckBadgeIcon className="w-3.5 h-3.5 text-cyan-500" /></label>
-                        <input type="number" min="1" max="30" step="1" required value={formData.credits} onChange={e => setFormData({...formData, credits: Number(e.target.value)})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 outline-none transition-all text-sm font-bold text-slate-700" />
+                        <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1 flex items-center gap-1">Crédits ECTS * <CheckBadgeIcon className="w-3.5 h-3.5 text-upf-primaryLight" /></label>
+                        <input type="number" min="1" max="30" step="1" required value={formData.credits} onChange={e => setFormData({...formData, credits: Number(e.target.value)})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primaryLight/20 focus:border-upf-primaryLight outline-none transition-all text-sm font-bold text-slate-700" />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-slate-600 mb-1.5 ml-1">Coefficient *</label>
-                        <input type="number" min="0.5" max="10" step="0.5" required value={formData.coefficient} onChange={e => setFormData({...formData, coefficient: Number(e.target.value)})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 outline-none transition-all text-sm font-bold text-slate-700" />
+                        <input type="number" min="0.5" max="10" step="0.5" required value={formData.coefficient} onChange={e => setFormData({...formData, coefficient: Number(e.target.value)})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:ring-2 focus:ring-upf-primaryLight/20 focus:border-upf-primaryLight outline-none transition-all text-sm font-bold text-slate-700" />
                       </div>
                     </div>
                   </div>
@@ -325,7 +325,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                   type="submit"
                   form="moduleForm"
                   disabled={isSubmitting}
-                  className="px-7 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 disabled:opacity-50 flex items-center gap-2"
+                  className="px-7 py-2.5 bg-gradient-to-r from-upf-primaryLight to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-upf-primaryLight/30 disabled:opacity-50 flex items-center gap-2"
                 >
                   {isSubmitting && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
                   {academicModule ? 'Enregistrer les modifications' : 'Créer le module'}
@@ -341,3 +341,5 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
 };
 
 export default ModuleModal;
+
+

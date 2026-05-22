@@ -11,6 +11,8 @@ import {
 import { useAuthStore } from '../../store/authStore';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Card, CardContent } from '../../components/ui/Card';
+import Badge from '../../components/ui/Badge';
 
 const API = 'http://localhost:3001/api';
 
@@ -67,7 +69,7 @@ const StudentCoursesPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-upf-primary"></div>
       </div>
     );
   }
@@ -92,29 +94,29 @@ const StudentCoursesPage: React.FC = () => {
               transition={{ delay: idx * 0.1 }}
               key={course.id}
               onClick={() => navigate(`/student/courses/${course.id}`)}
-              className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-lg hover:border-indigo-300 transition-all cursor-pointer group"
+              className="cursor-pointer group h-full"
             >
-              <div className="flex justify-between items-start mb-4">
-                <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <BookOpenIcon className="w-6 h-6 text-indigo-600" />
-                </div>
-                <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">
-                  {course.code}
-                </span>
-              </div>
-              
-              <h3 className="text-xl font-black text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">
-                {course.name}
-              </h3>
-              
-              <div className="flex items-center gap-2 mb-6 text-sm text-slate-500 font-medium">
-                <UserCircleIcon className="w-5 h-5" />
-                <span>Pr. {course.professor?.lastName} {course.professor?.firstName}</span>
-              </div>
+              <Card hoverable className="h-full flex flex-col transition-all group-hover:border-upf-primary/30 group-hover:shadow-lg">
+                <CardContent className="flex-1">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 bg-upf-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <BookOpenIcon className="w-6 h-6 text-upf-primary" />
+                    </div>
+                    <Badge variant="ghost">{course.code}</Badge>
+                  </div>
+                  
+                  <h3 className="text-xl font-black text-slate-800 mb-2 group-hover:text-upf-primary transition-colors line-clamp-2">
+                    {course.name}
+                  </h3>
+                  
+                  <div className="flex items-center gap-2 mb-6 text-sm text-slate-500 font-medium">
+                    <UserCircleIcon className="w-5 h-5" />
+                    <span>Pr. {course.professor?.lastName} {course.professor?.firstName}</span>
+                  </div>
 
-              <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg">
-                  <FolderOpenIcon className="w-4 h-4 text-indigo-500" />
+                  <div className="flex items-center gap-4 pt-4 border-t border-slate-100 flex-wrap">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg">
+                      <FolderOpenIcon className="w-4 h-4 text-upf-primary" />
                   {course.materials.length} Supports
                 </div>
                 {course.announcements.length > 0 && (
@@ -123,25 +125,28 @@ const StudentCoursesPage: React.FC = () => {
                     {course.announcements.length} Annonces
                   </div>
                 )}
-                {course.assignments && course.assignments.length > 0 && (
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-emerald-50 px-3 py-1.5 rounded-lg text-emerald-700 border border-emerald-100">
-                    <ClipboardDocumentCheckIcon className="w-4 h-4" />
-                    {course.assignments.length} Devoirs
+                    {course.assignments && course.assignments.length > 0 && (
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-emerald-50 px-3 py-1.5 rounded-lg text-emerald-700 border border-emerald-100">
+                        <ClipboardDocumentCheckIcon className="w-4 h-4" />
+                        {course.assignments.length} Devoirs
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-[3rem] p-16 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+        <Card className="p-16 text-center flex flex-col items-center justify-center">
           <BookOpenIcon className="w-16 h-16 text-slate-300 mb-4" />
           <h3 className="text-xl font-bold text-slate-700">Aucun cours trouvé</h3>
           <p className="text-slate-500 mt-2">Vous n'êtes actuellement affecté à aucun cours.</p>
-        </div>
+        </Card>
       )}
     </div>
   );
 };
 
 export default StudentCoursesPage;
+

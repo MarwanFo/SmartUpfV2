@@ -47,7 +47,7 @@ const StudentLayout: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 flex md:hidden">
           <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}></div>
-          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-[#1e1b4b] border-r border-indigo-900 shadow-2xl">
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-upf-primary border-r border-upf-primaryLight/20 shadow-2xl">
             <div className="absolute top-0 right-0 -mr-12 pt-2">
               <button
                 className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -57,12 +57,12 @@ const StudentLayout: React.FC = () => {
               </button>
             </div>
             {/* Mobile Nav Content */}
-            <div className="flex items-center h-20 px-6 border-b border-indigo-900/50 bg-[#1e1b4b]/80">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 mr-3">
+            <div className="flex items-center h-20 px-6 border-b border-white/10 bg-upf-primary/80">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-upf-primaryLight to-upf-accent flex items-center justify-center shadow-lg shadow-upf-accent/20 mr-3">
                 <AcademicCapIcon className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-outfit font-bold text-white tracking-wide">
-                Smart <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">UPF</span>
+                Smart <span className="text-transparent bg-clip-text bg-gradient-to-r from-upf-primaryLight to-upf-accentLight">UPF</span>
               </span>
             </div>
             <div className="flex-1 overflow-y-auto pt-6 px-4 space-y-1.5 custom-scrollbar">
@@ -75,11 +75,11 @@ const StudentLayout: React.FC = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`
                         group relative flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 overflow-hidden
-                        ${isActive ? 'text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-indigo-900/30'}
+                        ${isActive ? 'text-white shadow-md bg-white/10' : 'text-slate-300 hover:text-white hover:bg-white/5'}
                       `}
                     >
-                      {isActive && <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/10 border border-indigo-500/30 rounded-xl" />}
-                      <item.icon className={`mr-3.5 flex-shrink-0 h-5 w-5 transition-all duration-200 relative z-10 ${isActive ? (item.highlight ? 'text-purple-400' : 'text-indigo-400') : 'text-slate-500 group-hover:text-indigo-400/70'}`} />
+                      {isActive && <div className="absolute inset-0 border border-white/10 rounded-xl" />}
+                      <item.icon className={`mr-3.5 flex-shrink-0 h-5 w-5 transition-all duration-200 relative z-10 ${isActive ? (item.highlight ? 'text-upf-accentLight' : 'text-white') : 'text-slate-400 group-hover:text-white'}`} />
                       <span className="relative z-10">{item.name}</span>
                     </NavLink>
                   );
@@ -91,19 +91,19 @@ const StudentLayout: React.FC = () => {
 
       {/* Sidebar (Desktop) - Deep Indigo Theme (#1e1b4b) */}
       <div className="hidden md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-72 bg-[#1e1b4b] border-r border-indigo-900 shadow-2xl z-20">
+        <div className="flex flex-col w-72 bg-upf-primary border-r border-white/5 shadow-2xl z-20">
           <div className="flex flex-col h-0 flex-1">
-            <div className="flex items-center h-20 px-6 border-b border-indigo-900/50 bg-[#1e1b4b]/80 backdrop-blur-md">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 mr-3">
+            <div className="flex items-center h-20 px-6 border-b border-white/10 bg-upf-primary/80 backdrop-blur-md">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-upf-primaryLight to-upf-accent flex items-center justify-center shadow-lg shadow-upf-accent/20 mr-3">
                 <AcademicCapIcon className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-outfit font-bold text-white tracking-wide">
-                Smart <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">UPF</span>
+                Smart <span className="text-transparent bg-clip-text bg-gradient-to-r from-upf-primaryLight to-upf-accentLight">UPF</span>
               </span>
             </div>
             
             <div className="flex-1 flex flex-col overflow-y-auto pt-6 custom-scrollbar">
-              <div className="px-6 mb-4 text-xs font-semibold text-indigo-400/50 uppercase tracking-wider">
+              <div className="px-6 mb-4 text-xs font-semibold text-white/50 uppercase tracking-wider">
                 Espace Étudiant
               </div>
               <nav className="flex-1 px-4 space-y-1.5">
@@ -116,18 +116,18 @@ const StudentLayout: React.FC = () => {
                       className={`
                         group relative flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 overflow-hidden
                         ${isActive 
-                          ? 'text-white shadow-md' 
-                          : 'text-slate-400 hover:text-white hover:bg-indigo-900/30'}
+                          ? 'text-white shadow-md bg-white/10' 
+                          : 'text-slate-300 hover:text-white hover:bg-white/5'}
                       `}
                     >
                       {/* Active Background Glow */}
                       {isActive && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/10 border border-indigo-500/30 rounded-xl" />
+                        <div className="absolute inset-0 border border-white/10 rounded-xl" />
                       )}
                       
                       <item.icon 
                         className={`mr-3.5 flex-shrink-0 h-5 w-5 transition-all duration-200 relative z-10 ${
-                          isActive ? (item.highlight ? 'text-purple-400' : 'text-indigo-400') : 'text-slate-500 group-hover:text-indigo-400/70'
+                          isActive ? (item.highlight ? 'text-upf-accentLight' : 'text-white') : 'text-slate-400 group-hover:text-white'
                         }`} 
                         aria-hidden="true" 
                       />
@@ -135,7 +135,7 @@ const StudentLayout: React.FC = () => {
                       
                       {/* Special AI Sparkle */}
                       {item.highlight && isActive && (
-                        <div className="absolute right-3 w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_#a855f7] animate-pulse" />
+                        <div className="absolute right-3 w-2 h-2 rounded-full bg-upf-accentLight shadow-[0_0_10px_#c2277a] animate-pulse" />
                       )}
                     </NavLink>
                   );
@@ -143,10 +143,10 @@ const StudentLayout: React.FC = () => {
               </nav>
             </div>
             
-            <div className="flex-shrink-0 p-4 border-t border-indigo-900/50 bg-[#1e1b4b]">
+            <div className="flex-shrink-0 p-4 border-t border-white/10 bg-upf-primary">
               <button 
                 onClick={handleLogout}
-                className="group flex w-full items-center px-4 py-3 text-sm font-medium text-slate-400 rounded-xl hover:bg-red-500/10 hover:text-red-400 transition-colors"
+                className="group flex w-full items-center px-4 py-3 text-sm font-medium text-slate-300 rounded-xl hover:bg-semantic-danger/10 hover:text-semantic-danger transition-colors"
               >
                 <ArrowRightOnRectangleIcon className="mr-3 h-5 w-5" />
                 Déconnexion
@@ -161,22 +161,22 @@ const StudentLayout: React.FC = () => {
         {/* Top Header - Glassmorphism */}
         <header className="relative z-10 flex-shrink-0 h-20 bg-white/70 backdrop-blur-xl border-b border-slate-200/60 flex shadow-sm">
           <button
-            className="px-4 border-r border-slate-200 text-slate-500 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+            className="px-4 border-r border-slate-200 text-slate-500 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-upf-primary md:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
           
-          <div className="flex-1 px-8 flex justify-between items-center">
+          <div className="flex-1 px-4 sm:px-8 flex justify-between items-center">
             <h1 className="text-2xl font-extrabold text-slate-900 font-outfit tracking-tight">
               {currentPage}
             </h1>
             
             <div className="flex items-center gap-6">
               {/* Quick AI Button */}
-              <button onClick={() => navigate('/student/hub')} className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100 text-indigo-700 text-sm font-bold rounded-full shadow-sm transition-all border border-indigo-100">
-                <SparklesIcon className="w-4 h-4 text-purple-600" />
+              <button onClick={() => navigate('/student/hub')} className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-upf-primary/5 to-upf-accent/5 hover:from-upf-primary/10 hover:to-upf-accent/10 text-upf-primary text-sm font-bold rounded-full shadow-sm transition-all border border-upf-primary/10">
+                <SparklesIcon className="w-4 h-4 text-upf-accent" />
                 <span>Assistant IA</span>
               </button>
 
@@ -187,8 +187,8 @@ const StudentLayout: React.FC = () => {
                   <p className="text-sm font-bold text-slate-900 leading-tight">{user?.firstName} {user?.lastName}</p>
                   <p className="text-xs font-medium text-slate-500">{user?.email}</p>
                 </div>
-                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-indigo-100 to-purple-100 border-2 border-white shadow-sm flex items-center justify-center">
-                  <UserCircleIcon className="h-8 w-8 text-indigo-600" />
+                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-upf-primary/10 to-upf-accent/10 border-2 border-white shadow-sm flex items-center justify-center">
+                  <UserCircleIcon className="h-8 w-8 text-upf-primary" />
                 </div>
               </div>
             </div>
@@ -205,3 +205,4 @@ const StudentLayout: React.FC = () => {
 };
 
 export default StudentLayout;
+

@@ -157,7 +157,7 @@ const GradesPage: React.FC = () => {
           <button 
             onClick={() => setShowEmpty(!showEmpty)}
             className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm active:scale-95 ${
-              showEmpty ? 'bg-indigo-600 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+              showEmpty ? 'bg-upf-primary text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
             }`}
           >
             {showEmpty ? 'Masquer les vides' : 'Afficher tout'}
@@ -210,7 +210,7 @@ const GradesPage: React.FC = () => {
               placeholder="Rechercher un cours, prof..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-indigo-500 transition-all font-bold"
+              className="w-full pl-12 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-upf-primary transition-all font-bold"
             />
           </div>
           
@@ -223,7 +223,7 @@ const GradesPage: React.FC = () => {
                 setSelectedProgram('all');
                 setSelectedClass('all');
               }}
-              className="w-full bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-3 focus:ring-2 focus:ring-indigo-500"
+              className="w-full bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-3 focus:ring-2 focus:ring-upf-primary"
             >
               <option value="all">Choisir un bâtiment</option>
               {buildings.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
@@ -247,7 +247,7 @@ const GradesPage: React.FC = () => {
                     setSelectedProgram(e.target.value);
                     setSelectedClass('all');
                   }}
-                  className="w-full bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-3 focus:ring-2 focus:ring-indigo-500"
+                  className="w-full bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-3 focus:ring-2 focus:ring-upf-primary"
                 >
                   <option value="all">Toutes les filières</option>
                   {availablePrograms.map(p => <option key={p} value={p}>{p}</option>)}
@@ -268,7 +268,7 @@ const GradesPage: React.FC = () => {
                 <select 
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
-                  className="w-full bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-3 focus:ring-2 focus:ring-indigo-500"
+                  className="w-full bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-3 focus:ring-2 focus:ring-upf-primary"
                 >
                   <option value="all">Toutes les classes</option>
                   {availableClasses.map(c => <option key={c} value={c}>{c}</option>)}
@@ -284,8 +284,8 @@ const GradesPage: React.FC = () => {
         {loading && (
           <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-10 flex items-center justify-center">
             <div className="flex flex-col items-center gap-3">
-              <div className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-              <p className="text-xs font-black text-indigo-600 uppercase tracking-widest">Chargement des données...</p>
+              <div className="w-10 h-10 border-4 border-upf-primary border-t-transparent rounded-full animate-spin" />
+              <p className="text-xs font-black text-upf-primary uppercase tracking-widest">Chargement des données...</p>
             </div>
           </div>
         )}
@@ -307,7 +307,7 @@ const GradesPage: React.FC = () => {
                     <td className="px-6 py-5">
                       <div className="flex flex-col">
                         <span className="text-sm font-extrabold text-slate-900 leading-tight">{s.name}</span>
-                        <span className="text-xs font-bold text-indigo-600 mt-0.5">{s.professorName}</span>
+                        <span className="text-xs font-bold text-upf-primary mt-0.5">{s.professorName}</span>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-[10px] font-bold text-slate-400 uppercase">
                           <div className="flex items-center gap-1">
                             <UserGroupIcon className="w-3 h-3" />
@@ -322,7 +322,7 @@ const GradesPage: React.FC = () => {
                       <div className="flex flex-col items-center gap-1.5">
                         <div className="w-24 sm:w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                           <div 
-                            className={`h-full rounded-full transition-all duration-500 ${completion === 100 ? 'bg-emerald-500' : 'bg-indigo-500'}`}
+                            className={`h-full rounded-full transition-all duration-500 ${completion === 100 ? 'bg-emerald-500' : 'bg-upf-primary'}`}
                             style={{ width: `${completion}%` }}
                           />
                         </div>
@@ -340,7 +340,7 @@ const GradesPage: React.FC = () => {
                     <td className="px-6 py-5 text-right">
                       <button 
                         onClick={() => fetchCourseDetail(s.courseId, s.classId)}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-upf-primary transition-all shadow-lg shadow-slate-200"
                       >
                         <EyeIcon className="w-4 h-4" />
                         <span className="hidden sm:inline">Inspecter</span>
@@ -377,7 +377,7 @@ const GradesPage: React.FC = () => {
               onClick={e => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="p-6 md:p-8 bg-indigo-600 text-white relative">
+              <div className="p-6 md:p-8 bg-upf-primary text-white relative">
                 <button 
                   onClick={() => setIsModalOpen(false)}
                   className="absolute top-4 right-4 md:top-8 md:right-8 w-8 h-8 md:w-10 md:h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
@@ -385,9 +385,9 @@ const GradesPage: React.FC = () => {
                   <ExclamationCircleIcon className="w-5 h-5 md:w-6 md:h-6 rotate-45" />
                 </button>
                 <div className="flex flex-col gap-1 pr-8">
-                  <span className="text-indigo-200 text-[10px] font-black uppercase tracking-[0.2em]">Détails des Notes</span>
+                  <span className="text-upf-primary/30 text-[10px] font-black uppercase tracking-[0.2em]">Détails des Notes</span>
                   <h2 className="text-xl md:text-3xl font-black font-outfit leading-tight">{selectedCourseDetail.course.name}</h2>
-                  <div className="flex items-center gap-3 mt-2 text-indigo-100 text-[10px] md:text-sm font-bold uppercase tracking-wider">
+                  <div className="flex items-center gap-3 mt-2 text-upf-primary/20 text-[10px] md:text-sm font-bold uppercase tracking-wider">
                     <UserGroupIcon className="w-4 h-4" /> Carnet de Notes Complet
                   </div>
                 </div>
@@ -409,9 +409,9 @@ const GradesPage: React.FC = () => {
                               <th className="px-3 py-4 text-[10px] font-black text-rose-500 uppercase tracking-widest text-center">RATT</th>
                             </>
                           ) : (
-                            <th className="px-3 py-4 text-[10px] font-black text-indigo-500 uppercase tracking-widest text-center">Note Projet</th>
+                            <th className="px-3 py-4 text-[10px] font-black text-upf-primary uppercase tracking-widest text-center">Note Projet</th>
                           )}
-                          <th className="px-6 py-4 text-[10px] font-black text-indigo-500 uppercase tracking-widest text-right">Moyenne</th>
+                          <th className="px-6 py-4 text-[10px] font-black text-upf-primary uppercase tracking-widest text-right">Moyenne</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100 bg-white">
@@ -441,7 +441,7 @@ const GradesPage: React.FC = () => {
                             <tr key={entry.student.id} className="hover:bg-slate-50 transition-colors">
                               <td className="px-6 md:px-8 py-4">
                                 <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex-shrink-0 flex items-center justify-center font-bold text-xs uppercase">
+                                  <div className="w-8 h-8 rounded-lg bg-upf-primary/10 text-upf-primary flex-shrink-0 flex items-center justify-center font-bold text-xs uppercase">
                                     {entry.student.firstName[0]}{entry.student.lastName[0]}
                                   </div>
                                   <div className="flex flex-col min-w-0">
@@ -454,11 +454,11 @@ const GradesPage: React.FC = () => {
                                 <>
                                   <td className="px-3 py-4 text-center font-bold text-slate-600 text-sm">{cc1}</td>
                                   <td className="px-3 py-4 text-center font-bold text-slate-600 text-sm">{cc2}</td>
-                                  <td className="px-3 py-4 text-center font-bold text-indigo-600 text-sm">{exam}</td>
+                                  <td className="px-3 py-4 text-center font-bold text-upf-primary text-sm">{exam}</td>
                                   <td className="px-3 py-4 text-center font-bold text-rose-600 text-sm">{ratt}</td>
                                 </>
                               ) : (
-                                <td className="px-3 py-4 text-center font-black text-indigo-600 text-base bg-indigo-50/30">{cc2}</td>
+                                <td className="px-3 py-4 text-center font-black text-upf-primary text-base bg-upf-primary/10/30">{cc2}</td>
                               )}
                               <td className="px-6 py-4 text-right">
                                 <span className={`text-sm font-black ${parseFloat(avg) >= 10 ? 'text-emerald-600' : 'text-rose-600'}`}>
@@ -492,3 +492,4 @@ const GradesPage: React.FC = () => {
 };
 
 export default GradesPage;
+

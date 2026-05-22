@@ -5,3 +5,4 @@ const StudentIncidentsPage: React.FC = () => {
 };
 
 export default StudentIncidentsPage;
+

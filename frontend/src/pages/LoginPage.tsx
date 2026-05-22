@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   AcademicCapIcon, 
   UserIcon, 
@@ -12,6 +12,8 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { toast } from 'react-hot-toast';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
 
 type RoleType = 'etudiant' | 'professeur' | 'parent';
 
@@ -51,166 +53,186 @@ const LoginPage: React.FC = () => {
     etudiant: {
       title: "Espace Étudiant",
       desc: "Accédez à vos cours, notes, et votre emploi du temps.",
-      icon: <UserIcon className="w-5 h-5" />
+      icon: <UserIcon className="w-5 h-5 transition-colors" />
     },
     professeur: {
       title: "Espace Professeur",
       desc: "Gérez vos classes, saisissez les notes et ressources.",
-      icon: <BriefcaseIcon className="w-5 h-5" />
+      icon: <BriefcaseIcon className="w-5 h-5 transition-colors" />
     },
     parent: {
       title: "Espace Parent",
       desc: "Suivez la scolarité et les performances de vos enfants.",
-      icon: <UsersIcon className="w-5 h-5" />
+      icon: <UsersIcon className="w-5 h-5 transition-colors" />
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-inter flex">
+    <div className="min-h-screen bg-slate-50 font-inter flex relative overflow-hidden">
+      {/* Background visual details */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-upf-primary/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+      <div className="absolute bottom-0 left-1/2 w-[350px] h-[350px] bg-upf-accent/5 rounded-full blur-3xl pointer-events-none z-0"></div>
+
       {/* Left Panel - Image & Branding (Hidden on Mobile) */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-upf-blue overflow-hidden">
-        <div className="absolute inset-0 bg-upf-blue/80 mix-blend-multiply z-10"></div>
+      <div className="hidden lg:flex lg:w-1/2 relative bg-upf-primary overflow-hidden items-stretch">
+        <div className="absolute inset-0 bg-gradient-to-t from-upf-primary via-upf-primary/80 to-upf-primary/30 z-10"></div>
         <img 
           src="/login-bg.png" 
           alt="UPF Architecture" 
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-[8000ms] ease-out mix-blend-overlay"
         />
         
-        <div className="relative z-20 flex flex-col justify-between h-full p-16">
-          <Link to="/" className="flex items-center gap-3 w-max hover:opacity-80 transition-opacity">
-            <div className="w-12 h-12 rounded bg-white flex items-center justify-center">
-              <AcademicCapIcon className="w-7 h-7 text-upf-gold" />
+        <div className="relative z-20 flex flex-col justify-between h-full w-full p-16">
+          <Link to="/" className="flex items-center gap-3.5 w-max hover:opacity-90 transition-opacity">
+            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-upf-primary/10">
+              <AcademicCapIcon className="w-7 h-7 text-upf-accent" />
             </div>
-            <span className="font-outfit font-bold text-2xl text-white">UPF Fès</span>
+            <span className="font-outfit font-black text-2xl text-white tracking-tight">UPF Fès</span>
           </Link>
 
-          <div>
-            <div className="inline-block px-3 py-1 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-xs font-semibold tracking-wider uppercase mb-6">
+          <div className="max-w-md">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase mb-8 shadow-inner">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               Portail SMART UPF
             </div>
-            <h1 className="text-4xl xl:text-5xl font-outfit font-extrabold text-white leading-tight mb-6">
+            <h1 className="text-4xl xl:text-5xl font-outfit font-black text-white leading-tight mb-6 tracking-tight">
               Votre parcours académique, <br />
-              Centralisé & Sécurisé.
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Centralisé & Sécurisé.</span>
             </h1>
-            <p className="text-blue-100 text-lg max-w-md font-light leading-relaxed">
+            <p className="text-blue-100/80 text-lg font-normal leading-relaxed">
               Connectez-vous à l'écosystème numérique de l'Université Privée de Fès pour accéder à l'ensemble de vos services administratifs et pédagogiques.
             </p>
           </div>
           
-          <div className="text-blue-200 text-sm font-medium">
-            &copy; {new Date().getFullYear()} Université Privée de Fès.
+          <div className="text-blue-200/50 text-xs font-semibold">
+            &copy; {new Date().getFullYear()} Université Privée de Fès. Tous droits réservés.
           </div>
         </div>
       </div>
 
       {/* Right Panel - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 xl:p-24 relative">
-        <Link to="/" className="absolute top-8 right-8 text-sm font-semibold text-slate-500 hover:text-upf-blue transition-colors">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 xl:p-24 relative z-10">
+        <Link to="/" className="absolute top-4 right-4 sm:top-8 sm:right-8 text-xs sm:text-sm font-bold text-slate-500 hover:text-upf-primary transition-colors py-1.5 px-2.5 sm:py-2 sm:px-3 rounded-lg hover:bg-slate-100 flex items-center gap-1 group z-20">
           Retour à l'accueil
         </Link>
         
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-3 mb-10">
-            <div className="w-10 h-10 rounded bg-upf-blue flex items-center justify-center">
-              <AcademicCapIcon className="w-6 h-6 text-upf-gold" />
+          <div className="lg:hidden flex items-center gap-3.5 mb-10">
+            <div className="w-10 h-10 rounded-xl bg-upf-primary flex items-center justify-center shadow-lg shadow-upf-primary/20">
+              <AcademicCapIcon className="w-6 h-6 text-upf-accent" />
             </div>
-            <span className="font-outfit font-bold text-xl text-slate-900">UPF Fès</span>
+            <span className="font-outfit font-black text-xl text-slate-900 tracking-tight">UPF Fès</span>
           </div>
 
-          <h2 className="text-3xl font-outfit font-bold text-slate-900 mb-2">Bienvenue</h2>
-          <p className="text-slate-500 mb-10">Veuillez sélectionner votre profil pour vous connecter.</p>
+          <h2 className="text-3xl font-outfit font-black text-slate-900 mb-2 tracking-tight">Bienvenue</h2>
+          <p className="text-slate-500 font-medium text-sm mb-10">Veuillez sélectionner votre profil pour vous connecter.</p>
 
           {/* Role Selection Tabs */}
-          <div className="bg-slate-100 p-1.5 rounded-xl flex gap-1 mb-10">
-            {(Object.keys(roleConfig) as RoleType[]).map((role) => (
-              <button
-                key={role}
-                onClick={() => setActiveRole(role)}
-                className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-semibold flex flex-col sm:flex-row items-center justify-center gap-2 transition-all duration-200 ${
-                  activeRole === role 
-                    ? 'bg-white text-upf-blue shadow-sm ring-1 ring-slate-200' 
-                    : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
-                }`}
-              >
-                {roleConfig[role].icon}
-                <span className="capitalize">{role}</span>
-              </button>
-            ))}
+          <div className="bg-slate-100 p-1.5 rounded-2xl flex gap-1 mb-10 border border-slate-200/20 relative">
+            {(Object.keys(roleConfig) as RoleType[]).map((role) => {
+              const isSelected = activeRole === role;
+              return (
+                <button
+                  key={role}
+                  type="button"
+                  onClick={() => setActiveRole(role)}
+                  className={`flex-1 py-3 px-3 rounded-xl text-xs font-bold flex flex-col sm:flex-row items-center justify-center gap-2 transition-all duration-300 relative z-10 ${
+                    isSelected 
+                      ? 'text-upf-primary' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  {isSelected && (
+                    <motion.div 
+                      layoutId="activeRoleTab"
+                      className="absolute inset-0 bg-white rounded-xl shadow-md border border-slate-200/20"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-20 flex items-center gap-2 capitalize">
+                    {roleConfig[role].icon}
+                    {role}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          <motion.div
-            key={activeRole}
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="mb-8">
-              <h3 className="text-xl font-bold font-outfit text-slate-900 mb-2">{roleConfig[activeRole].title}</h3>
-              <p className="text-sm text-slate-500">{roleConfig[activeRole].desc}</p>
-            </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeRole}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="mb-8">
+                <h3 className="text-xl font-black font-outfit text-slate-900 mb-1.5 tracking-tight">{roleConfig[activeRole].title}</h3>
+                <p className="text-xs font-medium text-slate-500 leading-relaxed">{roleConfig[activeRole].desc}</p>
+              </div>
 
-            <form onSubmit={handleLogin} className="space-y-5">
-              {error && (
-                <div className="p-3 rounded-lg bg-red-50 border border-red-100 text-red-600 text-sm font-semibold text-center">
-                  Identifiants incorrects.
-                </div>
-              )}
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Adresse Email Universitaire</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <EnvelopeIcon className="h-5 w-5 text-slate-400" />
+              <form onSubmit={handleLogin} className="space-y-6">
+                {error && (
+                  <div className="p-4 rounded-xl bg-semantic-danger/5 border border-semantic-danger/10 text-semantic-danger text-xs font-bold text-center">
+                    Identifiants incorrects ou session expirée.
                   </div>
-                  <input 
-                    type="email" 
+                )}
+                
+                <div className="space-y-2">
+                  <Input
+                    label="Adresse Email Universitaire"
+                    type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-upf-blue focus:border-transparent transition-all"
                     placeholder={`identifiant@${activeRole === 'etudiant' ? 'etu.' : ''}upf.ac.ma`}
+                    leftIcon={<EnvelopeIcon className="h-5 w-5 text-slate-400" />}
+                    className="focus:ring-upf-primary focus:border-upf-primary rounded-xl"
                   />
                 </div>
-              </div>
 
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="block text-sm font-semibold text-slate-700">Mot de passe</label>
-                  <a href="#" className="text-sm font-semibold text-upf-blue hover:text-upf-gold transition-colors">
-                    Oublié ?
-                  </a>
-                </div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <LockClosedIcon className="h-5 w-5 text-slate-400" />
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center mb-1">
+                    <span />
+                    <a href="#" className="text-xs font-bold text-upf-primary hover:text-upf-accent transition-colors">
+                      Mot de passe oublié ?
+                    </a>
                   </div>
-                  <input 
-                    type="password" 
+                  <Input
+                    label="Mot de passe"
+                    type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-upf-blue focus:border-transparent transition-all"
                     placeholder="••••••••"
+                    leftIcon={<LockClosedIcon className="h-5 w-5 text-slate-400" />}
+                    className="focus:ring-upf-primary focus:border-upf-primary rounded-xl"
                   />
                 </div>
-              </div>
 
-              <button 
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-upf-blue hover:bg-slate-900 text-white font-semibold py-3.5 px-4 rounded-lg transition-all shadow-lg shadow-upf-blue/20 flex items-center justify-center gap-2 mt-6 disabled:opacity-50"
-              >
-                {isLoading ? 'Connexion...' : "Se connecter à l'espace"}
-                {!isLoading && <ArrowRightIcon className="w-5 h-5" />}
-              </button>
-            </form>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="w-full mt-8 py-4 bg-upf-primary hover:bg-upf-primaryLight text-white rounded-xl font-bold text-sm shadow-lg shadow-upf-primary/10 hover:shadow-xl hover:shadow-upf-primary/20 transition-all duration-300 transform active:scale-98 flex items-center justify-center gap-2"
+                  isLoading={isLoading}
+                >
+                  {!isLoading && (
+                    <>
+                      Se connecter <ArrowRightIcon className="w-4 h-4 ml-1" />
+                    </>
+                  )}
+                  {isLoading && 'Connexion en cours...'}
+                </Button>
+              </form>
 
-            {activeRole === 'etudiant' && (
-              <div className="mt-8 text-center text-sm text-slate-500">
-                Vous n'avez pas de compte ? <a href="#" className="font-semibold text-upf-blue hover:text-upf-gold transition-colors">Démarrez votre inscription</a>
-              </div>
-            )}
-          </motion.div>
+              {activeRole === 'etudiant' && (
+                <div className="mt-8 text-center text-xs text-slate-500 font-semibold leading-relaxed">
+                  Vous n'avez pas de compte ? <a href="#" className="font-bold text-upf-primary hover:text-upf-accent transition-colors">Démarrez votre inscription en ligne</a>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>

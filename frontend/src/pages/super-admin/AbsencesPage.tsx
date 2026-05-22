@@ -174,7 +174,7 @@ const AbsencesPage: React.FC = () => {
             placeholder="Rechercher cours, prof..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-indigo-500 transition-all"
+            className="w-full pl-12 pr-4 py-3 bg-slate-50 border-none rounded-2xl text-sm focus:ring-2 focus:ring-upf-primary transition-all"
           />
         </div>
         
@@ -184,7 +184,7 @@ const AbsencesPage: React.FC = () => {
             <select 
               value={selectedProgram}
               onChange={(e) => setSelectedProgram(e.target.value)}
-              className="bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-2 focus:ring-2 focus:ring-indigo-500 min-w-[200px]"
+              className="bg-slate-50 border-none rounded-xl text-xs font-bold px-4 py-2 focus:ring-2 focus:ring-upf-primary min-w-[200px]"
             >
               <option value="all">Toutes les filières</option>
               {programs.map(p => <option key={p.id} value={p.name}>{p.name}</option>)}
@@ -212,7 +212,7 @@ const AbsencesPage: React.FC = () => {
                   <td className="px-6 py-5">
                     <div className="flex flex-col">
                       <span className="text-sm font-extrabold text-slate-900 leading-tight">{session.courseName}</span>
-                      <span className="text-xs font-bold text-indigo-600 mt-0.5">{session.professorName}</span>
+                      <span className="text-xs font-bold text-upf-primary mt-0.5">{session.professorName}</span>
                       <div className="flex items-center gap-2 mt-2 text-[10px] font-bold text-slate-400 uppercase">
                         <CalendarIcon className="w-3 h-3" />
                         {new Date(session.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
@@ -245,7 +245,7 @@ const AbsencesPage: React.FC = () => {
                   <td className="px-6 py-5 text-right">
                     <button 
                       onClick={() => fetchSessionDetails(session.id)}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-upf-primary transition-all shadow-lg shadow-slate-200"
                     >
                       <EyeIcon className="w-4 h-4" />
                       Détails
@@ -281,7 +281,7 @@ const AbsencesPage: React.FC = () => {
               onClick={e => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="p-8 bg-indigo-600 text-white relative">
+              <div className="p-8 bg-upf-primary text-white relative">
                 <button 
                   onClick={() => setIsModalOpen(false)}
                   className="absolute top-8 right-8 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
@@ -289,9 +289,9 @@ const AbsencesPage: React.FC = () => {
                   <ExclamationCircleIcon className="w-6 h-6 rotate-45" />
                 </button>
                 <div className="flex flex-col gap-1">
-                  <span className="text-indigo-200 text-xs font-black uppercase tracking-[0.2em]">Détails de l'appel</span>
+                  <span className="text-upf-primary/30 text-xs font-black uppercase tracking-[0.2em]">Détails de l'appel</span>
                   <h2 className="text-3xl font-black font-outfit">{selectedSession.course.name}</h2>
-                  <div className="flex items-center gap-4 mt-2 text-indigo-100 text-sm font-bold">
+                  <div className="flex items-center gap-4 mt-2 text-upf-primary/20 text-sm font-bold">
                     <span className="flex items-center gap-1.5"><UserGroupIcon className="w-4 h-4" /> {selectedSession.class?.name}</span>
                     <span className="opacity-40">|</span>
                     <span className="flex items-center gap-1.5"><CalendarIcon className="w-4 h-4" /> {new Date(selectedSession.date).toLocaleDateString()}</span>
@@ -343,3 +343,4 @@ const AbsencesPage: React.FC = () => {
 };
 
 export default AbsencesPage;
+

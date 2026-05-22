@@ -118,7 +118,7 @@ const UtilisateursPage: React.FC = () => {
           {[
             { label: 'Total', value: users.length, icon: UsersIcon, color: 'from-blue-500/20 to-blue-600/10 text-blue-400 border-blue-500/20' },
             { label: 'Actifs', value: activeCount, icon: CheckCircleIcon, color: 'from-emerald-500/20 to-emerald-600/10 text-emerald-400 border-emerald-500/20' },
-            { label: 'Étudiants', value: studentsCount, icon: AcademicCapIcon, color: 'from-cyan-500/20 to-cyan-600/10 text-cyan-400 border-cyan-500/20' },
+            { label: 'Étudiants', value: studentsCount, icon: AcademicCapIcon, color: 'from-upf-primaryLight/20 to-upf-primaryLight/10 text-upf-primaryLight border-upf-primaryLight/20' },
             { label: 'Enseignants', value: profsCount, icon: BriefcaseIcon, color: 'from-amber-500/20 to-amber-600/10 text-amber-400 border-amber-500/20' },
           ].map(s => (
             <div key={s.label} className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r ${s.color} border backdrop-blur-sm`}>
@@ -346,3 +346,5 @@ const UtilisateursPage: React.FC = () => {
 };
 
 export default UtilisateursPage;
+
+

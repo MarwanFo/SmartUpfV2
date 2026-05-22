@@ -163,14 +163,14 @@ const StudentCourseDetailPage: React.FC = () => {
         return <PlayCircleIcon className="w-8 h-8 text-rose-500" />;
       case 'PDF':
       default:
-        return <DocumentTextIcon className="w-8 h-8 text-indigo-500" />;
+        return <DocumentTextIcon className="w-8 h-8 text-upf-primary" />;
     }
   };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-upf-primary"></div>
       </div>
     );
   }
@@ -188,7 +188,7 @@ const StudentCourseDetailPage: React.FC = () => {
           <ArrowLeftIcon className="w-5 h-5 text-slate-600" />
         </button>
         <div>
-          <span className="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs font-black rounded-full mb-2 inline-block">
+          <span className="px-3 py-1 bg-upf-primary/20 text-upf-primary text-xs font-black rounded-full mb-2 inline-block">
             {course.code}
           </span>
           <h1 className="text-3xl font-outfit font-black text-slate-900">{course.name}</h1>
@@ -204,7 +204,7 @@ const StudentCourseDetailPage: React.FC = () => {
         <div className="flex border-b border-slate-100 bg-slate-50 px-8 shrink-0 overflow-x-auto custom-scrollbar">
           <button 
             onClick={() => setActiveTab('materials')}
-            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'materials' ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'materials' ? 'border-upf-primary text-upf-primary' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
             <div className="flex items-center gap-2">
               <FolderOpenIcon className="w-5 h-5" />
@@ -213,7 +213,7 @@ const StudentCourseDetailPage: React.FC = () => {
           </button>
           <button 
             onClick={() => setActiveTab('assignments')}
-            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'assignments' ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'assignments' ? 'border-upf-primary text-upf-primary' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
             <div className="flex items-center gap-2">
               <ClipboardDocumentListIcon className="w-5 h-5" />
@@ -222,7 +222,7 @@ const StudentCourseDetailPage: React.FC = () => {
           </button>
           <button 
             onClick={() => setActiveTab('announcements')}
-            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'announcements' ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'announcements' ? 'border-upf-primary text-upf-primary' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
             <div className="flex items-center gap-2">
               <MegaphoneIcon className="w-5 h-5" />
@@ -247,7 +247,7 @@ const StudentCourseDetailPage: React.FC = () => {
                         {getFileIcon(mat.type)}
                       </div>
                       <div>
-                        <h4 className="font-bold text-slate-800 text-lg group-hover:text-indigo-600 transition-colors">{mat.title}</h4>
+                        <h4 className="font-bold text-slate-800 text-lg group-hover:text-upf-primary transition-colors">{mat.title}</h4>
                         <p className="text-slate-500 text-sm mt-1">{mat.description || 'Aucune description fournie.'}</p>
                         <p className="text-xs font-bold text-slate-400 mt-2 uppercase tracking-wider">
                           Ajouté le : {new Date(mat.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -256,7 +256,7 @@ const StudentCourseDetailPage: React.FC = () => {
                     </div>
                     <button 
                       onClick={() => handleDownload(mat.url)}
-                      className="w-full sm:w-auto flex items-center justify-center gap-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-bold px-6 py-3 rounded-xl transition-colors shrink-0"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 bg-upf-primary/10 hover:bg-upf-primary/20 text-upf-primary font-bold px-6 py-3 rounded-xl transition-colors shrink-0"
                     >
                       <ArrowDownTrayIcon className="w-5 h-5" />
                       <span>Télécharger</span>
@@ -315,7 +315,7 @@ const StudentCourseDetailPage: React.FC = () => {
 
                   return (
                     <div key={assignment.id} className={`bg-white p-6 rounded-2xl border shadow-sm relative overflow-hidden transition-all ${isOverdue ? 'border-red-200' : 'border-slate-200'}`}>
-                      <div className={`absolute top-0 left-0 w-1.5 h-full ${isGraded ? 'bg-emerald-500' : isSubmitted ? 'bg-indigo-500' : isOverdue ? 'bg-red-500' : 'bg-slate-300'}`}></div>
+                      <div className={`absolute top-0 left-0 w-1.5 h-full ${isGraded ? 'bg-emerald-500' : isSubmitted ? 'bg-upf-primary' : isOverdue ? 'bg-red-500' : 'bg-slate-300'}`}></div>
                       
                       <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                         <div className="flex-1">
@@ -326,7 +326,7 @@ const StudentCourseDetailPage: React.FC = () => {
                                 <CheckCircleIcon className="w-3.5 h-3.5" /> Noté
                               </span>
                             ) : isSubmitted ? (
-                              <span className="px-2.5 py-1 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-lg uppercase tracking-wider border border-indigo-100 flex items-center gap-1">
+                              <span className="px-2.5 py-1 bg-upf-primary/10 text-upf-primary text-[10px] font-black rounded-lg uppercase tracking-wider border border-upf-primary/20 flex items-center gap-1">
                                 <CheckCircleIcon className="w-3.5 h-3.5" /> Remis
                               </span>
                             ) : isOverdue ? (
@@ -347,7 +347,7 @@ const StudentCourseDetailPage: React.FC = () => {
                               <ClockIcon className="w-4 h-4" />
                               Échéance : {new Date(assignment.dueDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' })}
                             </div>
-                            <div className="flex items-center gap-1.5 text-indigo-500">
+                            <div className="flex items-center gap-1.5 text-upf-primary">
                               <ChartBarIcon className="w-4 h-4" />
                               Barème : /{assignment.maxGrade}
                             </div>
@@ -363,7 +363,7 @@ const StudentCourseDetailPage: React.FC = () => {
                             </div>
                           ) : isSubmitted ? (
                             <div className="text-right">
-                              <button disabled className="w-full sm:w-auto flex items-center justify-center gap-2 bg-indigo-50 text-indigo-400 font-bold px-6 py-3 rounded-xl cursor-not-allowed">
+                              <button disabled className="w-full sm:w-auto flex items-center justify-center gap-2 bg-upf-primary/10 text-upf-primaryLight font-bold px-6 py-3 rounded-xl cursor-not-allowed">
                                 <CheckCircleIcon className="w-5 h-5" />
                                 Travail remis
                               </button>
@@ -381,7 +381,7 @@ const StudentCourseDetailPage: React.FC = () => {
                           ) : (
                             <button 
                               onClick={() => setSubmittingAssignmentId(assignment.id)}
-                              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 shadow-md shadow-indigo-500/20 text-white font-black px-6 py-3 rounded-xl transition-all"
+                              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-upf-primary to-upf-primary hover:from-upf-primary hover:to-upf-primary shadow-md shadow-upf-primary/20 text-white font-black px-6 py-3 rounded-xl transition-all"
                             >
                               <CloudArrowUpIcon className="w-5 h-5" />
                               Soumettre mon travail
@@ -404,7 +404,7 @@ const StudentCourseDetailPage: React.FC = () => {
                               <input 
                                 type="file" 
                                 onChange={(e) => setSubmissionFile(e.target.files?.[0] || null)}
-                                className="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                                className="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-upf-primary/10 file:text-upf-primary hover:file:bg-upf-primary/20"
                               />
                             </div>
                             <div>
@@ -413,13 +413,13 @@ const StudentCourseDetailPage: React.FC = () => {
                                 value={submissionNote}
                                 onChange={(e) => setSubmissionNote(e.target.value)}
                                 placeholder="https://github.com/votre-projet ou une remarque..."
-                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all min-h-[100px]"
+                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-upf-primary/20 focus:border-upf-primary outline-none transition-all min-h-[100px]"
                               ></textarea>
                             </div>
                             <button 
                               onClick={() => handleSubmit(assignment.id)}
                               disabled={isSubmitting}
-                              className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-600/20"
+                              className="w-full flex items-center justify-center gap-2 bg-upf-primary hover:bg-upf-primary disabled:opacity-50 disabled:cursor-not-allowed text-white font-black px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-upf-primary/20"
                             >
                               {isSubmitting ? (
                                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -461,3 +461,4 @@ const StudentCourseDetailPage: React.FC = () => {
 };
 
 export default StudentCourseDetailPage;
+

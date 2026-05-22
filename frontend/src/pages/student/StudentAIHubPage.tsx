@@ -5,3 +5,4 @@ const StudentAIHubPage: React.FC = () => {
 };
 
 export default StudentAIHubPage;
+

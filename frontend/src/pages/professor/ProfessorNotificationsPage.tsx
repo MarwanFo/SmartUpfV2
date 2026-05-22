@@ -23,7 +23,7 @@ const ProfessorNotificationsPage: React.FC = () => {
   const getTypeStyles = (type: string) => {
     switch (type) {
       case 'ALERT': return 'bg-rose-50 text-rose-600 border-rose-100';
-      case 'SYSTEM': return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+      case 'SYSTEM': return 'bg-upf-primary/10 text-upf-primary border-upf-primary/20';
       case 'MESSAGE': return 'bg-emerald-50 text-emerald-600 border-emerald-100';
       default: return 'bg-slate-50 text-slate-600 border-slate-100';
     }
@@ -77,7 +77,7 @@ const ProfessorNotificationsPage: React.FC = () => {
                 }`}
               >
                 {!n.isRead && (
-                  <div className="absolute top-6 right-6 w-3 h-3 bg-indigo-600 rounded-full shadow-[0_0_10px_rgba(79,70,229,0.5)]" />
+                  <div className="absolute top-6 right-6 w-3 h-3 bg-upf-primary rounded-full shadow-[0_0_10px_rgba(79,70,229,0.5)]" />
                 )}
 
                 <div className="flex gap-5">
@@ -113,3 +113,4 @@ const ProfessorNotificationsPage: React.FC = () => {
 };
 
 export default ProfessorNotificationsPage;
+

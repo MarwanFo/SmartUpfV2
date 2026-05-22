@@ -23,3 +23,4 @@ const ParametresPage: React.FC = () => {
 };
 
 export default ParametresPage;
+

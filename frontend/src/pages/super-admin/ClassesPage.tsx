@@ -196,7 +196,7 @@ const ClassesPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-indigo-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
+          <div className="w-14 h-14 bg-upf-primary rounded-2xl flex items-center justify-center text-white shadow-lg shadow-upf-primary/20">
             <UserGroupIcon className="w-8 h-8" />
           </div>
           <div>
@@ -215,7 +215,7 @@ const ClassesPage: React.FC = () => {
           </button>
           <button 
             onClick={openCreateModal}
-            className="flex items-center gap-2 px-8 py-3 bg-indigo-600 text-white rounded-2xl font-black text-xs shadow-xl shadow-indigo-200 hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="flex items-center gap-2 px-8 py-3 bg-upf-primary text-white rounded-2xl font-black text-xs shadow-xl shadow-upf-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             <PlusIcon className="w-5 h-5" />
             Nouvelle Classe
@@ -225,9 +225,9 @@ const ClassesPage: React.FC = () => {
 
       {/* Filters */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="relative group bg-white p-4 rounded-2xl shadow-sm border border-slate-100 focus-within:border-indigo-200 transition-all">
+        <div className="relative group bg-white p-4 rounded-2xl shadow-sm border border-slate-100 focus-within:border-upf-primary/30 transition-all">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-focus-within:bg-indigo-50 group-focus-within:text-indigo-500 transition-all">
+            <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-focus-within:bg-upf-primary/10 group-focus-within:text-upf-primary transition-all">
               <MagnifyingGlassIcon className="w-5 h-5" />
             </div>
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Recherche</span>
@@ -279,7 +279,7 @@ const ClassesPage: React.FC = () => {
       {/* Grid */}
       {isLoading ? (
         <div className="flex justify-center p-24 bg-white rounded-[3.5rem] border border-slate-100 shadow-sm">
-          <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-upf-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
       ) : filteredClasses.length === 0 ? (
         <div className="bg-white rounded-[3.5rem] p-24 text-center border border-dashed border-slate-300 shadow-sm">
@@ -299,14 +299,14 @@ const ClassesPage: React.FC = () => {
               className="relative bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group overflow-hidden"
             >
               {/* Status Bar */}
-              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-indigo-400 to-sky-400" />
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-upf-primaryLight to-sky-400" />
 
               <div className="flex justify-between items-start">
-                <div className="p-4 bg-slate-50 rounded-2xl group-hover:bg-indigo-50 group-hover:scale-110 transition-all duration-300">
-                  <UserGroupIcon className="w-6 h-6 text-slate-600 group-hover:text-indigo-600" />
+                <div className="p-4 bg-slate-50 rounded-2xl group-hover:bg-upf-primary/10 group-hover:scale-110 transition-all duration-300">
+                  <UserGroupIcon className="w-6 h-6 text-slate-600 group-hover:text-upf-primary" />
                 </div>
                 <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                  <button onClick={() => handleEditClick(c)} className="p-3 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">
+                  <button onClick={() => handleEditClick(c)} className="p-3 text-slate-400 hover:text-upf-primary hover:bg-upf-primary/10 rounded-xl transition-all">
                     <PencilSquareIcon className="w-5 h-5" />
                   </button>
                   <button onClick={() => handleDeleteClick(c)} className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
@@ -346,7 +346,7 @@ const ClassesPage: React.FC = () => {
                 </div>
                 <button 
                   onClick={() => handleShowList(c.id)}
-                  className="p-2 rounded-xl bg-slate-50 text-indigo-600 hover:bg-indigo-600 hover:text-white transition-all shadow-sm"
+                  className="p-2 rounded-xl bg-slate-50 text-upf-primary hover:bg-upf-primary hover:text-white transition-all shadow-sm"
                 >
                   <ChevronRightIcon className="w-5 h-5" />
                 </button>
@@ -363,7 +363,7 @@ const ClassesPage: React.FC = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsModalOpen(false)} className="absolute inset-0 bg-slate-900/40 backdrop-blur-md" />
             <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="relative bg-white w-full max-w-lg rounded-[3rem] shadow-2xl overflow-hidden p-8" >
               <div className="flex items-center gap-5 mb-8">
-                <div className="w-16 h-16 rounded-3xl bg-indigo-500 flex items-center justify-center text-white shadow-xl shadow-indigo-100">
+                <div className="w-16 h-16 rounded-3xl bg-upf-primary flex items-center justify-center text-white shadow-xl shadow-upf-primary/20">
                   <UserGroupIcon className="w-8 h-8" />
                 </div>
                 <div>
@@ -376,14 +376,14 @@ const ClassesPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Établissement</label>
-                    <select required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20" value={formData.buildingId} onChange={e => setFormData({...formData, buildingId: e.target.value, programId: ''})}>
+                    <select required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20" value={formData.buildingId} onChange={e => setFormData({...formData, buildingId: e.target.value, programId: ''})}>
                       <option value="">Sélectionner</option>
                       {buildings.filter(b => b.isActive).map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                     </select>
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Filière</label>
-                    <select required disabled={!formData.buildingId} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20 disabled:opacity-50" value={formData.programId} onChange={e => setFormData({...formData, programId: e.target.value})}>
+                    <select required disabled={!formData.buildingId} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20 disabled:opacity-50" value={formData.programId} onChange={e => setFormData({...formData, programId: e.target.value})}>
                       <option value="">Choisir</option>
                       {programs.filter(p => p.buildingId === formData.buildingId).map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
@@ -393,7 +393,7 @@ const ClassesPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Niveau</label>
-                    <select required disabled={!formData.programId} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20 disabled:opacity-50" value={formData.level} onChange={e => setFormData({...formData, level: Number(e.target.value)})}>
+                    <select required disabled={!formData.programId} className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20 disabled:opacity-50" value={formData.level} onChange={e => setFormData({...formData, level: Number(e.target.value)})}>
                       {getLevelsForProgram(formData.programId).map(l => (
                         <option key={l} value={l}>{l === 1 ? '1ère' : `${l}ème`} Année</option>
                       ))}
@@ -401,7 +401,7 @@ const ClassesPage: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Année académique</label>
-                    <select required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20" value={formData.academicYear} onChange={e => setFormData({...formData, academicYear: e.target.value})}>
+                    <select required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20" value={formData.academicYear} onChange={e => setFormData({...formData, academicYear: e.target.value})}>
                       <option value="2024-2025">2024-2025</option>
                       <option value="2025-2026">2025-2026</option>
                       <option value="2026-2027">2026-2027</option>
@@ -412,21 +412,21 @@ const ClassesPage: React.FC = () => {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="space-y-2 col-span-1">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Capacité</label>
-                    <input type="number" required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-black text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20" value={formData.capacity} onChange={e => setFormData({...formData, capacity: Number(e.target.value)})} />
+                    <input type="number" required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-black text-slate-700 outline-none focus:ring-2 focus:ring-upf-primary/20" value={formData.capacity} onChange={e => setFormData({...formData, capacity: Number(e.target.value)})} />
                   </div>
                   <div className="space-y-2 col-span-1">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Salle ppale</label>
-                    <input className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-black text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20" value={formData.roomNumber} onChange={e => setFormData({...formData, roomNumber: e.target.value})} placeholder="Ex: A1" />
+                    <input className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-black text-slate-700 outline-none focus:ring-2 focus:ring-upf-primary/20" value={formData.roomNumber} onChange={e => setFormData({...formData, roomNumber: e.target.value})} placeholder="Ex: A1" />
                   </div>
                   <div className="space-y-2 col-span-1">
                     <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Nom de classe</label>
-                    <input required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-black text-indigo-600 outline-none focus:ring-2 focus:ring-indigo-500/20" value={formData.name} onChange={e => { setHasManuallyEditedName(true); setFormData({...formData, name: e.target.value}); }} />
+                    <input required className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-black text-upf-primary outline-none focus:ring-2 focus:ring-upf-primary/20" value={formData.name} onChange={e => { setHasManuallyEditedName(true); setFormData({...formData, name: e.target.value}); }} />
                   </div>
                 </div>
 
                 <div className="pt-6 flex gap-3">
                   <button type="button" onClick={() => setIsModalOpen(false)} className="flex-1 py-4 bg-slate-50 text-slate-400 font-black rounded-2xl hover:bg-slate-100 transition-all">Annuler</button>
-                  <button type="submit" className="flex-1 py-4 bg-indigo-600 text-white font-black rounded-2xl shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition-all active:scale-95">
+                  <button type="submit" className="flex-1 py-4 bg-upf-primary text-white font-black rounded-2xl shadow-xl shadow-upf-primary/20 hover:bg-upf-primary transition-all active:scale-95">
                     {editingClass ? 'Mettre à jour' : 'Créer la classe'}
                   </button>
                 </div>
@@ -541,7 +541,7 @@ const ClassesPage: React.FC = () => {
             <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="relative bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden max-h-[85vh] flex flex-col p-8" >
               <div className="flex justify-between items-center mb-8">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
+                  <div className="w-14 h-14 bg-upf-primary/10 rounded-2xl flex items-center justify-center text-upf-primary">
                     <UserGroupIcon className="w-7 h-7" />
                   </div>
                   <div>
@@ -556,11 +556,11 @@ const ClassesPage: React.FC = () => {
 
               <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
                 {isDetailsLoading ? (
-                  <div className="flex justify-center p-12"><div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div></div>
+                  <div className="flex justify-center p-12"><div className="w-8 h-8 border-4 border-upf-primary border-t-transparent rounded-full animate-spin"></div></div>
                 ) : selectedClassDetails?.students?.map((s: any) => (
                   <div key={s.id} className="flex items-center justify-between p-5 bg-slate-50 rounded-3xl border border-slate-100">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center font-black text-indigo-600 shadow-sm">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center font-black text-upf-primary shadow-sm">
                         {s.user?.firstName?.[0]}{s.user?.lastName?.[0]}
                       </div>
                       <div>
@@ -568,7 +568,7 @@ const ClassesPage: React.FC = () => {
                         <p className="text-xs text-slate-400 font-bold mt-1 tracking-tight">{s.user?.email}</p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-black px-3 py-1.5 bg-indigo-50 text-indigo-600 rounded-full tracking-wider">{s.cne || 'CNE-N/A'}</span>
+                    <span className="text-[10px] font-black px-3 py-1.5 bg-upf-primary/10 text-upf-primary rounded-full tracking-wider">{s.cne || 'CNE-N/A'}</span>
                   </div>
                 ))}
               </div>
@@ -680,3 +680,4 @@ const ClassesPage: React.FC = () => {
 };
 
 export default ClassesPage;
+

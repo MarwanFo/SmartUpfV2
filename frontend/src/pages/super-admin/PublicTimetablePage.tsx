@@ -117,7 +117,7 @@ const PublicTimetablePage: React.FC = () => {
         <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}} />
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center shadow-xl shadow-indigo-500/20 text-white">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-upf-primary to-blue-600 flex items-center justify-center shadow-xl shadow-upf-primary/20 text-white">
               <CalendarDaysIcon className="w-8 h-8" />
             </div>
             <div>
@@ -146,7 +146,7 @@ const PublicTimetablePage: React.FC = () => {
         <div className="space-y-6 lg:col-span-1">
           <div className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 space-y-6">
             <div className="flex items-center gap-2 mb-2">
-              <FunnelIcon className="w-5 h-5 text-indigo-500" />
+              <FunnelIcon className="w-5 h-5 text-upf-primary" />
               <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">SÉLECTION</h3>
             </div>
             
@@ -154,7 +154,7 @@ const PublicTimetablePage: React.FC = () => {
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Bâtiment</label>
                 <select 
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20"
                   value={selectedBuilding} 
                   onChange={e => { setSelectedBuilding(e.target.value); setSelectedProgram(''); setSelectedClass(''); }}
                 >
@@ -168,7 +168,7 @@ const PublicTimetablePage: React.FC = () => {
                   <motion.div initial={{ opacity: 0, height: 0, y: -10 }} animate={{ opacity: 1, height: 'auto', y: 0 }} exit={{ opacity: 0, height: 0, y: -10 }} className="space-y-1.5 overflow-hidden">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Filière</label>
                     <select 
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20"
                       value={selectedProgram}
                       onChange={e => { setSelectedProgram(e.target.value); setSelectedClass(''); }}
                     >
@@ -184,7 +184,7 @@ const PublicTimetablePage: React.FC = () => {
                   <motion.div initial={{ opacity: 0, height: 0, y: -10 }} animate={{ opacity: 1, height: 'auto', y: 0 }} exit={{ opacity: 0, height: 0, y: -10 }} className="space-y-1.5 overflow-hidden">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Classe cible</label>
                     <select 
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-indigo-500/20"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-upf-primary/20"
                       value={selectedClass}
                       onChange={e => setSelectedClass(e.target.value)}
                     >
@@ -204,7 +204,7 @@ const PublicTimetablePage: React.FC = () => {
                         <button
                           key={s}
                           onClick={() => setSemester(s)}
-                          className={`flex-1 py-2 text-xs font-black rounded-lg transition-all ${semester === s ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
+                          className={`flex-1 py-2 text-xs font-black rounded-lg transition-all ${semester === s ? 'bg-white text-upf-primary shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                         >
                           {s === 'S1' ? 'Automne' : 'Printemps'} ({s})
                         </button>
@@ -232,7 +232,7 @@ const PublicTimetablePage: React.FC = () => {
                   <button 
                     onClick={handlePublish}
                     disabled={draftSlots.length === 0}
-                    className="w-full py-3 bg-indigo-500 hover:bg-indigo-600 disabled:opacity-30 disabled:hover:bg-indigo-500 text-white rounded-xl font-black text-xs transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-upf-primary hover:bg-upf-primary disabled:opacity-30 disabled:hover:bg-upf-primary text-white rounded-xl font-black text-xs transition-all flex items-center justify-center gap-2"
                   >
                     <CheckBadgeIcon className="w-4 h-4" /> PUBLIER CETTE CLASSE
                   </button>
@@ -265,7 +265,7 @@ const PublicTimetablePage: React.FC = () => {
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
+                  <div className="w-12 h-12 bg-upf-primary/10 rounded-2xl flex items-center justify-center text-upf-primary">
                     <AcademicCapIcon className="w-6 h-6" />
                   </div>
                   <div>
@@ -297,3 +297,4 @@ const PublicTimetablePage: React.FC = () => {
 };
 
 export default PublicTimetablePage;
+

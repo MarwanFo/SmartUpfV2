@@ -29,9 +29,9 @@ const COURSE_COLORS = [
   { bg: 'bg-emerald-50',border: 'border-emerald-200',text: 'text-emerald-900',profText: 'text-emerald-700',roomBg: 'bg-emerald-100',roomText: 'text-emerald-600' },
   { bg: 'bg-amber-50',  border: 'border-amber-200',  text: 'text-amber-900',  profText: 'text-amber-700',  roomBg: 'bg-amber-100',  roomText: 'text-amber-600' },
   { bg: 'bg-rose-50',   border: 'border-rose-200',   text: 'text-rose-900',   profText: 'text-rose-700',   roomBg: 'bg-rose-100',   roomText: 'text-rose-600' },
-  { bg: 'bg-cyan-50',   border: 'border-cyan-200',   text: 'text-cyan-900',   profText: 'text-cyan-700',   roomBg: 'bg-cyan-100',   roomText: 'text-cyan-600' },
+  { bg: 'bg-upf-primaryLight/10',   border: 'border-cyan-200',   text: 'text-cyan-900',   profText: 'text-cyan-700',   roomBg: 'bg-upf-primaryLight/20',   roomText: 'text-upf-primaryLight' },
   { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-900', profText: 'text-orange-700', roomBg: 'bg-orange-100', roomText: 'text-orange-600' },
-  { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-900', profText: 'text-indigo-700', roomBg: 'bg-indigo-100', roomText: 'text-indigo-600' },
+  { bg: 'bg-upf-primary/10', border: 'border-upf-primary/30', text: 'text-upf-primary', profText: 'text-upf-primary', roomBg: 'bg-upf-primary/20', roomText: 'text-upf-primary' },
 ];
 
 const TimetableGrid: React.FC<TimetableGridProps> = ({ 
@@ -159,7 +159,7 @@ const TimetableGrid: React.FC<TimetableGridProps> = ({
               {classNameLabel && (
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-slate-400 uppercase text-[10px] tracking-widest">Classe :</span> 
-                  <span className="font-black text-indigo-600 text-base">{classNameLabel}</span>
+                  <span className="font-black text-upf-primary text-base">{classNameLabel}</span>
                 </div>
               )}
               {level && (
@@ -273,3 +273,5 @@ const TimetableGrid: React.FC<TimetableGridProps> = ({
 };
 
 export default TimetableGrid;
+
+

@@ -60,7 +60,7 @@ const FilieresPage: React.FC = () => {
     const colors: Record<string, string> = {
       'LICENCE': 'bg-blue-50 text-blue-600 border-blue-200',
       'MASTER': 'bg-purple-50 text-purple-600 border-purple-200',
-      'INGENIEUR': 'bg-indigo-50 text-indigo-600 border-indigo-200',
+      'INGENIEUR': 'bg-upf-primary/10 text-upf-primary border-upf-primary/30',
       'PREPA': 'bg-amber-50 text-amber-600 border-amber-200',
       'DOCTORAT': 'bg-emerald-50 text-emerald-600 border-emerald-200',
       'FORMATION_PRO': 'bg-slate-50 text-slate-600 border-slate-200',
@@ -71,7 +71,7 @@ const FilieresPage: React.FC = () => {
   return (
     <div className="space-y-8 pb-12 max-w-7xl mx-auto px-4 md:px-0">
       {/* ── Hero Header ── */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-950 rounded-3xl md:rounded-[2.5rem] p-6 md:p-10 shadow-2xl">
+      <div className="relative overflow-hidden bg-gradient-to-br from-upf-primary via-upf-primary to-indigo-950 rounded-3xl md:rounded-[2.5rem] p-6 md:p-10 shadow-2xl">
         <div className="absolute inset-0 opacity-[0.05]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 20.5V18H0v-2h20v-2.5L35 17l-15 3.5zM40 20A20 20 0 1 1 0 20a20 20 0 0 1 40 0zm-2 0a18 18 0 1 0-36 0 18 18 0 0 0 36 0z\' fill=\'%23ffffff\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")'}} />
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div className="flex items-center gap-4 md:gap-6">
@@ -80,14 +80,14 @@ const FilieresPage: React.FC = () => {
             </div>
             <div>
               <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight font-outfit">Filières & LMD</h2>
-              <p className="text-indigo-200 font-medium text-sm md:text-lg mt-1 opacity-90">
+              <p className="text-upf-primary/30 font-medium text-sm md:text-lg mt-1 opacity-90">
                 Architecture pédagogique
               </p>
             </div>
           </div>
           <button
             onClick={() => handleOpenModal()}
-            className="w-full lg:w-auto inline-flex items-center justify-center gap-3 bg-white text-indigo-900 font-black px-8 py-4 rounded-2xl transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap text-sm md:text-base"
+            className="w-full lg:w-auto inline-flex items-center justify-center gap-3 bg-white text-upf-primary font-black px-8 py-4 rounded-2xl transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap text-sm md:text-base"
           >
             <PlusIcon className="w-6 h-6" />
             Nouvelle Filière
@@ -98,7 +98,7 @@ const FilieresPage: React.FC = () => {
         <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
           {[
             { label: 'Total Filières', value: programs.length, icon: BookOpenIcon, color: 'bg-white/5 border-white/10' },
-            { label: 'Ingénierie', value: programs.filter(p=>p.cycle==='INGENIEUR').length, icon: StarIcon, color: 'bg-indigo-500/20 border-indigo-500/20' },
+            { label: 'Ingénierie', value: programs.filter(p=>p.cycle==='INGENIEUR').length, icon: StarIcon, color: 'bg-upf-primary/20 border-upf-primary/20' },
             { label: 'Licences', value: programs.filter(p=>p.cycle==='LICENCE').length, icon: AcademicCapIcon, color: 'bg-blue-500/20 border-blue-500/20' },
             { label: 'Masters', value: programs.filter(p=>p.cycle==='MASTER').length, icon: BuildingLibraryIcon, color: 'bg-purple-500/20 border-purple-500/20' },
           ].map((s, i) => (
@@ -117,9 +117,9 @@ const FilieresPage: React.FC = () => {
 
       {/* ── Toolbar ── */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="md:col-span-3 relative group bg-white p-4 rounded-2xl shadow-sm border border-slate-100 focus-within:border-indigo-200 transition-all">
+        <div className="md:col-span-3 relative group bg-white p-4 rounded-2xl shadow-sm border border-slate-100 focus-within:border-upf-primary/30 transition-all">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-focus-within:bg-indigo-50 group-focus-within:text-indigo-500 transition-all">
+            <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-focus-within:bg-upf-primary/10 group-focus-within:text-upf-primary transition-all">
               <MagnifyingGlassIcon className="w-5 h-5" />
             </div>
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Rechercher</span>
@@ -174,10 +174,10 @@ const FilieresPage: React.FC = () => {
         <motion.div variants={staggerContainer} initial="hidden" animate="show" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPrograms.map((program) => (
             <motion.div variants={staggerItem} layout key={program.id}
-              className="group relative bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-indigo-200 flex flex-col p-8"
+              className="group relative bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-upf-primary/30 flex flex-col p-8"
             >
               <div className="flex justify-between items-start mb-6">
-                <span className="px-4 py-2 rounded-xl text-[10px] font-black tracking-[0.2em] bg-slate-50 text-slate-400 uppercase border border-slate-100 group-hover:bg-indigo-50 group-hover:text-indigo-400 group-hover:border-indigo-100 transition-all">
+                <span className="px-4 py-2 rounded-xl text-[10px] font-black tracking-[0.2em] bg-slate-50 text-slate-400 uppercase border border-slate-100 group-hover:bg-upf-primary/10 group-hover:text-upf-primaryLight group-hover:border-upf-primary/20 transition-all">
                   {program.code}
                 </span>
                 <span className={`px-4 py-1.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${getCycleColor(program.cycle)}`}>
@@ -204,7 +204,7 @@ const FilieresPage: React.FC = () => {
 
               {/* Actions Float */}
               <div className="mt-8 flex items-center justify-end gap-2 pt-6 border-t border-slate-50 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                <button onClick={() => handleOpenModal(program)} className="p-3 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all shadow-sm bg-slate-50">
+                <button onClick={() => handleOpenModal(program)} className="p-3 text-slate-400 hover:text-upf-primary hover:bg-upf-primary/10 rounded-xl transition-all shadow-sm bg-slate-50">
                   <PencilSquareIcon className="w-5 h-5" />
                 </button>
                 <button onClick={() => handleDeleteClick(program)} className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all shadow-sm bg-slate-50">
@@ -226,3 +226,4 @@ const FilieresPage: React.FC = () => {
 };
 
 export default FilieresPage;
+

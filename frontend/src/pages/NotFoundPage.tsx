@@ -13,7 +13,7 @@ const NotFoundPage: React.FC = () => {
         </p>
         <Link 
           to="/" 
-          className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-upf-blue hover:bg-slate-900 text-white font-medium rounded-lg transition-colors shadow-sm"
+          className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-upf-primary hover:bg-slate-900 text-white font-medium rounded-lg transition-colors shadow-sm"
         >
           <HomeIcon className="w-5 h-5" />
           Retour à l'accueil

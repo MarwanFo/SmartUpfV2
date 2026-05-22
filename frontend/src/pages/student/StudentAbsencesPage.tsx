@@ -14,6 +14,10 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 dayjs.locale('fr');
 import toast from 'react-hot-toast';
+import { Card } from '../../components/ui/Card';
+import Badge from '../../components/ui/Badge';
+import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
 
 const API = 'http://localhost:3001/api/student';
 
@@ -122,7 +126,7 @@ const StudentAbsencesPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-upf-primary"></div>
       </div>
     );
   }
@@ -181,7 +185,7 @@ const StudentAbsencesPage: React.FC = () => {
                     key={f.id}
                     onClick={() => setFilter(f.id as any)}
                     className={`w-full flex items-center justify-between p-3 rounded-xl text-xs font-bold transition-all ${
-                      filter === f.id ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
+                      filter === f.id ? 'bg-upf-primary text-white shadow-lg shadow-upf-primary/20' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
                     }`}
                   >
                     <span>{f.label}</span>
@@ -194,15 +198,15 @@ const StudentAbsencesPage: React.FC = () => {
             </div>
 
             <div className="pt-4 border-t border-slate-100">
-              <button className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900 text-white text-xs font-black uppercase tracking-widest hover:bg-indigo-600 transition-all">
-                <ArrowDownTrayIcon className="w-4 h-4" /> Exporter PDF
-              </button>
+              <Button variant="primary" className="w-full">
+                <ArrowDownTrayIcon className="w-4 h-4 mr-2" /> Exporter PDF
+              </Button>
             </div>
           </div>
 
-          <div className="bg-indigo-900 rounded-[2rem] p-6 text-white shadow-xl shadow-indigo-100">
+          <div className="bg-upf-primary rounded-[2rem] p-6 text-white shadow-xl shadow-upf-primary/20">
             <h4 className="text-sm font-black uppercase tracking-widest mb-2">Note Importante</h4>
-            <p className="text-xs text-indigo-200 leading-relaxed">
+            <p className="text-xs text-white/80 leading-relaxed">
               Une absence peut être justifiée sous 48h auprès de l'administration. Les retards de plus de 15 minutes sont comptabilisés comme absences.
             </p>
           </div>
@@ -211,13 +215,13 @@ const StudentAbsencesPage: React.FC = () => {
         {/* Attendance List (Main Content) */}
         <div className="xl:col-span-3 space-y-4">
           {filteredAttendances.length === 0 ? (
-            <div className="bg-white rounded-[2.5rem] p-20 border border-slate-200 text-center flex flex-col items-center">
+            <Card className="p-20 text-center flex flex-col items-center">
               <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
                 <CheckBadgeIcon className="w-10 h-10 text-emerald-400" />
               </div>
               <h3 className="text-2xl font-black text-slate-800 font-outfit uppercase tracking-wider">Aucune absence !</h3>
               <p className="text-slate-500 mt-2">Félicitations, vous maintenez une assiduité parfaite dans cette catégorie.</p>
-            </div>
+            </Card>
           ) : (
             <div className="space-y-4">
               {filteredAttendances.map((record, idx) => (
@@ -226,8 +230,8 @@ const StudentAbsencesPage: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
                   key={record.id}
-                  className="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
                 >
+                  <Card className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 hover:shadow-md transition-all">
                   <div className="flex items-center gap-4">
                     <div className={`w-14 h-14 rounded-2xl flex flex-col items-center justify-center flex-shrink-0 ${
                       record.status === 'ABSENT' ? 'bg-rose-50 text-rose-600' :
@@ -265,14 +269,10 @@ const StudentAbsencesPage: React.FC = () => {
                       </div>
                     )}
 
-                    <div className={`px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-sm border ${
-                      record.status === 'ABSENT' ? 'bg-rose-600 text-white border-rose-500 shadow-rose-100' :
-                      record.status === 'LATE' ? 'bg-amber-500 text-white border-amber-400 shadow-amber-100' :
-                      'bg-emerald-600 text-white border-emerald-500 shadow-emerald-100'
-                    }`}>
+                    <Badge variant={record.status === 'ABSENT' ? 'danger' : record.status === 'LATE' ? 'warning' : 'success'} className="px-5 py-2.5 text-[10px]">
                       {record.status === 'ABSENT' ? 'Absent' : 
                        record.status === 'LATE' ? 'En Retard' : 'Présent'}
-                    </div>
+                    </Badge>
                   </div>
 
                   {/* Justification Section */}
@@ -301,41 +301,41 @@ const StudentAbsencesPage: React.FC = () => {
 
                           if (justifyingId === record.id) {
                             return (
-                              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-4">
-                                <div>
-                                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Fichier justificatif (PDF/Image)</label>
-                                  <input 
-                                    type="file" 
-                                    onChange={(e) => setJustificationFile(e.target.files?.[0] || null)}
-                                    className="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer"
-                                  />
+                                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-4">
+                                  <div>
+                                    <label className="label-standard mb-2">Fichier justificatif (PDF/Image)</label>
+                                    <input 
+                                      type="file" 
+                                      onChange={(e) => setJustificationFile(e.target.files?.[0] || null)}
+                                      className="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-upf-primary/10 file:text-upf-primary hover:file:bg-upf-primary/20 cursor-pointer"
+                                    />
+                                  </div>
+                                  <div>
+                                    <Input 
+                                      label="Note explicative (Optionnel)"
+                                      value={justificationNote}
+                                      onChange={(e) => setJustificationNote(e.target.value)}
+                                      placeholder="Ex: Certificat médical ci-joint..."
+                                    />
+                                  </div>
+                                  <div className="flex justify-end gap-2 pt-2">
+                                    <Button 
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => setJustifyingId(null)}
+                                    >
+                                      Annuler
+                                    </Button>
+                                    <Button 
+                                      variant="primary"
+                                      size="sm"
+                                      isLoading={isSubmitting}
+                                      onClick={() => handleJustify(record.id)}
+                                    >
+                                      Envoyer le justificatif
+                                    </Button>
+                                  </div>
                                 </div>
-                                <div>
-                                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Note explicative (Optionnel)</label>
-                                  <input 
-                                    type="text" 
-                                    value={justificationNote}
-                                    onChange={(e) => setJustificationNote(e.target.value)}
-                                    placeholder="Ex: Certificat médical ci-joint..."
-                                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
-                                  />
-                                </div>
-                                <div className="flex justify-end gap-2 pt-2">
-                                  <button 
-                                    onClick={() => setJustifyingId(null)}
-                                    className="px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-200 transition-colors"
-                                  >
-                                    Annuler
-                                  </button>
-                                  <button 
-                                    onClick={() => handleJustify(record.id)}
-                                    disabled={isSubmitting}
-                                    className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors disabled:opacity-50 flex items-center gap-2"
-                                  >
-                                    {isSubmitting ? 'Envoi...' : 'Envoyer le justificatif'}
-                                  </button>
-                                </div>
-                              </div>
                             );
                           }
 
@@ -346,7 +346,7 @@ const StudentAbsencesPage: React.FC = () => {
                                 setJustificationFile(null);
                                 setJustificationNote('');
                               }}
-                              className="text-xs font-black text-indigo-600 uppercase tracking-widest hover:text-indigo-800 transition-colors flex items-center gap-1"
+                              className="text-xs font-black text-upf-primary uppercase tracking-widest hover:text-upf-primaryLight transition-colors flex items-center gap-1"
                             >
                               + Ajouter un justificatif (Reste {Math.floor(48 - diffHours)}h)
                             </button>
@@ -355,6 +355,7 @@ const StudentAbsencesPage: React.FC = () => {
                       )}
                     </div>
                   )}
+                  </Card>
                 </motion.div>
               ))}
             </div>
@@ -366,3 +367,4 @@ const StudentAbsencesPage: React.FC = () => {
 };
 
 export default StudentAbsencesPage;
+

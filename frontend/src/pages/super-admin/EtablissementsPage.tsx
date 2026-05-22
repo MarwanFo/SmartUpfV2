@@ -136,7 +136,7 @@ const EtablissementsPage: React.FC = () => {
           {[
             { label: 'Total', value: buildings.length, icon: BuildingOffice2Icon, color: 'bg-white/5 border-white/10' },
             { label: 'Actifs', value: activeCount, icon: CheckCircleIcon, color: 'bg-emerald-500/20 border-emerald-500/20' },
-            { label: 'Filières', value: totalFilieres, icon: AcademicCapIcon, color: 'bg-indigo-500/20 border-indigo-500/20' },
+            { label: 'Filières', value: totalFilieres, icon: AcademicCapIcon, color: 'bg-upf-primary/20 border-upf-primary/20' },
             { label: 'Effectif', value: totalStaff, icon: UsersIcon, color: 'bg-amber-500/20 border-amber-500/20' },
           ].map(s => (
             <div key={s.label} className={`flex items-center gap-4 px-6 py-4 rounded-2xl ${s.color} border backdrop-blur-md`}>
@@ -242,7 +242,7 @@ const EtablissementsPage: React.FC = () => {
                 <div className="mt-8 pt-8 border-t border-slate-50 grid grid-cols-3 gap-4">
                   {[
                     { label: 'Salles', value: building.numRooms || 0, icon: BuildingOffice2Icon, color: 'text-amber-600 bg-amber-50' },
-                    { label: 'Filières', value: building._count?.filieres || 0, icon: AcademicCapIcon, color: 'text-indigo-600 bg-indigo-50' },
+                    { label: 'Filières', value: building._count?.filieres || 0, icon: AcademicCapIcon, color: 'text-upf-primary bg-upf-primary/10' },
                     { label: 'Staff', value: building._count?.users || 0, icon: UsersIcon, color: 'text-emerald-600 bg-emerald-50' },
                   ].map((stat, i) => (
                     <div key={i} className="flex flex-col items-center">
@@ -354,3 +354,4 @@ const EtablissementsPage: React.FC = () => {
 };
 
 export default EtablissementsPage;
+

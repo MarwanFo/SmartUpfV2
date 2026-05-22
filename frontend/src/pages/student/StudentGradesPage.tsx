@@ -8,6 +8,7 @@ import {
 import { useAuthStore } from '../../store/authStore';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Card } from '../../components/ui/Card';
 
 const API = 'http://localhost:3001/api';
 
@@ -85,7 +86,7 @@ const StudentGradesPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-upf-primary"></div>
       </div>
     );
   }
@@ -107,19 +108,19 @@ const StudentGradesPage: React.FC = () => {
           <p className="text-slate-500 font-medium mt-1">Seuls les modules avec des notes sauvegardées sont affichés.</p>
         </div>
         
-        <div className="bg-gradient-to-r from-[#0A192F] to-indigo-900 px-8 py-4 rounded-3xl shadow-lg flex items-center gap-6">
-          <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-indigo-200 border border-white/20">
+        <div className="bg-gradient-to-r from-upf-primary to-upf-primaryLight px-8 py-4 rounded-3xl shadow-lg flex items-center gap-6">
+          <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
             <AcademicCapIcon className="w-6 h-6" />
           </div>
           <div>
-            <p className="text-indigo-200 text-xs font-bold uppercase tracking-widest mb-1">Moyenne Générale</p>
-            <p className="text-3xl font-black text-white">{globalAverage} <span className="text-sm font-medium text-indigo-200/50">/20</span></p>
+            <p className="text-white/80 text-xs font-bold uppercase tracking-widest mb-1">Moyenne Générale</p>
+            <p className="text-3xl font-black text-white">{globalAverage} <span className="text-sm font-medium text-white/50">/20</span></p>
           </div>
         </div>
       </div>
 
       {evaluatedCourses.length === 0 ? (
-        <div className="bg-white rounded-[3rem] p-12 md:p-20 text-center shadow-sm border border-slate-100 flex flex-col items-center justify-center">
+        <Card className="p-12 md:p-20 text-center flex flex-col items-center justify-center">
           <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
             <CalculatorIcon className="w-10 h-10 text-slate-300" />
           </div>
@@ -132,9 +133,9 @@ const StudentGradesPage: React.FC = () => {
             <ExclamationCircleIcon className="w-4 h-4" />
             Modules totaux chargés : {courses.length}
           </div>
-        </div>
+        </Card>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden shadow-sm">
+        <Card className="overflow-hidden p-0">
           <div className="overflow-x-auto custom-scrollbar">
             <table className="w-full text-left min-w-[800px]">
               <thead>
@@ -144,7 +145,7 @@ const StudentGradesPage: React.FC = () => {
                   <th className="px-4 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">CC 2</th>
                   <th className="px-4 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">Examen</th>
                   <th className="px-4 py-6 text-[11px] font-black text-rose-500 uppercase tracking-[0.2em] text-center">Ratt</th>
-                  <th className="px-8 py-6 text-[11px] font-black text-indigo-500 uppercase tracking-[0.2em] text-right whitespace-nowrap">Moyenne Finale</th>
+                  <th className="px-8 py-6 text-[11px] font-black text-semantic-info uppercase tracking-[0.2em] text-right whitespace-nowrap">Moyenne Finale</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
@@ -160,17 +161,17 @@ const StudentGradesPage: React.FC = () => {
                   const penalty = absencesCount > 4 ? (absencesCount - 4) * 0.25 : 0;
 
                   return (
-                    <tr key={course.id} className="hover:bg-indigo-50/20 transition-colors group">
+                    <tr key={course.id} className="hover:bg-upf-primary/5 transition-colors group">
                       <td className="px-8 py-5">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-2xl bg-indigo-50 flex-shrink-0 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                          <div className="w-10 h-10 rounded-2xl bg-upf-primary/10 flex-shrink-0 flex items-center justify-center text-upf-primary group-hover:bg-upf-primary group-hover:text-white transition-all shadow-sm">
                             <BookOpenIcon className="w-5 h-5" />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">{course.name}</p>
+                            <p className="text-sm font-black text-slate-900 truncate group-hover:text-upf-primary transition-colors">{course.name}</p>
                             <p className="text-[10px] font-bold text-slate-400 truncate uppercase tracking-widest">{course.code}</p>
                             {absencesCount > 0 && (
-                              <p className={`text-[9px] font-black uppercase tracking-widest mt-1 ${penalty > 0 ? 'text-rose-500' : 'text-amber-500'}`}>
+                              <p className={`text-[9px] font-black uppercase tracking-widest mt-1 ${penalty > 0 ? 'text-semantic-danger' : 'text-semantic-warning'}`}>
                                 {absencesCount} absence(s) non justifiée(s)
                               </p>
                             )}
@@ -189,26 +190,26 @@ const StudentGradesPage: React.FC = () => {
                         </span>
                       </td>
                       <td className="px-4 py-5 text-center">
-                        <span className={`px-4 py-2 rounded-xl text-sm font-black inline-block min-w-[3.5rem] ${exam !== undefined ? 'bg-indigo-50 text-indigo-700 border border-indigo-100 shadow-sm' : 'text-slate-300'}`}>
+                        <span className={`px-4 py-2 rounded-xl text-sm font-black inline-block min-w-[3.5rem] ${exam !== undefined ? 'bg-upf-primary/10 text-upf-primary border border-upf-primary/20 shadow-sm' : 'text-slate-300'}`}>
                           {exam !== undefined ? exam : '--'}
                         </span>
                       </td>
                       <td className="px-4 py-5 text-center">
-                        <span className={`px-4 py-2 rounded-xl text-sm font-black inline-block min-w-[3.5rem] ${ratt !== undefined ? 'bg-rose-50 text-rose-700 border border-rose-100 shadow-sm' : 'text-slate-300'}`}>
+                        <span className={`px-4 py-2 rounded-xl text-sm font-black inline-block min-w-[3.5rem] ${ratt !== undefined ? 'bg-semantic-danger/10 text-semantic-danger border border-semantic-danger/20 shadow-sm' : 'text-slate-300'}`}>
                           {ratt !== undefined ? ratt : '--'}
                         </span>
                       </td>
 
                       <td className="px-8 py-5 text-right">
                         <div className="flex flex-col items-end">
-                          <span className={`text-xl font-black font-outfit ${isPassed ? 'text-emerald-600' : 'text-rose-600'}`}>
+                          <span className={`text-xl font-black font-outfit ${isPassed ? 'text-semantic-success' : 'text-semantic-danger'}`}>
                             {final}
                           </span>
-                          <span className={`text-[9px] font-black uppercase tracking-widest ${isPassed ? 'text-emerald-500' : 'text-rose-500'}`}>
+                          <span className={`text-[9px] font-black uppercase tracking-widest ${isPassed ? 'text-semantic-success' : 'text-semantic-danger'}`}>
                             {isPassed ? 'Validé' : 'Non Validé'}
                           </span>
                           {penalty > 0 && (
-                            <span className="text-[10px] font-bold text-rose-500 mt-1 flex items-center gap-1 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-100">
+                            <span className="text-[10px] font-bold text-semantic-danger mt-1 flex items-center gap-1 bg-semantic-danger/10 px-2 py-0.5 rounded-md border border-semantic-danger/20">
                               <ExclamationCircleIcon className="w-3 h-3" /> -{penalty} pts (Absences)
                             </span>
                           )}
@@ -220,10 +221,11 @@ const StudentGradesPage: React.FC = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </Card>
       )}
     </div>
   );
 };
 
 export default StudentGradesPage;
+

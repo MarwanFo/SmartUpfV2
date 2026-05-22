@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import TimetableGrid from '../../components/admin/TimetableGrid';
 import { SparklesIcon } from '@heroicons/react/24/outline';
+import { Card } from '../../components/ui/Card';
 
 const API = 'http://localhost:3001/api';
 
@@ -53,8 +54,8 @@ const StudentTimetablePage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-upf-primary"></div>
       </div>
     );
   }
@@ -69,9 +70,9 @@ const StudentTimetablePage: React.FC = () => {
         </div>
         
         {/* Filters */}
-        <div className="flex items-center gap-3 w-full md:w-auto bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
+        <div className="flex items-center gap-3 w-full md:w-auto bg-white p-2 rounded-2xl shadow-glass border border-slate-100">
           <select 
-            className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20"
+            className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-upf-primary/20"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
           >
@@ -82,7 +83,7 @@ const StudentTimetablePage: React.FC = () => {
           </select>
           
           <select 
-            className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-indigo-500/20"
+            className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold text-slate-700 outline-none focus:ring-2 focus:ring-upf-primary/20"
             value={selectedSemester}
             onChange={(e) => setSelectedSemester(e.target.value)}
           >
@@ -95,7 +96,7 @@ const StudentTimetablePage: React.FC = () => {
       </div>
 
       {/* Weekly Grid */}
-      <div className="bg-white rounded-[3rem] p-8 shadow-sm border border-slate-100 min-h-[600px]">
+      <Card className="p-8 min-h-[600px]">
         {filteredSlots.length > 0 ? (
           <TimetableGrid 
             slots={filteredSlots}
@@ -113,9 +114,10 @@ const StudentTimetablePage: React.FC = () => {
             <span className="text-lg font-bold text-slate-500">Aucun cours prévu pour le moment.</span>
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 };
 
 export default StudentTimetablePage;
+

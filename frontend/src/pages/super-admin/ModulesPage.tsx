@@ -73,7 +73,7 @@ const ModulesPage: React.FC = () => {
             </div>
             <div>
               <h2 className="text-4xl font-black text-white tracking-tight font-outfit">Modules & UE</h2>
-              <p className="text-cyan-100 font-medium text-lg mt-1 opacity-90">
+              <p className="text-upf-primaryLight/20 font-medium text-lg mt-1 opacity-90">
                 Gestion des unités d'enseignement et coefficients
               </p>
             </div>
@@ -91,7 +91,7 @@ const ModulesPage: React.FC = () => {
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
           {[
             { label: 'Modules Actifs', value: modules.length, icon: RectangleGroupIcon, color: 'bg-white/5 border-white/10' },
-            { label: 'Moyenne ECTS', value: modules.length ? (modules.reduce((a, b) => a + b.credits, 0) / modules.length).toFixed(1) : 0, icon: BookOpenIcon, color: 'bg-cyan-500/20 border-cyan-500/20' },
+            { label: 'Moyenne ECTS', value: modules.length ? (modules.reduce((a, b) => a + b.credits, 0) / modules.length).toFixed(1) : 0, icon: BookOpenIcon, color: 'bg-upf-primaryLight/20 border-upf-primaryLight/20' },
             { label: 'Filières', value: new Set(modules.flatMap(m => m.programs?.map(p => p.id) || [])).size, icon: FunnelIcon, color: 'bg-blue-500/20 border-blue-500/20' },
           ].map((s, i) => (
             <div key={i} className={`flex items-center gap-4 px-6 py-4 rounded-2xl ${s.color} border backdrop-blur-md`}>
@@ -109,7 +109,7 @@ const ModulesPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="lg:col-span-2 relative group bg-white p-4 rounded-2xl shadow-sm border border-slate-100 focus-within:border-cyan-200 transition-all">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-focus-within:bg-cyan-50 group-focus-within:text-cyan-500 transition-all">
+            <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-focus-within:bg-upf-primaryLight/10 group-focus-within:text-upf-primaryLight transition-all">
               <MagnifyingGlassIcon className="w-5 h-5" />
             </div>
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Rechercher</span>
@@ -167,13 +167,13 @@ const ModulesPage: React.FC = () => {
               className="group relative bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-cyan-200 flex flex-col p-8"
             >
               {/* Top Accent line */}
-              <div className="absolute top-0 left-0 h-1.5 bg-gradient-to-r from-cyan-400 to-sky-500 w-full" />
+              <div className="absolute top-0 left-0 h-1.5 bg-gradient-to-r from-upf-primaryLight to-sky-500 w-full" />
 
               <div className="flex justify-between items-start mb-6">
                 <span className="px-4 py-2 rounded-xl text-[10px] font-black tracking-widest bg-slate-50 text-slate-400 uppercase border border-slate-100">
                   {moduleItem.code}
                 </span>
-                <span className="px-4 py-1.5 rounded-full text-[10px] font-black bg-cyan-50 text-cyan-600 border border-cyan-100 uppercase">
+                <span className="px-4 py-1.5 rounded-full text-[10px] font-black bg-upf-primaryLight/10 text-upf-primaryLight border border-upf-primaryLight/20 uppercase">
                   {moduleItem.programs?.[0]?.semester || 'S-'}
                 </span>
               </div>
@@ -185,7 +185,7 @@ const ModulesPage: React.FC = () => {
               <div className="grid grid-cols-2 gap-3 mb-8">
                 <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
                   <div className="text-[9px] uppercase font-black text-slate-400 mb-1 tracking-widest">Crédits</div>
-                  <div className="font-black text-slate-800 flex items-center gap-2"><BookOpenIcon className="w-4 h-4 text-cyan-500" /> {moduleItem.credits} ECTS</div>
+                  <div className="font-black text-slate-800 flex items-center gap-2"><BookOpenIcon className="w-4 h-4 text-upf-primaryLight" /> {moduleItem.credits} ECTS</div>
                 </div>
                 <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
                   <div className="text-[9px] uppercase font-black text-slate-400 mb-1 tracking-widest">Coefficient</div>
@@ -195,7 +195,7 @@ const ModulesPage: React.FC = () => {
 
               {/* Actions */}
               <div className="flex items-center justify-end gap-2 pt-6 border-t border-slate-50 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
-                <button onClick={() => handleOpenModal(moduleItem)} className="p-3 text-slate-400 hover:text-cyan-600 hover:bg-cyan-50 rounded-xl transition-all shadow-sm bg-slate-50">
+                <button onClick={() => handleOpenModal(moduleItem)} className="p-3 text-slate-400 hover:text-upf-primaryLight hover:bg-upf-primaryLight/10 rounded-xl transition-all shadow-sm bg-slate-50">
                   <PencilSquareIcon className="w-5 h-5" />
                 </button>
                 <button onClick={() => handleDeleteClick(moduleItem)} className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all shadow-sm bg-slate-50">
@@ -217,3 +217,5 @@ const ModulesPage: React.FC = () => {
 };
 
 export default ModulesPage;
+
+

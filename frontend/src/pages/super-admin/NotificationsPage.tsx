@@ -83,7 +83,7 @@ const NotificationsPage: React.FC = () => {
   const getTypeStyles = (type: string) => {
     switch (type) {
       case 'ALERT': return 'bg-rose-50 text-rose-600 border-rose-100';
-      case 'SYSTEM': return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+      case 'SYSTEM': return 'bg-upf-primary/10 text-upf-primary border-upf-primary/20';
       case 'MESSAGE': return 'bg-emerald-50 text-emerald-600 border-emerald-100';
       default: return 'bg-slate-50 text-slate-600 border-slate-100';
     }
@@ -95,7 +95,7 @@ const NotificationsPage: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-slate-800 flex items-center gap-3 font-outfit">
-            <div className="p-3 bg-indigo-600 text-white rounded-2xl shadow-lg shadow-indigo-200">
+            <div className="p-3 bg-upf-primary text-white rounded-2xl shadow-lg shadow-upf-primary/30">
               <MegaphoneIcon className="w-8 h-8" />
             </div>
             Centre de Diffusion
@@ -126,7 +126,7 @@ const NotificationsPage: React.FC = () => {
                     placeholder="Ex: Maintenance système ce soir"
                     value={formData.title}
                     onChange={e => setFormData({...formData, title: e.target.value})}
-                    className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-medium"
+                    className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-upf-primary/10 focus:border-upf-primary outline-none transition-all font-medium"
                   />
                 </div>
                 <div className="space-y-2">
@@ -134,7 +134,7 @@ const NotificationsPage: React.FC = () => {
                   <select 
                     value={formData.type}
                     onChange={e => setFormData({...formData, type: e.target.value})}
-                    className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-medium"
+                    className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-upf-primary/10 focus:border-upf-primary outline-none transition-all font-medium"
                   >
                     <option value="SYSTEM">Système / Info</option>
                     <option value="ALERT">Urgente / Alerte</option>
@@ -152,13 +152,13 @@ const NotificationsPage: React.FC = () => {
                   placeholder="Écrivez votre message ici..."
                   value={formData.body}
                   onChange={e => setFormData({...formData, body: e.target.value})}
-                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-medium resize-none"
+                  className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-upf-primary/10 focus:border-upf-primary outline-none transition-all font-medium resize-none"
                 />
               </div>
 
               <div className="p-6 bg-slate-50 rounded-3xl space-y-4 border border-slate-100">
                 <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                  <UsersIcon className="w-5 h-5 text-indigo-600" />
+                  <UsersIcon className="w-5 h-5 text-upf-primary" />
                   Ciblage de l'audience
                 </h3>
                 
@@ -175,7 +175,7 @@ const NotificationsPage: React.FC = () => {
                       onClick={() => setFormData({...formData, targetScope: scope.id, targetIds: []})}
                       className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
                         formData.targetScope === scope.id 
-                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-105' 
+                        ? 'bg-upf-primary text-white shadow-lg shadow-upf-primary/30 scale-105' 
                         : 'bg-white text-slate-600 border border-slate-100 hover:bg-slate-100'
                       }`}
                     >
@@ -207,7 +207,7 @@ const NotificationsPage: React.FC = () => {
                           }}
                           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                             formData.targetIds.includes(role)
-                            ? 'bg-indigo-100 text-indigo-700'
+                            ? 'bg-upf-primary/20 text-upf-primary'
                             : 'bg-white text-slate-500 border border-slate-200'
                           }`}
                         >
@@ -226,7 +226,7 @@ const NotificationsPage: React.FC = () => {
                           }}
                           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                             formData.targetIds.includes(b.id)
-                            ? 'bg-indigo-100 text-indigo-700'
+                            ? 'bg-upf-primary/20 text-upf-primary'
                             : 'bg-white text-slate-500 border border-slate-200'
                           }`}
                         >
@@ -245,7 +245,7 @@ const NotificationsPage: React.FC = () => {
                           }}
                           className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                             formData.targetIds.includes(p.id)
-                            ? 'bg-indigo-100 text-indigo-700'
+                            ? 'bg-upf-primary/20 text-upf-primary'
                             : 'bg-white text-slate-500 border border-slate-200'
                           }`}
                         >
@@ -260,7 +260,7 @@ const NotificationsPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-2xl font-black text-lg shadow-xl shadow-indigo-200 hover:shadow-indigo-300 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+                className="w-full py-4 bg-gradient-to-r from-upf-primary to-upf-primary text-white rounded-2xl font-black text-lg shadow-xl shadow-upf-primary/30 hover:shadow-indigo-300 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
               >
                 {isSending ? (
                   <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
@@ -279,7 +279,7 @@ const NotificationsPage: React.FC = () => {
         <div className="lg:col-span-5 space-y-8">
           {/* Live Preview */}
           <div className="bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-500/20 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-upf-primary/20 to-transparent pointer-events-none" />
             <h3 className="text-white/50 text-xs font-black uppercase tracking-widest mb-6">Aperçu en direct</h3>
             
             <motion.div 
@@ -299,14 +299,14 @@ const NotificationsPage: React.FC = () => {
                 {formData.body || "Le contenu de votre message apparaîtra ici..."}
               </p>
               <div className="pt-2 flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-bold text-white">UPF</div>
+                <div className="w-6 h-6 rounded-full bg-upf-primary flex items-center justify-center text-[10px] font-bold text-white">UPF</div>
                 <span className="text-[10px] text-white/40 font-medium">Administration UPF</span>
               </div>
             </motion.div>
 
             <div className="mt-8 flex justify-center">
               <div className="flex gap-1.5">
-                {[1,2,3].map(i => <div key={i} className={`w-1.5 h-1.5 rounded-full ${i === 1 ? 'bg-indigo-500' : 'bg-white/10'}`} />)}
+                {[1,2,3].map(i => <div key={i} className={`w-1.5 h-1.5 rounded-full ${i === 1 ? 'bg-upf-primary' : 'bg-white/10'}`} />)}
               </div>
             </div>
           </div>
@@ -314,7 +314,7 @@ const NotificationsPage: React.FC = () => {
           {/* History */}
           <div className="space-y-4">
             <h3 className="font-black text-slate-800 flex items-center gap-2 text-xl font-outfit">
-              <QueueListIcon className="w-6 h-6 text-indigo-600" />
+              <QueueListIcon className="w-6 h-6 text-upf-primary" />
               Derniers Envois
             </h3>
 
@@ -363,3 +363,4 @@ const NotificationsPage: React.FC = () => {
 };
 
 export default NotificationsPage;
+

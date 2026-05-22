@@ -120,8 +120,8 @@ const TimetablePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4"
           >
-            <div className="flex items-center gap-2 text-indigo-600 font-black text-xs uppercase tracking-widest">
-              <div className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-[10px]">2</div>
+            <div className="flex items-center gap-2 text-upf-primary font-black text-xs uppercase tracking-widest">
+              <div className="w-6 h-6 rounded-full bg-upf-primary/20 flex items-center justify-center text-[10px]">2</div>
               Filières & Programmes
             </div>
             <div className="flex flex-wrap gap-2">
@@ -134,8 +134,8 @@ const TimetablePage: React.FC = () => {
                   }}
                   className={`px-5 py-2.5 rounded-2xl border-2 transition-all font-bold text-sm ${
                     selectedPrograms.includes(p.id)
-                      ? 'bg-indigo-500 border-indigo-500 text-white shadow-xl shadow-indigo-100'
-                      : 'bg-white border-slate-50 text-slate-500 hover:border-indigo-200'
+                      ? 'bg-upf-primary border-upf-primary text-white shadow-xl shadow-upf-primary/20'
+                      : 'bg-white border-slate-50 text-slate-500 hover:border-upf-primary/30'
                   }`}
                 >
                   {p.name}
@@ -223,3 +223,4 @@ const TimetablePage: React.FC = () => {
 };
 
 export default TimetablePage;
+

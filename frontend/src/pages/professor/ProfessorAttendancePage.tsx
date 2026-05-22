@@ -247,13 +247,13 @@ const ProfessorAttendancePage: React.FC = () => {
                 }}
                 className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 ${
                   selectedFiliere?.id === filiere.id 
-                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200 ring-4 ring-indigo-50' 
-                    : 'bg-white border border-slate-200/60 hover:border-indigo-300 hover:bg-indigo-50/30 text-slate-700'
+                    ? 'bg-upf-primary text-white shadow-lg shadow-upf-primary/30 ring-4 ring-upf-primary/10' 
+                    : 'bg-white border border-slate-200/60 hover:border-indigo-300 hover:bg-upf-primary/10/30 text-slate-700'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                    selectedFiliere?.id === filiere.id ? 'bg-white/20' : 'bg-indigo-50 text-indigo-600'
+                    selectedFiliere?.id === filiere.id ? 'bg-white/20' : 'bg-upf-primary/10 text-upf-primary'
                   }`}>
                     <AcademicCapIcon className="w-5 h-5" />
                   </div>
@@ -276,11 +276,11 @@ const ProfessorAttendancePage: React.FC = () => {
                         }}
                         className={`w-full flex items-center gap-3 p-3 rounded-xl text-sm font-bold transition-all border ${
                           selectedClass?.id === clazz.id 
-                            ? 'bg-white border-indigo-200 text-indigo-700 shadow-sm' 
+                            ? 'bg-white border-upf-primary/30 text-upf-primary shadow-sm' 
                             : 'border-transparent text-slate-500 hover:text-slate-900 hover:bg-white/60'
                         }`}
                       >
-                        <UserGroupIcon className={`w-4 h-4 ${selectedClass?.id === clazz.id ? 'text-indigo-500' : 'text-slate-300'}`} />
+                        <UserGroupIcon className={`w-4 h-4 ${selectedClass?.id === clazz.id ? 'text-upf-primary' : 'text-slate-300'}`} />
                         {clazz.name}
                       </button>
                       
@@ -292,8 +292,8 @@ const ProfessorAttendancePage: React.FC = () => {
                               onClick={() => loadSessions(course)}
                               className={`w-full flex items-center gap-2.5 p-2.5 rounded-lg text-xs font-extrabold transition-all ${
                                 selectedCourse?.id === course.id 
-                                  ? 'bg-indigo-500 text-white shadow-md' 
-                                  : 'text-slate-400 hover:text-indigo-600 hover:bg-white border border-transparent hover:border-indigo-100'
+                                  ? 'bg-upf-primary text-white shadow-md' 
+                                  : 'text-slate-400 hover:text-upf-primary hover:bg-white border border-transparent hover:border-upf-primary/20'
                               }`}
                             >
                               <div className={`w-1.5 h-1.5 rounded-full ${selectedCourse?.id === course.id ? 'bg-white' : 'bg-slate-300'}`} />
@@ -325,7 +325,7 @@ const ProfessorAttendancePage: React.FC = () => {
           )}
           {loading && !selectedSession && (
             <div className="flex justify-center mt-8">
-              <ArrowPathIcon className="w-6 h-6 text-cyan-500 animate-spin" />
+              <ArrowPathIcon className="w-6 h-6 text-upf-primaryLight animate-spin" />
             </div>
           )}
           {selectedCourse && sessions.length === 0 && !loading && (
@@ -339,11 +339,11 @@ const ProfessorAttendancePage: React.FC = () => {
                 <button
                   key={slot.id}
                   onClick={() => createSession(slot)}
-                  className="w-full text-left p-3 mb-1.5 rounded-xl bg-white border border-dashed border-cyan-200 hover:border-cyan-400 hover:bg-cyan-50 transition-all group"
+                  className="w-full text-left p-3 mb-1.5 rounded-xl bg-white border border-dashed border-cyan-200 hover:border-upf-primaryLight hover:bg-upf-primaryLight/10 transition-all group"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-bold text-cyan-600 bg-cyan-50 px-2 py-0.5 rounded-md uppercase">{slot.dayOfWeek}</span>
-                    <PlusIcon className="w-3 h-3 text-cyan-400 group-hover:text-cyan-600" />
+                    <span className="text-[10px] font-bold text-upf-primaryLight bg-upf-primaryLight/10 px-2 py-0.5 rounded-md uppercase">{slot.dayOfWeek}</span>
+                    <PlusIcon className="w-3 h-3 text-upf-primaryLight group-hover:text-upf-primaryLight" />
                   </div>
                   <p className="text-xs font-bold text-slate-700">{selectedClass?.name}</p>
                   <p className="text-[10px] text-slate-400 font-medium">
@@ -363,7 +363,7 @@ const ProfessorAttendancePage: React.FC = () => {
               onClick={() => loadAttendanceSheet(session)}
               className={`w-full text-left p-3.5 rounded-xl transition-all ${
                 selectedSession?.id === session.id
-                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-upf-primaryLight to-blue-600 text-white shadow-lg'
                   : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-100'
               }`}
             >
@@ -406,7 +406,7 @@ const ProfessorAttendancePage: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="px-2.5 py-1 text-xs font-bold bg-[#0A192F] text-cyan-400 rounded-lg">{selectedSession.type}</span>
+                    <span className="px-2.5 py-1 text-xs font-bold bg-upf-primary text-upf-primaryLight rounded-lg">{selectedSession.type}</span>
                     <h3 className="text-xl font-extrabold text-slate-900 font-outfit">{selectedSession.courseName}</h3>
                   </div>
                   <p className="text-sm text-slate-500">
@@ -442,7 +442,7 @@ const ProfessorAttendancePage: React.FC = () => {
                     className={`flex items-center gap-2 px-5 py-2.5 font-bold text-sm rounded-xl transition-all shadow-md ${
                       saved
                         ? 'bg-slate-200 text-slate-500 cursor-not-allowed shadow-none'
-                        : 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5'
+                        : 'bg-gradient-to-r from-upf-primaryLight to-blue-600 text-white shadow-upf-primaryLight/20 hover:shadow-upf-primaryLight/40 hover:-translate-y-0.5'
                     } disabled:opacity-70`}
                   >
                     {saving ? <ArrowPathIcon className="w-4 h-4 animate-spin" /> : saved ? <CheckIcon className="w-4 h-4" /> : null}
@@ -459,7 +459,7 @@ const ProfessorAttendancePage: React.FC = () => {
                   placeholder="Rechercher un étudiant..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-slate-50"
+                  className="w-full pl-9 pr-4 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-upf-primaryLight bg-slate-50"
                 />
               </div>
             </div>
@@ -468,7 +468,7 @@ const ProfessorAttendancePage: React.FC = () => {
             <div className="flex-1 overflow-y-auto p-6">
               {loading ? (
                 <div className="flex justify-center mt-16">
-                  <ArrowPathIcon className="w-8 h-8 text-cyan-500 animate-spin" />
+                  <ArrowPathIcon className="w-8 h-8 text-upf-primaryLight animate-spin" />
                 </div>
               ) : (
                 <div className="space-y-2">
@@ -479,7 +479,7 @@ const ProfessorAttendancePage: React.FC = () => {
                         className="flex items-center gap-4 p-4 rounded-2xl border border-slate-100 bg-white hover:border-slate-200 hover:shadow-sm transition-all group"
                       >
                         {/* Avatar */}
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-100 to-blue-100 border-2 border-white shadow-sm flex items-center justify-center shrink-0 font-bold text-slate-700 text-sm">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-upf-primaryLight/20 to-blue-100 border-2 border-white shadow-sm flex items-center justify-center shrink-0 font-bold text-slate-700 text-sm">
                           {student.firstName[0]}{student.lastName[0]}
                         </div>
 
@@ -526,3 +526,5 @@ const ProfessorAttendancePage: React.FC = () => {
 };
 
 export default ProfessorAttendancePage;
+
+

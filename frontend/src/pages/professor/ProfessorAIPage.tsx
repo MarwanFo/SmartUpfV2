@@ -4,7 +4,7 @@ import { SparklesIcon } from '@heroicons/react/24/outline';
 const ProfessorAIPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full gap-6 text-center p-8">
-      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#D33682] to-purple-700 flex items-center justify-center shadow-xl shadow-purple-500/20 animate-pulse">
+      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-upf-accent to-purple-700 flex items-center justify-center shadow-xl shadow-purple-500/20 animate-pulse">
         <SparklesIcon className="w-10 h-10 text-white" />
       </div>
       <div>
@@ -22,3 +22,5 @@ const ProfessorAIPage: React.FC = () => {
 };
 
 export default ProfessorAIPage;
+
+
