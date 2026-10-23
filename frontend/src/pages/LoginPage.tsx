@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  AcademicCapIcon, 
   UserIcon, 
   UsersIcon, 
   BriefcaseIcon,
@@ -83,11 +82,8 @@ const LoginPage: React.FC = () => {
         />
         
         <div className="relative z-20 flex flex-col justify-between h-full w-full p-16">
-          <Link to="/" className="flex items-center gap-3.5 w-max hover:opacity-90 transition-opacity">
-            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-upf-primary/10">
-              <AcademicCapIcon className="w-7 h-7 text-upf-accent" />
-            </div>
-            <span className="font-outfit font-black text-2xl text-white tracking-tight">UPF Fès</span>
+          <Link to="/" className="inline-block bg-white py-2 px-3.5 rounded-xl shadow-lg hover:opacity-90 transition-opacity w-max">
+            <img src="/logo_upf.png" alt="UPF Université" className="h-8 w-auto object-contain" />
           </Link>
 
           <div className="max-w-md">
@@ -100,12 +96,12 @@ const LoginPage: React.FC = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Centralisé & Sécurisé.</span>
             </h1>
             <p className="text-blue-100/80 text-lg font-normal leading-relaxed">
-              Connectez-vous à l'écosystème numérique de l'Université Privée de Fès pour accéder à l'ensemble de vos services administratifs et pédagogiques.
+              Connectez-vous à l'écosystème numérique de l'UPF Université pour accéder à l'ensemble de vos services administratifs et pédagogiques.
             </p>
           </div>
           
           <div className="text-blue-200/50 text-xs font-semibold">
-            &copy; {new Date().getFullYear()} Université Privée de Fès. Tous droits réservés.
+            &copy; {new Date().getFullYear()} UPF Université. Tous droits réservés.
           </div>
         </div>
       </div>
@@ -118,11 +114,10 @@ const LoginPage: React.FC = () => {
         
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-3.5 mb-10">
-            <div className="w-10 h-10 rounded-xl bg-upf-primary flex items-center justify-center shadow-lg shadow-upf-primary/20">
-              <AcademicCapIcon className="w-6 h-6 text-upf-accent" />
-            </div>
-            <span className="font-outfit font-black text-xl text-slate-900 tracking-tight">UPF Fès</span>
+          <div className="lg:hidden mb-8">
+            <Link to="/" className="inline-block">
+              <img src="/logo_upf.png" alt="UPF Université" className="h-9 w-auto object-contain" />
+            </Link>
           </div>
 
           <h2 className="text-3xl font-outfit font-black text-slate-900 mb-2 tracking-tight">Bienvenue</h2>

@@ -46,11 +46,8 @@ const AdminLoginPage: React.FC = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-10"></div>
         
         <div className="relative z-20 flex flex-col justify-between h-full p-16">
-          <Link to="/" className="flex items-center gap-3 w-max hover:opacity-80 transition-opacity">
-            <div className="w-12 h-12 rounded bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20">
-              <ShieldCheckIcon className="w-7 h-7 text-upf-accent" />
-            </div>
-            <span className="font-outfit font-bold text-2xl text-white">UPF Command Center</span>
+          <Link to="/" className="inline-block bg-white py-2 px-3.5 rounded-xl shadow-lg hover:opacity-90 transition-opacity w-max">
+            <img src="/logo_upf.png" alt="UPF Université" className="h-8 w-auto object-contain" />
           </Link>
 
           <div>
@@ -63,7 +60,7 @@ const AdminLoginPage: React.FC = () => {
               <span className="text-upf-accent">Hautement Sécurisé.</span>
             </h1>
             <p className="text-slate-400 text-lg max-w-md font-light leading-relaxed mb-8">
-              Vous êtes sur le point de vous connecter à l'interface de gestion centrale Zero-Trust de l'Université Privée de Fès. 
+              Vous êtes sur le point de vous connecter à l'interface de gestion centrale Zero-Trust de l'UPF Université. 
               Toute tentative d'accès non autorisée sera enregistrée et signalée.
             </p>
             
@@ -78,7 +75,7 @@ const AdminLoginPage: React.FC = () => {
           </div>
           
           <div className="text-slate-500 text-sm font-medium">
-            &copy; {new Date().getFullYear()} UPF Fès - DSI (Direction des Systèmes d'Information).
+            &copy; {new Date().getFullYear()} UPF Université - DSI (Direction des Systèmes d'Information).
           </div>
         </div>
       </div>
@@ -88,11 +85,10 @@ const AdminLoginPage: React.FC = () => {
         
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-3 mb-10">
-            <div className="w-10 h-10 rounded bg-slate-900 flex items-center justify-center">
-              <ShieldCheckIcon className="w-6 h-6 text-upf-accent" />
-            </div>
-            <span className="font-outfit font-bold text-xl text-slate-900">UPF Admin</span>
+          <div className="lg:hidden mb-8">
+            <Link to="/" className="inline-block">
+              <img src="/logo_upf.png" alt="UPF Université" className="h-9 w-auto object-contain" />
+            </Link>
           </div>
 
           <motion.div

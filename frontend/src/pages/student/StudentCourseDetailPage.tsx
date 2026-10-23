@@ -201,34 +201,29 @@ const StudentCourseDetailPage: React.FC = () => {
 
       <div className="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden min-h-[500px] flex flex-col">
         {/* Tabs */}
-        <div className="flex border-b border-slate-100 bg-slate-50 px-8 shrink-0 overflow-x-auto custom-scrollbar">
-          <button 
-            onClick={() => setActiveTab('materials')}
-            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'materials' ? 'border-upf-primary text-upf-primary' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-          >
-            <div className="flex items-center gap-2">
-              <FolderOpenIcon className="w-5 h-5" />
-              Supports de Cours ({course.materials.length})
-            </div>
-          </button>
-          <button 
-            onClick={() => setActiveTab('assignments')}
-            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'assignments' ? 'border-upf-primary text-upf-primary' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-          >
-            <div className="flex items-center gap-2">
-              <ClipboardDocumentListIcon className="w-5 h-5" />
-              Devoirs ({course.assignments?.length || 0})
-            </div>
-          </button>
-          <button 
-            onClick={() => setActiveTab('announcements')}
-            className={`py-5 px-6 font-bold text-sm border-b-2 transition-colors whitespace-nowrap ${activeTab === 'announcements' ? 'border-upf-primary text-upf-primary' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-          >
-            <div className="flex items-center gap-2">
-              <MegaphoneIcon className="w-5 h-5" />
-              Annonces ({course.announcements.length})
-            </div>
-          </button>
+        <div className="flex border-b border-slate-100 bg-slate-50/50 px-8 shrink-0 overflow-x-auto custom-scrollbar gap-8">
+          {[
+            { id: 'materials', label: `Supports de Cours (${course.materials.length})`, icon: FolderOpenIcon },
+            { id: 'assignments', label: `Devoirs (${course.assignments?.length || 0})`, icon: ClipboardDocumentListIcon },
+            { id: 'announcements', label: `Annonces (${course.announcements.length})`, icon: MegaphoneIcon }
+          ].map(tab => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`py-5 text-xs font-black uppercase tracking-widest transition-all relative flex items-center gap-2 whitespace-nowrap ${
+                  isActive ? 'text-upf-primary' : 'text-slate-400 hover:text-slate-600'
+                }`}
+              >
+                <tab.icon className="w-4 h-4" />
+                <span>{tab.label}</span>
+                {isActive && (
+                  <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-upf-primary rounded-full" />
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {/* Content Area */}

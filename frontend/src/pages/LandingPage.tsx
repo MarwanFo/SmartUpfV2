@@ -28,19 +28,16 @@ const LandingPage: React.FC = () => {
       <nav className="fixed w-full z-50 backdrop-blur-md bg-white/75 border-b border-slate-100/80 shadow-sm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-upf-primary flex items-center justify-center shadow-lg shadow-upf-primary/20 border border-upf-primaryLight/10 flex-shrink-0">
-                <AcademicCapIcon className="w-6 h-6 sm:w-7 sm:h-7 text-upf-accent" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-outfit font-extrabold text-sm sm:text-base md:text-lg lg:text-xl text-slate-900 leading-tight tracking-tight max-w-[170px] sm:max-w-none">
-                  Université Privée de Fès
-                </span>
-                <span className="text-[8px] sm:text-[10px] font-bold text-upf-accent uppercase tracking-widest mt-0.5">
-                  Reconnue par l'État
-                </span>
-              </div>
-            </div>
+            <a href="/" className="flex items-center gap-2 sm:gap-3 group">
+              <img 
+                src="/logo_upf.png" 
+                alt="UPF Université" 
+                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
+              />
+              <span className="text-[8px] sm:text-[10px] font-bold text-upf-accent uppercase tracking-widest hidden sm:inline-block border-l border-slate-200 pl-3">
+                Reconnue par l'État
+              </span>
+            </a>
             
             <div className="hidden lg:flex space-x-8 items-center">
               <a href="#facultes" className="text-sm font-semibold text-slate-600 hover:text-upf-primary hover:bg-slate-50 px-3 py-2 rounded-lg transition-all duration-200">Nos Facultés</a>
@@ -266,7 +263,7 @@ const LandingPage: React.FC = () => {
                 Découvrez SMART UPF : <br/>L'Écosystème Intelligent
               </h2>
               <p className="text-slate-500 text-lg mb-10 leading-relaxed">
-                L'Université Privée de Fès se dote d'une infrastructure digitale inédite. 
+                L'UPF Université se dote d'une infrastructure digitale inédite. 
                 Une plateforme unifiée qui orchestre toute votre vie étudiante avec fluidité, simplicité et sécurité renforcée.
               </p>
               
@@ -310,14 +307,11 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-20">
             <div className="sm:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg">
-                  <AcademicCapIcon className="w-6 h-6 text-upf-accent" />
-                </div>
-                <span className="font-outfit font-extrabold text-2xl text-white tracking-tight">UPF Fès</span>
+              <div className="inline-block bg-white py-2 px-3.5 rounded-xl shadow-lg mb-6">
+                <img src="/logo_upf.png" alt="UPF Université" className="h-9 w-auto object-contain" />
               </div>
               <p className="text-blue-100/70 text-sm leading-relaxed max-w-sm mb-6 font-normal">
-                L'Université Privée de Fès est une institution supérieure d'excellence reconnue par l'État marocain, 
+                L'UPF Université est une institution supérieure d'excellence reconnue par l'État marocain, 
                 délivrant des diplômes équivalents au secteur public dans les filières porteuses de l'ingénierie, du management, de la santé, du droit et de l'architecture.
               </p>
             </div>
@@ -344,7 +338,7 @@ const LandingPage: React.FC = () => {
           
           <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-blue-200/60 text-sm font-medium">
-              &copy; {new Date().getFullYear()} Université Privée de Fès. Tous droits réservés.
+              &copy; {new Date().getFullYear()} UPF Université. Tous droits réservés.
             </p>
             <div className="flex gap-6 text-sm text-blue-200/60 font-semibold">
               <a href="#" className="hover:text-white transition-colors">Mentions légales</a>

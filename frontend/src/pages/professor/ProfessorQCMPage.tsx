@@ -88,14 +88,13 @@ const ProfessorQCMPage: React.FC = () => {
       
       console.log('Raw AI Data:', aiData); // For debugging
       
-      // Helper to find the largest array in an object
       const findLargestArray = (obj: any): any[] => {
         if (!obj) return [];
         if (Array.isArray(obj)) return obj;
         if (typeof obj === 'object') {
           let maxArr: any[] = [];
-          for (const key of Object.keys(obj)) {
-            const arr = findLargestArray(obj[key]);
+          for (const val of Object.values(obj)) {
+            const arr = findLargestArray(val);
             if (arr.length > maxArr.length) maxArr = arr;
           }
           return maxArr;
@@ -178,7 +177,7 @@ const ProfessorQCMPage: React.FC = () => {
                 {/* File Upload */}
                 <div>
                   <label className="text-[10px] font-black uppercase text-slate-500 mb-3 block tracking-widest">Document Source (PDF)</label>
-                  <label className="group relative flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer hover:border-upf-primary hover:bg-upf-primary/10/50 transition-all">
+                  <label className="group relative flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer hover:border-upf-primary hover:bg-upf-primary/10 transition-all">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       {file ? (
                         <DocumentTextIcon className="w-10 h-10 text-upf-primary mb-3" />
@@ -345,7 +344,7 @@ const ProfessorQCMPage: React.FC = () => {
                             ))}
                           </div>
                           <div className="pl-12">
-                            <div className="bg-upf-primary/10/50 rounded-2xl p-4 border-l-2 border-upf-primary">
+                            <div className="bg-upf-primary/10 rounded-2xl p-4 border-l-2 border-upf-primary">
                               <p className="text-[10px] font-black text-upf-primary uppercase mb-1 tracking-widest">Explication Pédagogique</p>
                               <p className="text-xs text-slate-600 leading-relaxed italic">{q.explanation}</p>
                             </div>

@@ -233,7 +233,7 @@ const ProfessorCalendarPage: React.FC = () => {
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-          <div className="bg-upf-primary/10/50 rounded-2xl p-4 border border-upf-primary/20">
+          <div className="bg-upf-primary/10 rounded-2xl p-4 border border-upf-primary/20">
             <p className="text-[10px] font-black text-upf-primary uppercase mb-1">Comment ça marche ?</p>
             <p className="text-[11px] text-upf-primary leading-relaxed opacity-80">
               Saisissez vos activités sans date précise. Cliquez sur "Optimiser" et l'IA les placera dans vos créneaux libres.
@@ -421,7 +421,7 @@ const ProfessorCalendarPage: React.FC = () => {
               </div>
               <div className="space-y-4">
                 <h2 className="text-3xl font-black">NVIDIA Hybrid Engine</h2>
-                <p className="text-upf-primary/30/50 font-bold uppercase tracking-widest text-[10px]">Calcul de l'équilibre parfait</p>
+                <p className="text-upf-primary/30 font-bold uppercase tracking-widest text-[10px]">Calcul de l'équilibre parfait</p>
               </div>
               <div className="space-y-3">
                 {optimizationSteps.map((step, idx) => (

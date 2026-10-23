@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
 import { 
   HomeIcon,
   BookOpenIcon,
@@ -12,7 +12,6 @@ import {
   ArrowRightOnRectangleIcon,
   Bars3Icon,
   UserCircleIcon,
-  AcademicCapIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
 import { useAuthStore } from '../../store/authStore';
@@ -102,12 +101,11 @@ const ProfessorLayout: React.FC = () => {
             </div>
             {/* Mobile Nav Content */}
             <div className="flex items-center h-20 px-6 border-b border-white/10 bg-upf-primary/80">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-upf-primaryLight to-upf-accent flex items-center justify-center shadow-lg shadow-upf-accent/20 mr-3">
-                <AcademicCapIcon className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-outfit font-bold text-white tracking-wide">
-                UPF <span className="text-transparent bg-clip-text bg-gradient-to-r from-upf-primaryLight to-upf-accentLight">PROF</span>
-              </span>
+              <Link to="/prof/dashboard" className="flex items-center gap-3">
+                <div className="bg-white py-1.5 px-3 rounded-xl shadow-md">
+                  <img src="/logo_upf.png" alt="UPF Université" className="h-7 w-auto object-contain" />
+                </div>
+              </Link>
             </div>
             <div className="flex-1 overflow-y-auto pt-6 px-4 space-y-1.5 custom-scrollbar">
               {renderNavItems(() => setIsMobileMenuOpen(false))}
@@ -121,12 +119,11 @@ const ProfessorLayout: React.FC = () => {
         <div className="flex flex-col w-72 bg-upf-primary border-r border-white/5 shadow-2xl z-20">
           <div className="flex flex-col h-0 flex-1">
             <div className="flex items-center h-20 px-6 border-b border-white/10 bg-upf-primary/80 backdrop-blur-md">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-upf-primaryLight to-upf-accent flex items-center justify-center shadow-lg shadow-upf-accent/20 mr-3">
-                <AcademicCapIcon className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-outfit font-bold text-white tracking-wide">
-                UPF <span className="text-transparent bg-clip-text bg-gradient-to-r from-upf-primaryLight to-upf-accentLight">PROF</span>
-              </span>
+              <Link to="/prof/dashboard" className="flex items-center gap-3">
+                <div className="bg-white py-1.5 px-3 rounded-xl shadow-md">
+                  <img src="/logo_upf.png" alt="UPF Université" className="h-7 w-auto object-contain" />
+                </div>
+              </Link>
             </div>
             
             <div className="flex-1 flex flex-col overflow-y-auto pt-6 custom-scrollbar">

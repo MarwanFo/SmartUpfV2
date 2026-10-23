@@ -190,7 +190,7 @@ const ModuleModal: React.FC<ModuleModalProps> = ({ isOpen, onClose, academicModu
                                   key={p.id}
                                   className={`group relative flex flex-col md:flex-row md:items-center p-4 rounded-xl border-2 transition-all duration-200 gap-4 ${
                                     isSelected 
-                                      ? 'border-upf-primaryLight bg-upf-primaryLight/10/50 shadow-sm shadow-upf-primaryLight/10' 
+                                      ? 'border-upf-primaryLight bg-upf-primaryLight/10 shadow-sm shadow-upf-primaryLight/10' 
                                       : 'border-white bg-white hover:border-slate-200 hover:bg-slate-50'
                                   }`}
                                 >

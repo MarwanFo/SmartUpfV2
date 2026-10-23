@@ -228,62 +228,82 @@ const ProfessorGradesPage: React.FC = () => {
         
         <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
           {hierarchy.map(filiere => {
+            const isFiliereExpanded = selectedFiliere?.id === filiere.id;
             const classesToRender = filiere.classes;
 
             return (
-              <div key={filiere.id} className="mb-2">
+              <div key={filiere.id} className="space-y-1">
                 <button
                   onClick={() => {
-                    setSelectedFiliere(selectedFiliere?.id === filiere.id ? null : filiere);
+                    setSelectedFiliere(isFiliereExpanded ? null : filiere);
                     setSelectedClass(null);
                     setSelectedCourse(null);
                   }}
-                  className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all ${
-                    selectedFiliere?.id === filiere.id ? 'bg-upf-primary text-white shadow-lg shadow-upf-primary/20' : 'bg-white border border-slate-100 hover:border-upf-primary/30'
+                  className={`w-full flex items-center justify-between p-3 rounded-xl transition-all text-left ${
+                    isFiliereExpanded
+                      ? 'bg-slate-50 text-upf-primary font-bold'
+                      : 'hover:bg-slate-50/50 text-slate-700 font-semibold'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <AcademicCapIcon className={`w-5 h-5 ${selectedFiliere?.id === filiere.id ? 'text-white' : 'text-upf-primary'}`} />
-                    <span className="text-sm font-black truncate max-w-[140px] uppercase tracking-tight">{filiere.code || filiere.name}</span>
+                    <AcademicCapIcon className="w-5 h-5 text-upf-primary/80" />
+                    <span className="text-sm font-outfit truncate max-w-[160px]">{filiere.code || filiere.name}</span>
                   </div>
-                  <ChevronRightIcon className={`w-4 h-4 transition-transform ${selectedFiliere?.id === filiere.id ? 'rotate-90' : 'opacity-30'}`} />
+                  <ChevronRightIcon className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isFiliereExpanded ? 'rotate-90' : ''}`} />
                 </button>
 
-                {selectedFiliere?.id === filiere.id && (
-                  <div className="mt-2 space-y-1 pl-4">
-                    {classesToRender.map(clazz => (
-                      <div key={clazz.id}>
-                        <button
-                          onClick={() => {
-                            setSelectedClass(selectedClass?.id === clazz.id ? null : clazz);
-                            setSelectedCourse(null);
-                          }}
-                          className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold ${
-                            selectedClass?.id === clazz.id ? 'bg-upf-primary/10 text-upf-primary' : 'text-slate-500 hover:bg-slate-100'
-                          }`}
-                        >
-                          <UserGroupIcon className="w-4 h-4" />
-                          {clazz.name}
-                        </button>
-                        {selectedClass?.id === clazz.id && (
-                          <div className="pl-6 py-1 space-y-1 border-l-2 border-upf-primary/20 ml-5 mt-1">
-                            {clazz.courses
-                              .filter(c => !selectedSemester || c.semester === selectedSemester)
-                              .map(course => (
-                                <button
-                                  key={course.id}
-                                  onClick={() => loadGrades(course)}
-                                  className={`w-full text-left p-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest ${
-                                    selectedCourse?.id === course.id ? 'text-upf-primary bg-upf-primary/10' : 'text-slate-400 hover:text-upf-primaryLight'
-                                  }`}
-                                >
-                                  {course.name}
-                                </button>
-                              ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                {isFiliereExpanded && (
+                  <div className="pl-4 border-l border-slate-100 ml-5 mt-1 space-y-1">
+                    {classesToRender.map(clazz => {
+                      const isClassExpanded = selectedClass?.id === clazz.id;
+                      return (
+                        <div key={clazz.id} className="space-y-1">
+                          <button
+                            onClick={() => {
+                              setSelectedClass(isClassExpanded ? null : clazz);
+                              setSelectedCourse(null);
+                            }}
+                            className={`w-full flex items-center justify-between py-2 px-3 rounded-lg transition-all text-left text-xs ${
+                              isClassExpanded
+                                ? 'text-upf-primary font-bold'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/40'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2">
+                              <UserGroupIcon className="w-4 h-4 text-slate-400" />
+                              <span className="font-bold">{clazz.name}</span>
+                            </div>
+                            <ChevronRightIcon className={`w-3 h-3 text-slate-400 transition-transform ${isClassExpanded ? 'rotate-90' : ''}`} />
+                          </button>
+
+                          {isClassExpanded && (
+                            <div className="pl-3 border-l border-slate-100 ml-4 mt-1 space-y-1">
+                              {clazz.courses
+                                .filter(c => !selectedSemester || c.semester === selectedSemester)
+                                .map(course => {
+                                  const isSelected = selectedCourse?.id === course.id;
+                                  return (
+                                    <button
+                                      key={course.id}
+                                      onClick={() => loadGrades(course)}
+                                      className={`w-full text-left py-2 px-3 rounded-lg text-xs font-semibold transition-all relative group flex items-center gap-2 ${
+                                        isSelected
+                                          ? 'bg-upf-primary/10 text-upf-primary border-l-2 border-upf-primary'
+                                          : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/80'
+                                      }`}
+                                    >
+                                      <div className={`w-1.5 h-1.5 rounded-full transition-all ${
+                                        isSelected ? 'bg-upf-primary scale-110' : 'bg-slate-300 group-hover:bg-slate-450'
+                                      }`} />
+                                      <span className="truncate block pr-2">{course.name}</span>
+                                    </button>
+                                  );
+                                })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -404,7 +424,7 @@ const ProfessorGradesPage: React.FC = () => {
                           const final = calculateFinal(row.grades);
   
                           return (
-                            <tr key={row.student.id} className="hover:bg-upf-primary/10/30 transition-colors group">
+                            <tr key={row.student.id} className="hover:bg-slate-50 transition-colors group">
                               <td className="px-6 md:px-8 py-4">
                                 <div className="flex items-center gap-3 md:gap-4">
                                   <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-100 flex-shrink-0 flex items-center justify-center font-black text-[10px] md:text-xs text-slate-400 group-hover:text-upf-primary transition-colors uppercase">

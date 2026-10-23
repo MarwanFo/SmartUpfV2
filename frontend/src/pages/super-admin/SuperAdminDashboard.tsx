@@ -63,7 +63,7 @@ const SuperAdminDashboard: React.FC = () => {
       <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 flex items-start sm:items-center justify-between flex-col sm:flex-row gap-4">
         <div>
           <h2 className="text-xl font-bold font-outfit text-slate-900">Vue d'ensemble Système</h2>
-          <p className="text-slate-500 text-sm mt-1">Réseau Universitaire UPF Fès - Tous les systèmes sont opérationnels.</p>
+          <p className="text-slate-500 text-sm mt-1">Réseau Universitaire UPF Université - Tous les systèmes sont opérationnels.</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100 font-semibold text-sm">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>

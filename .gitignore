@@ -7,3 +7,9 @@ dist
 coverage
 .nest
 prisma/migrations
+
+# Ignored docs and files requested by user
+docs/
+SMART_UPF_CDC_v8.pdf
+backend/scratch/
+scratch/

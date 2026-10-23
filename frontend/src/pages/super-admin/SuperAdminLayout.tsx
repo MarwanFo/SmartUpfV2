@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, useLocation, Link } from 'react-router-dom';
 import { 
   BuildingOffice2Icon,
   AcademicCapIcon,
   UsersIcon,
-  ShieldCheckIcon,
   Cog6ToothIcon,
   BellIcon,
   ArrowRightOnRectangleIcon,
@@ -106,8 +105,12 @@ const SuperAdminLayout: React.FC = () => {
               </button>
             </div>
             <div className="flex items-center h-20 px-6 border-b border-slate-800 bg-slate-950">
-              <ShieldCheckIcon className="w-8 h-8 text-upf-accent mr-3" />
-              <span className="text-xl font-outfit font-bold text-white tracking-wide">SMART<span className="text-upf-accent">ADMIN</span></span>
+              <Link to="/admin/dashboard" className="flex items-center gap-3">
+                <div className="bg-white py-1.5 px-3 rounded-xl shadow-md">
+                  <img src="/logo_upf.png" alt="UPF Université" className="h-7 w-auto object-contain" />
+                </div>
+                <span className="text-xs font-mono font-bold text-upf-accent uppercase tracking-wider bg-upf-accent/10 px-2 py-0.5 rounded border border-upf-accent/20">Admin</span>
+              </Link>
             </div>
             <div className="flex-1 overflow-y-auto pt-6 px-4 space-y-1 custom-scrollbar">
               {renderNavItems(() => setIsMobileMenuOpen(false))}
@@ -121,8 +124,12 @@ const SuperAdminLayout: React.FC = () => {
         <div className="flex flex-col w-72 bg-slate-900 border-r border-slate-800 shadow-2xl z-20">
           <div className="flex flex-col h-0 flex-1">
             <div className="flex items-center h-20 px-6 border-b border-slate-800 bg-slate-950">
-              <ShieldCheckIcon className="w-8 h-8 text-upf-accent mr-3" />
-              <span className="text-xl font-outfit font-bold text-white tracking-wide">SMART<span className="text-upf-accent">ADMIN</span></span>
+              <Link to="/admin/dashboard" className="flex items-center gap-3">
+                <div className="bg-white py-1.5 px-3 rounded-xl shadow-md">
+                  <img src="/logo_upf.png" alt="UPF Université" className="h-7 w-auto object-contain" />
+                </div>
+                <span className="text-xs font-mono font-bold text-upf-accent uppercase tracking-wider bg-upf-accent/10 px-2 py-0.5 rounded border border-upf-accent/20">Admin</span>
+              </Link>
             </div>
             
             <div className="flex-1 flex flex-col overflow-y-auto pt-6 custom-scrollbar">

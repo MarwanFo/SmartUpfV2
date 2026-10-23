@@ -237,77 +237,86 @@ const ProfessorAttendancePage: React.FC = () => {
             </div>
           )}
           
-          {hierarchy.map(filiere => (
-            <div key={filiere.id} className="group">
-              <button
-                onClick={() => {
-                  setSelectedFiliere(selectedFiliere?.id === filiere.id ? null : filiere);
-                  setSelectedClass(null);
-                  setSelectedCourse(null);
-                }}
-                className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 ${
-                  selectedFiliere?.id === filiere.id 
-                    ? 'bg-upf-primary text-white shadow-lg shadow-upf-primary/30 ring-4 ring-upf-primary/10' 
-                    : 'bg-white border border-slate-200/60 hover:border-indigo-300 hover:bg-upf-primary/10/30 text-slate-700'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                    selectedFiliere?.id === filiere.id ? 'bg-white/20' : 'bg-upf-primary/10 text-upf-primary'
-                  }`}>
-                    <AcademicCapIcon className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <span className="text-[10px] font-black uppercase tracking-tighter opacity-60 block">Filière</span>
-                    <span className="text-sm font-extrabold truncate max-w-[140px] block leading-tight">{filiere.name}</span>
-                  </div>
-                </div>
-                <ChevronRightIcon className={`w-4 h-4 transition-transform duration-500 ${selectedFiliere?.id === filiere.id ? 'rotate-90' : 'opacity-40 group-hover:opacity-100'}`} />
-              </button>
+          {hierarchy.map(filiere => {
+            const isFiliereExpanded = selectedFiliere?.id === filiere.id;
+            const classesToRender = filiere.classes;
 
-              {selectedFiliere?.id === filiere.id && (
-                <div className="space-y-2 pl-4 mt-2">
-                  {filiere.classes.map(clazz => (
-                    <div key={clazz.id} className="space-y-1">
-                      <button
-                        onClick={() => {
-                          setSelectedClass(selectedClass?.id === clazz.id ? null : clazz);
-                          setSelectedCourse(null);
-                        }}
-                        className={`w-full flex items-center gap-3 p-3 rounded-xl text-sm font-bold transition-all border ${
-                          selectedClass?.id === clazz.id 
-                            ? 'bg-white border-upf-primary/30 text-upf-primary shadow-sm' 
-                            : 'border-transparent text-slate-500 hover:text-slate-900 hover:bg-white/60'
-                        }`}
-                      >
-                        <UserGroupIcon className={`w-4 h-4 ${selectedClass?.id === clazz.id ? 'text-upf-primary' : 'text-slate-300'}`} />
-                        {clazz.name}
-                      </button>
-                      
-                      {selectedClass?.id === clazz.id && (
-                        <div className="pl-6 space-y-1.5 py-1">
-                          {clazz.courses.map(course => (
-                            <button
-                              key={course.id}
-                              onClick={() => loadSessions(course)}
-                              className={`w-full flex items-center gap-2.5 p-2.5 rounded-lg text-xs font-extrabold transition-all ${
-                                selectedCourse?.id === course.id 
-                                  ? 'bg-upf-primary text-white shadow-md' 
-                                  : 'text-slate-400 hover:text-upf-primary hover:bg-white border border-transparent hover:border-upf-primary/20'
-                              }`}
-                            >
-                              <div className={`w-1.5 h-1.5 rounded-full ${selectedCourse?.id === course.id ? 'bg-white' : 'bg-slate-300'}`} />
-                              <span className="truncate">{course.name}</span>
-                            </button>
-                          ))}
+            return (
+              <div key={filiere.id} className="space-y-1">
+                <button
+                  onClick={() => {
+                    setSelectedFiliere(isFiliereExpanded ? null : filiere);
+                    setSelectedClass(null);
+                    setSelectedCourse(null);
+                  }}
+                  className={`w-full flex items-center justify-between p-3 rounded-xl transition-all text-left ${
+                    isFiliereExpanded
+                      ? 'bg-slate-50 text-upf-primary font-bold'
+                      : 'hover:bg-slate-50/50 text-slate-700 font-semibold'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <AcademicCapIcon className="w-5 h-5 text-upf-primary/80" />
+                    <span className="text-sm font-outfit truncate max-w-[160px]">{filiere.code || filiere.name}</span>
+                  </div>
+                  <ChevronRightIcon className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isFiliereExpanded ? 'rotate-90' : ''}`} />
+                </button>
+
+                {isFiliereExpanded && (
+                  <div className="pl-4 border-l border-slate-100 ml-5 mt-1 space-y-1">
+                    {classesToRender.map(clazz => {
+                      const isClassExpanded = selectedClass?.id === clazz.id;
+                      return (
+                        <div key={clazz.id} className="space-y-1">
+                          <button
+                            onClick={() => {
+                              setSelectedClass(isClassExpanded ? null : clazz);
+                              setSelectedCourse(null);
+                            }}
+                            className={`w-full flex items-center justify-between py-2 px-3 rounded-lg transition-all text-left text-xs ${
+                              isClassExpanded
+                                ? 'text-upf-primary font-bold'
+                                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50/40'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2">
+                              <UserGroupIcon className="w-4 h-4 text-slate-400" />
+                              <span className="font-bold">{clazz.name}</span>
+                            </div>
+                            <ChevronRightIcon className={`w-3 h-3 text-slate-400 transition-transform ${isClassExpanded ? 'rotate-90' : ''}`} />
+                          </button>
+
+                          {isClassExpanded && (
+                            <div className="pl-3 border-l border-slate-100 ml-4 mt-1 space-y-1">
+                              {clazz.courses.map(course => {
+                                const isSelected = selectedCourse?.id === course.id;
+                                return (
+                                  <button
+                                    key={course.id}
+                                    onClick={() => loadSessions(course)}
+                                    className={`w-full text-left py-2 px-3 rounded-lg text-xs font-semibold transition-all relative group flex items-center gap-2 ${
+                                      isSelected
+                                        ? 'bg-upf-primary/10 text-upf-primary border-l-2 border-upf-primary'
+                                        : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/80'
+                                    }`}
+                                  >
+                                    <div className={`w-1.5 h-1.5 rounded-full transition-all ${
+                                      isSelected ? 'bg-upf-primary scale-110' : 'bg-slate-300 group-hover:bg-slate-450'
+                                    }`} />
+                                    <span className="truncate block pr-2">{course.name}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
